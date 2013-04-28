@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Mymart/!svn/ver/158/trunk/src/Android/myMartAndroidTest
+END
+AndroidManifest.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/Mymart/!svn/ver/59/trunk/src/Android/myMartAndroidTest/AndroidManifest.xml
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/Mymart/!svn/ver/152/trunk/src/Android/myMartAndroidTest/.classpath
+END
+project.properties
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/Mymart/!svn/ver/152/trunk/src/Android/myMartAndroidTest/project.properties
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/Mymart/!svn/ver/59/trunk/src/Android/myMartAndroidTest/.project
+END
+lint.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/Mymart/!svn/ver/42/trunk/src/Android/myMartAndroidTest/lint.xml
+END

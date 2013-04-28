@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/Mymart/!svn/ver/72/trunk/src/Android/myMartAndroid/doc/au/com/mymart3/mymartandroid/webapi/class-use
+END
+GetUnitList.html
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/Mymart/!svn/ver/72/trunk/src/Android/myMartAndroid/doc/au/com/mymart3/mymartandroid/webapi/class-use/GetUnitList.html
+END
+Authenticate.html
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/Mymart/!svn/ver/72/trunk/src/Android/myMartAndroid/doc/au/com/mymart3/mymartandroid/webapi/class-use/Authenticate.html
+END
+GetClassList.html
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/Mymart/!svn/ver/72/trunk/src/Android/myMartAndroid/doc/au/com/mymart3/mymartandroid/webapi/class-use/GetClassList.html
+END
+AuthenticateDeviceQuickPin.html
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/Mymart/!svn/ver/72/trunk/src/Android/myMartAndroid/doc/au/com/mymart3/mymartandroid/webapi/class-use/AuthenticateDeviceQuickPin.html
+END
+BaseWebAPI.html
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/Mymart/!svn/ver/72/trunk/src/Android/myMartAndroid/doc/au/com/mymart3/mymartandroid/webapi/class-use/BaseWebAPI.html
+END
+GetClassList.ClassListDetailResult.html
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/Mymart/!svn/ver/72/trunk/src/Android/myMartAndroid/doc/au/com/mymart3/mymartandroid/webapi/class-use/GetClassList.ClassListDetailResult.html
+END
+GetUnitList.UnitListDetailResult.html
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/Mymart/!svn/ver/72/trunk/src/Android/myMartAndroid/doc/au/com/mymart3/mymartandroid/webapi/class-use/GetUnitList.UnitListDetailResult.html
+END
+MyMartCrypto.Result.html
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/Mymart/!svn/ver/72/trunk/src/Android/myMartAndroid/doc/au/com/mymart3/mymartandroid/webapi/class-use/MyMartCrypto.Result.html
+END
+RegisterDeviceQuickPin.html
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/Mymart/!svn/ver/72/trunk/src/Android/myMartAndroid/doc/au/com/mymart3/mymartandroid/webapi/class-use/RegisterDeviceQuickPin.html
+END
+MyMartCrypto.html
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/Mymart/!svn/ver/72/trunk/src/Android/myMartAndroid/doc/au/com/mymart3/mymartandroid/webapi/class-use/MyMartCrypto.html
+END

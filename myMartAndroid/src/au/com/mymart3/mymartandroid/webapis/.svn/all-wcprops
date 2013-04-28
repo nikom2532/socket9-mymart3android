@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/Mymart/!svn/ver/150/trunk/src/Android/myMartAndroid/src/au/com/mymart3/mymartandroid/webapis
+END
+BaseAPI.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/Mymart/!svn/ver/150/trunk/src/Android/myMartAndroid/src/au/com/mymart3/mymartandroid/webapis/BaseAPI.java
+END
+IGetClassListAPI.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/Mymart/!svn/ver/150/trunk/src/Android/myMartAndroid/src/au/com/mymart3/mymartandroid/webapis/IGetClassListAPI.java
+END
+GetUnitListAPI.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/Mymart/!svn/ver/150/trunk/src/Android/myMartAndroid/src/au/com/mymart3/mymartandroid/webapis/GetUnitListAPI.java
+END
+IAuthenticateDeviceQuickPinAPI.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/Mymart/!svn/ver/150/trunk/src/Android/myMartAndroid/src/au/com/mymart3/mymartandroid/webapis/IAuthenticateDeviceQuickPinAPI.java
+END
+AuthenticateAPI.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/Mymart/!svn/ver/150/trunk/src/Android/myMartAndroid/src/au/com/mymart3/mymartandroid/webapis/AuthenticateAPI.java
+END
+GetClassListAPI.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/Mymart/!svn/ver/150/trunk/src/Android/myMartAndroid/src/au/com/mymart3/mymartandroid/webapis/GetClassListAPI.java
+END
+IRegisterDeviceQuickPinAPI.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/Mymart/!svn/ver/150/trunk/src/Android/myMartAndroid/src/au/com/mymart3/mymartandroid/webapis/IRegisterDeviceQuickPinAPI.java
+END
+AuthenticateDeviceQuickPinAPI.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/Mymart/!svn/ver/150/trunk/src/Android/myMartAndroid/src/au/com/mymart3/mymartandroid/webapis/AuthenticateDeviceQuickPinAPI.java
+END
+IGetUnitListAPI.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/Mymart/!svn/ver/150/trunk/src/Android/myMartAndroid/src/au/com/mymart3/mymartandroid/webapis/IGetUnitListAPI.java
+END
+IAuthenticateAPI.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/Mymart/!svn/ver/150/trunk/src/Android/myMartAndroid/src/au/com/mymart3/mymartandroid/webapis/IAuthenticateAPI.java
+END
+RegisterDeviceQuickPinAPI.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/Mymart/!svn/ver/150/trunk/src/Android/myMartAndroid/src/au/com/mymart3/mymartandroid/webapis/RegisterDeviceQuickPinAPI.java
+END

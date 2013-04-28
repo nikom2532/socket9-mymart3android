@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/Mymart/!svn/ver/157/trunk/src/Android/myMartAndroid/src/au/com/mymart3/mymartandroid/models
+END
+GetUnitListModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/Mymart/!svn/ver/157/trunk/src/Android/myMartAndroid/src/au/com/mymart3/mymartandroid/models/GetUnitListModel.java
+END
+AuthenticateModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/Mymart/!svn/ver/157/trunk/src/Android/myMartAndroid/src/au/com/mymart3/mymartandroid/models/AuthenticateModel.java
+END
+GetClassListModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/Mymart/!svn/ver/157/trunk/src/Android/myMartAndroid/src/au/com/mymart3/mymartandroid/models/GetClassListModel.java
+END
+AuthenticateDeviceQuickPinModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/Mymart/!svn/ver/157/trunk/src/Android/myMartAndroid/src/au/com/mymart3/mymartandroid/models/AuthenticateDeviceQuickPinModel.java
+END
+RegisterDeviceQuickPinModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/Mymart/!svn/ver/157/trunk/src/Android/myMartAndroid/src/au/com/mymart3/mymartandroid/models/RegisterDeviceQuickPinModel.java
+END
+BaseModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/Mymart/!svn/ver/150/trunk/src/Android/myMartAndroid/src/au/com/mymart3/mymartandroid/models/BaseModel.java
+END

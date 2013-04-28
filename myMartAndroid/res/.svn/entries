@@ -1,0 +1,49 @@
+10
+
+dir
+160
+http://listen21.com:8888/svn/Mymart/trunk/src/Android/myMartAndroid/res
+http://listen21.com:8888/svn/Mymart
+
+
+
+2013-04-23T04:25:26.246719Z
+77
+it
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4d9c3290-0144-704e-acbb-169278e83ae4
+
+layout
+dir
+
+values
+dir
+
+drawable-hdpi
+dir
+
+menu
+dir
+
+drawable-ldpi
+dir
+
+drawable-mdpi
+dir
+
+drawable-xhdpi
+dir
+
