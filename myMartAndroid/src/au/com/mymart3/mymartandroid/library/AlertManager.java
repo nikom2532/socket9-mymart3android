@@ -51,7 +51,7 @@ public class AlertManager {
      * @param message 
      * @param title 
      */
-    public static void DisplayMessage(Context context,String message,String title)
+    public static void displayMessage(Context context,String message,String title)
     {
     	try {
 	        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
@@ -87,7 +87,7 @@ public class AlertManager {
      * @param context 
      * @param message 
      */
-    public static void DisplayErrorMessage(Context context,String message)
+    public static void displayErrorMessage(Context context,String message)
     {
     	try {
 	        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
@@ -112,7 +112,7 @@ public class AlertManager {
 	 * @param txt 
 	 * @param onCancel 
 	 */
-	static public void DisplayLoadingMessage(Context context,String txt,final Runnable onCancel) {
+	static public void displayLoadingMessage(Context context,String txt,final Runnable onCancel) {
 		try {
 			if(null != mProgressDialogDialog) mProgressDialogDialog.dismiss();
 			mProgressDialogDialog = null;
@@ -158,7 +158,7 @@ public class AlertManager {
      * @param context 
      * @param onConfirm 
      */
-    public static void ConfirmDialog(String message,Context context, final Runnable onConfirm)
+    public static void confirmDialog(String message,Context context, final Runnable onConfirm)
     {
     	try {
 	        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
@@ -199,7 +199,7 @@ public class AlertManager {
 	 * @param url 
 	 * @param bitmap 
 	 */
-	static public void SetCacheImage(Context context,String url,Bitmap bitmap) {
+	static public void setCacheImage(Context context,String url,Bitmap bitmap) {
 		File cacheDir = context.getCacheDir(); 
 		File imageFile;
 		FileOutputStream fos;
@@ -228,7 +228,7 @@ public class AlertManager {
 	 * @param url 
 	 * @return bitmap
 	 */
-	static public Bitmap GetCacheImage(Context context,String url) {
+	static public Bitmap getCacheImage(Context context,String url) {
 		Bitmap bitmap = null;
 		log.debug(" context = " + context);
 		try {			
@@ -247,7 +247,7 @@ public class AlertManager {
 			e.printStackTrace();
 		}
 		return bitmap;
-	}	
+	}
 	
 
     /**
@@ -255,7 +255,7 @@ public class AlertManager {
      *
      * @param activity 
      */
-    public static void ExitProgram(final Activity activity)
+    public static void exitProgram(final Activity activity)
     {
     	try {
 	        AlertDialog.Builder dialog = new AlertDialog.Builder(activity);

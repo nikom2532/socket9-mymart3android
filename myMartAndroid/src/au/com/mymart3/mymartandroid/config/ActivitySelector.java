@@ -44,7 +44,7 @@ public class ActivitySelector {
 	 *
 	 * @param rootActivity
 	 */
-	static public void Init(Activity rootActivity) {
+	static public void init(Activity rootActivity) {
 		mCurrentMenuID = -1;
 		mRootActivity = rootActivity;
 		mHandler = new Handler();
@@ -62,7 +62,7 @@ public class ActivitySelector {
 	/**
 	 * Clean.
 	 */
-	static public void Clean()
+	static public void clean()
 	{
 		mCurrentMenuID = -1;
 	}

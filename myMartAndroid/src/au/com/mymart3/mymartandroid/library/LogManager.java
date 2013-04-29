@@ -30,7 +30,7 @@ public class LogManager {
 	 *
 	 * @param tv
 	 */
-	public void Init(TextView tv)
+	public void init(TextView tv)
 	{
 		m_tv = tv;
 		m_log= "";

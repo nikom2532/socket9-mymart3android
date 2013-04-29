@@ -69,7 +69,7 @@ public class MainActivity extends Activity {
 		
 		// Initial val
 		mContext = this;
-		ConfigManager.Init(this);
+		ConfigManager.init(this);
 		
 		//testBase64();
 		//testEncryption();
@@ -86,7 +86,7 @@ public class MainActivity extends Activity {
         super.onStart();
         
         // Use ActivitySelector to start sub activity 
-        ActivitySelector.Init(mContext);
+        ActivitySelector.init(mContext);
 	}
     
     /* (non-Javadoc)
@@ -102,7 +102,7 @@ public class MainActivity extends Activity {
      */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		finish();
-		ActivitySelector.Clean();
+		ActivitySelector.clean();
     }
         
 	/* (non-Javadoc)

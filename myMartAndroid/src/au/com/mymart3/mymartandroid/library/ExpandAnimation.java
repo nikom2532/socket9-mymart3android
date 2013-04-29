@@ -22,13 +22,13 @@ public class ExpandAnimation extends Animation implements Animation.AnimationLis
 	private static int ANIMATION_DURATION;
 	
 	/** The Last width. */
-	private int LastWidth;
+	private int lastWidth;
 	
 	/** The From width. */
-	private int FromWidth;
+	private int fromWidth;
 	
 	/** The To width. */
-	private int ToWidth;
+	private int toWidth;
 	
 	/** The step size. */
 	private static int STEP_SIZE=30;
@@ -45,8 +45,8 @@ public class ExpandAnimation extends Animation implements Animation.AnimationLis
 		
 		this.view = v;
 		ANIMATION_DURATION = 1;
-		this.FromWidth = FromWidth;
-		this.ToWidth = ToWidth;
+		this.fromWidth = FromWidth;
+		this.toWidth = ToWidth;
 		setDuration(ANIMATION_DURATION);
 		setRepeatCount(20);
 		setFillAfter(false);
@@ -68,7 +68,7 @@ public class ExpandAnimation extends Animation implements Animation.AnimationLis
 	public void onAnimationRepeat(Animation anim) {
 		// TODO Auto-generated method stub
 		LayoutParams lyp =  view.getLayoutParams();
-		lyp.width = LastWidth +=ToWidth/20;
+		lyp.width = lastWidth +=toWidth/20;
 		view.setLayoutParams(lyp);
 	}
 
@@ -80,7 +80,7 @@ public class ExpandAnimation extends Animation implements Animation.AnimationLis
 		LayoutParams lyp =  view.getLayoutParams();
 		lyp.width = 0;
 		view.setLayoutParams(lyp);
-		LastWidth = 0;
+		lastWidth = 0;
 	}
 
 }

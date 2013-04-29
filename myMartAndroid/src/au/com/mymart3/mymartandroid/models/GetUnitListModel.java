@@ -35,7 +35,7 @@ public class GetUnitListModel extends BaseModel {
 	
 	// Result
 	/** The Unit list success. */
-	public Boolean UnitListSuccess = false;
+	public Boolean unitListSuccess = false;
 	
 	public IGetUnitListAPI _api = null;
 	
@@ -45,10 +45,10 @@ public class GetUnitListModel extends BaseModel {
 	public class UnitListDetailResult
 	{
 		/** The Unit id. */
-		public String UnitID = "";
+		public String unitID = "";
 		
 		/** The Unit title. */
-		public String UnitTitle = "";
+		public String unitTitle = "";
 	}
 	
 	/** The Units. */
@@ -120,15 +120,15 @@ public class GetUnitListModel extends BaseModel {
 				JSONObject jsonGetUnitListJsonResult = jsonResult.getJSONObject("GetUnitListJsonResult");
 				JSONArray jsonUnits = jsonGetUnitListJsonResult.getJSONArray("Units");
 				
-				UnitListSuccess = jsonGetUnitListJsonResult.getBoolean("UnitListSuccess"); 
+				unitListSuccess = jsonGetUnitListJsonResult.getBoolean("UnitListSuccess"); 
 				exceptionMessage = jsonGetUnitListJsonResult.getString("ExceptionMessage");
 				Units = new ArrayList<UnitListDetailResult>();
 				if(null != jsonUnits) {
 					for(int i=0;i<jsonUnits.length();i++) {
 						JSONObject jsonUnitListDetailResult = jsonUnits.getJSONObject(i);
 						UnitListDetailResult unitListDetailResult = new UnitListDetailResult();
-						unitListDetailResult.UnitID = jsonUnitListDetailResult.getString("UnitID");
-						unitListDetailResult.UnitTitle = jsonUnitListDetailResult.getString("UnitTitle");
+						unitListDetailResult.unitID = jsonUnitListDetailResult.getString("UnitID");
+						unitListDetailResult.unitTitle = jsonUnitListDetailResult.getString("UnitTitle");
 						Units.add(unitListDetailResult);
 					}
 				}

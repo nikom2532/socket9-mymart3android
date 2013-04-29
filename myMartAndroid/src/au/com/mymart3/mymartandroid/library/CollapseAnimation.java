@@ -21,13 +21,13 @@ public class CollapseAnimation extends Animation implements Animation.AnimationL
 	private static int ANIMATION_DURATION;
 	
 	/** The Last width. */
-	private int LastWidth;
+	private int lastWidth;
 	
 	/** The From width. */
-	private int FromWidth;
+	private int fromWidth;
 	
 	/** The To width. */
-	private int ToWidth;
+	private int toWidth;
 	
 	/** The step size. */
 	private static int STEP_SIZE=30;
@@ -45,8 +45,8 @@ public class CollapseAnimation extends Animation implements Animation.AnimationL
 		this.view = v;
 		LayoutParams lyp =  view.getLayoutParams();
 		ANIMATION_DURATION = 1;
-		this.FromWidth = lyp.width;
-		this.ToWidth = lyp.width;
+		this.fromWidth = lyp.width;
+		this.toWidth = lyp.width;
 		setDuration(ANIMATION_DURATION);
 		setRepeatCount(20);
 		setFillAfter(false);
@@ -68,7 +68,7 @@ public class CollapseAnimation extends Animation implements Animation.AnimationL
 	public void onAnimationRepeat(Animation anim) {
 		// TODO Auto-generated method stub
 		LayoutParams lyp =  view.getLayoutParams();
-		lyp.width = lyp.width - ToWidth/20;
+		lyp.width = lyp.width - toWidth/20;
 		view.setLayoutParams(lyp);
 	}
 
@@ -78,7 +78,7 @@ public class CollapseAnimation extends Animation implements Animation.AnimationL
 	public void onAnimationStart(Animation anim) {
 		// TODO Auto-generated method stub
 		LayoutParams lyp =  view.getLayoutParams();
-		LastWidth = lyp.width;
+		lastWidth = lyp.width;
 	}
 
 }

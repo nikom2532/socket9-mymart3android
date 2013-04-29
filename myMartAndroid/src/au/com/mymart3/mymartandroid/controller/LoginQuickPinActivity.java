@@ -33,7 +33,7 @@ public class LoginQuickPinActivity extends Activity {
     public Runnable onAuthenticateDeviceQuickPinComplete = new Runnable() {		
 		@Override
 		public void run() {
-			if(mAuthenticateDeviceQuickPin.Authenticated)
+			if(mAuthenticateDeviceQuickPin.authenticated)
 			{
 				// Show class list
 				ActivitySelector.startactivitybyID(Constants.ACTIVITY_CLASS_LIST);
@@ -72,7 +72,7 @@ public class LoginQuickPinActivity extends Activity {
 			// Call web service			
 			mAuthenticateDeviceQuickPin.onCompleteCallback = onAuthenticateDeviceQuickPinComplete;			
 			mAuthenticateDeviceQuickPin.AuthenticateDeviceQuickPin(mPanelPin.mStrPassword, ConfigManager.getDeviceID);
-			mPanelPin.ClearPin();
+			mPanelPin.clearPin();
 		}
 	};
 	
@@ -84,7 +84,7 @@ public class LoginQuickPinActivity extends Activity {
 		Handler handler = new Handler();
 		handler.post(new Runnable() {
 			public void run() {
-				AlertManager.DisplayLoadingMessage(mContext, "AuthenticateDeviceQuickPin...",
+				AlertManager.displayLoadingMessage(mContext, "AuthenticateDeviceQuickPin...",
 						null);
 			}
 		});

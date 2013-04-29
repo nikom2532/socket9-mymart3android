@@ -181,11 +181,8 @@ public class LogicTest extends TestCase
 	
 	public void testAuthenticateSucess(){
 		
-		AuthenticateMock authenMock = new AuthenticateMock();
-		authenMock.ExpectedResult  = 1; // success
 		// tell the mock object what value we expect
-
-		
+		AuthenticateMock authenMock = new AuthenticateMock("{\"AuthenticateJsonResult\":{\"Authenticated\":true,\"ExceptionMessage\":null,\"UserID\":\"bc9ce5ff-1731-457f-bee3-336a99165c22\"}}");
 		AuthenticateModel authenModel = new AuthenticateModel(authenMock);
 		
 		AsyncTask asyncTask = authenModel.authenticate("", "");
@@ -199,7 +196,7 @@ public class LogicTest extends TestCase
 			e1.printStackTrace();
 		}
 		
-		if(authenModel.UserID.equals("bc9ce5ff-1731-457f-bee3-336a99165c22")){
+		if(authenModel.userID.equals("bc9ce5ff-1731-457f-bee3-336a99165c22")){
 			assertTrue(true);
 		}
 		else{
@@ -207,14 +204,11 @@ public class LogicTest extends TestCase
 		}
 	}
 	
-	
 	public void testAuthenticateFail(){
 		
-		AuthenticateMock authenMock = new AuthenticateMock();
-		authenMock.ExpectedResult  = 2; // incorrect password
 		// tell the mock object what value we expect
-		
-		AuthenticateModel authenModel = new AuthenticateModel(authenMock);	
+		AuthenticateMock authenMock = new AuthenticateMock("{\"AuthenticateJsonResult\":{\"Authenticated\":false,\"ExceptionMessage\":\"Username or password is incorrect.\",\"UserID\":null}}");
+		AuthenticateModel authenModel = new AuthenticateModel(authenMock);
 		AsyncTask asyncTask = authenModel.authenticate("", "");
 		
 		try {
@@ -235,5 +229,107 @@ public class LogicTest extends TestCase
 		}
 	}
 	
-
+	public void testAuthenticateNullValue(){
+		
+		// tell the mock object what value we expect
+		AuthenticateMock authenMock = new AuthenticateMock("{\"AuthenticateJsonResult\":{\"Authenticated\":false,\"ExceptionMessage\":\"Unknown Exception Occurred. Error has been logged, and will be looked at.\",\"UserID\":null}}");
+		AuthenticateModel authenModel = new AuthenticateModel(authenMock);
+		AsyncTask asyncTask = authenModel.authenticate("", "");
+		
+		try {
+			asyncTask.get(10, TimeUnit.SECONDS);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		} catch (ExecutionException e1) {
+			e1.printStackTrace();
+		} catch (TimeoutException e1) {
+			e1.printStackTrace();
+		}
+		
+		if(authenModel.Authenticated == false){
+			assertTrue(true);	
+		}
+		else{
+			assertTrue(false);
+		}
+	}
+	
+	
+	//Note !!!
+	//Not fill all, except QuickPinAuthenticate ----> cannot test b/c User is already register, so dont know what is Pin ID?????
+	public void testAuthenticateDeviceQuickPinSucess(){
+		
+		// tell the mock object what value we expect
+		AuthenticateDeviceQuickPinMock authenMock = new AuthenticateDeviceQuickPinMock("{\"AuthenticateDeviceQuickPinJsonResult\":{\"Authenticated\":false,\"ExceptionMessage\":\"Incorrect Quick Pin\",\"UserID\":null}}");
+		AuthenticateDeviceQuickPinModel authenModel = new AuthenticateDeviceQuickPinModel(authenMock);
+		
+		AsyncTask asyncTask = authenModel.AuthenticateDeviceQuickPin("", "");
+		try {
+			asyncTask.get(10, TimeUnit.SECONDS);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		} catch (ExecutionException e1) {
+			e1.printStackTrace();
+		} catch (TimeoutException e1) {
+			e1.printStackTrace();
+		}
+		
+		if(authenModel.userID.equals("bc9ce5ff-1731-457f-bee3-336a99165c22")){
+			assertTrue(true);
+		}
+		else{
+			assertTrue(false);
+		}
+	}
+	
+	public void testAuthenticateDeviceQuickPinFail(){
+		
+		// tell the mock object what value we expect
+		AuthenticateDeviceQuickPinMock authenMock = new AuthenticateDeviceQuickPinMock("{\"AuthenticateDeviceQuickPinJsonResult\":{\"Authenticated\":false,\"ExceptionMessage\":\"Incorrect Quick Pin\",\"UserID\":null}}");
+		AuthenticateDeviceQuickPinModel authenModel = new AuthenticateDeviceQuickPinModel(authenMock);
+		
+		AsyncTask asyncTask = authenModel.AuthenticateDeviceQuickPin("", "");
+		try {
+			asyncTask.get(10, TimeUnit.SECONDS);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		} catch (ExecutionException e1) {
+			e1.printStackTrace();
+		} catch (TimeoutException e1) {
+			e1.printStackTrace();
+		}
+		
+		if(authenModel.authenticated == false){
+			assertTrue(true);	
+		}
+		else{
+			assertTrue(false);
+		}
+	}
+	
+	public void testAuthenticateDeviceQuickPinNullValue(){
+		
+		// tell the mock object what value we expect
+		AuthenticateDeviceQuickPinMock authenMock = new AuthenticateDeviceQuickPinMock("{\"AuthenticateDeviceQuickPinJsonResult\":{\"Authenticated\":false,\"ExceptionMessage\":\"DataPortal.Update failed (System.ArgumentNullException: Value cannot be null.\\u000d\\u000aParameter name: Quick Pin and Mobile Device ID must not be left blank\\u000d\\u000a   at Schools.Business.DomainModels.Identity.AuthenticateMobileQuickPinUserCommand.DataPortal_Execute() in c:\\\\Build\\\\PublishAzure\\\\AzureBuild\\\\myMARTV3\\\\src\\\\DomainModels.Server\\\\Identity\\\\AuthenticateMobileQuickPinUserCommand.Server.cs:line 73\\u000d\\u000a   at lambda_method(Closure , Object , Object[] )\\u000d\\u000a   at Csla.Reflection.MethodCaller.CallMethod(Object obj, DynamicMethodHandle methodHandle, Object[] parameters) in c:\\\\Build\\\\PublishAzure\\\\AzureBuild\\\\lib\\\\Csla\\\\Csla\\\\Reflection\\\\MethodCaller.cs:line 545)\",\"UserID\":null}}");
+		AuthenticateDeviceQuickPinModel authenModel = new AuthenticateDeviceQuickPinModel(authenMock);
+		
+		AsyncTask asyncTask = authenModel.AuthenticateDeviceQuickPin("", "");
+		try {
+			asyncTask.get(10, TimeUnit.SECONDS);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		} catch (ExecutionException e1) {
+			e1.printStackTrace();
+		} catch (TimeoutException e1) {
+			e1.printStackTrace();
+		}
+		
+		if(authenModel.authenticated == false){
+			assertTrue(true);	
+		}
+		else{
+			assertTrue(false);
+		}
+	}
+	
 }

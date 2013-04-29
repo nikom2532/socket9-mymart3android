@@ -40,10 +40,10 @@ public class RegisterDeviceQuickPinModel extends BaseModel {
 	
 	// Result
 	/** The Register success. */
-	public Boolean RegisterSuccess = false;
+	public Boolean registerSuccess = false;
 	
 	/** The Already registered. */
-	public Boolean AlreadyRegistered = false;
+	public Boolean alreadyRegistered = false;
 	
 	IRegisterDeviceQuickPinAPI _api = null;
 
@@ -123,8 +123,8 @@ public class RegisterDeviceQuickPinModel extends BaseModel {
 				JSONObject jsonResult = new JSONObject(response);
 				JSONObject jsonRegisterDeviceQuickPinJsonResult = jsonResult.getJSONObject("RegisterDeviceQuickPinJsonResult");
 				
-				RegisterSuccess = jsonRegisterDeviceQuickPinJsonResult.getBoolean("RegisterSuccess");
-				AlreadyRegistered = jsonRegisterDeviceQuickPinJsonResult.getBoolean("AlreadyRegistered");
+				registerSuccess = jsonRegisterDeviceQuickPinJsonResult.getBoolean("RegisterSuccess");
+				alreadyRegistered = jsonRegisterDeviceQuickPinJsonResult.getBoolean("AlreadyRegistered");
 				exceptionMessage = jsonRegisterDeviceQuickPinJsonResult.getString("ExceptionMessage");
 				
 			} catch (Exception e) {

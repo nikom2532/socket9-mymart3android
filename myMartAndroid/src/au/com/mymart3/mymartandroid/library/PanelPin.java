@@ -51,7 +51,7 @@ public class PanelPin implements View.OnClickListener {
 		mTextDigit3 = (TextView)mView.findViewById(R.id.textView3);
 		mTextDigit4 = (TextView)mView.findViewById(R.id.textView4);
 		
-		ClearPin();
+		clearPin();
 		
 		// Event handler when button is pressed
 		setButtonEventListener(R.id.idButtonDel);
@@ -83,7 +83,7 @@ public class PanelPin implements View.OnClickListener {
 	/**
 	 * Clear pin.
 	 */
-	public void ClearPin() {
+	public void clearPin() {
 		mStrPassword = "";
 		
 		// Hide X text

@@ -1,6 +1,3 @@
-//Not Finish
-
-
 package au.com.mymart3.mymartandroid.testModel;
 
 import org.json.JSONException;
@@ -18,8 +15,13 @@ public class AuthenticateMock extends BaseAPI implements IAuthenticateAPI {
 	// 2 = incorrect password
 	// 3 = invalid user
 	// 4 = incorrect user and password
-	public int ExpectedResult = 1;
+	public String mExpectedResult = "";
 	
+
+	public AuthenticateMock(String expectedResult)
+	{
+		mExpectedResult = expectedResult;
+	}
 	
 	public String execute(String userName, String password) {
 		// TODO Auto-generated method stub
@@ -38,18 +40,11 @@ public class AuthenticateMock extends BaseAPI implements IAuthenticateAPI {
 //			mError = e.toString();
 //		}
 		
-
-
-		switch (ExpectedResult) {
-            case 1:  
-            	response = "{\"AuthenticateJsonResult\":{\"Authenticated\":true,\"ExceptionMessage\":null,\"UserID\":\"bc9ce5ff-1731-457f-bee3-336a99165c22\"}}";
-        		Log.v("## 2 ##", response);
-            	break;
-            default: 
-            	//Authenticated = false;
-            	response = "";
-                break;
-        }
+		    response = mExpectedResult;
+//        	Log.v("## 2 ##", response);
+//            break;
+        
+//        }
 		
         errorMessage = "success";
         

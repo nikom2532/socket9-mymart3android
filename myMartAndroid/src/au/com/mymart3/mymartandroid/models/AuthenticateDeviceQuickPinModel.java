@@ -35,10 +35,10 @@ public class AuthenticateDeviceQuickPinModel extends BaseModel{
 	
 	// Result
 	/** The Authenticated. */
-	public Boolean Authenticated = false;
+	public Boolean authenticated = false;
 	
 	/** The User id. */
-	public String UserID="";
+	public String userID="";
 
 	public IAuthenticateDeviceQuickPinAPI _api = null;
 
@@ -109,9 +109,9 @@ public class AuthenticateDeviceQuickPinModel extends BaseModel{
 				JSONObject jsonResult = new JSONObject(response);
 				JSONObject AuthenticateJsonResultObj = jsonResult.getJSONObject("AuthenticateDeviceQuickPinJsonResult");
 				
-				Authenticated = AuthenticateJsonResultObj.getBoolean("Authenticated");
+				authenticated = AuthenticateJsonResultObj.getBoolean("Authenticated");
 				exceptionMessage = AuthenticateJsonResultObj.getString("ExceptionMessage");
-				UserID = AuthenticateJsonResultObj.getString("UserID");
+				userID = AuthenticateJsonResultObj.getString("UserID");
 				
 			} catch (Exception e) {
 				log.debug(e.toString());

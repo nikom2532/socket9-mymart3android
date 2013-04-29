@@ -74,21 +74,21 @@ public class ClassListActivity extends Activity {
 			// Check result and display error popup
 			if(!mGetClassList.errorMessage.equalsIgnoreCase("success"))
 			{
-				AlertManager.DisplayMessage(mContext, mGetClassList.errorMessage,"GetClassList Fail");
+				AlertManager.displayMessage(mContext, mGetClassList.errorMessage,"GetClassList Fail");
 			}
 			else if(null != mGetClassList.exceptionMessage && mGetClassList.exceptionMessage.length() > 0 && !mGetClassList.exceptionMessage.equalsIgnoreCase("null") )
 			{
-				AlertManager.DisplayMessage(mContext, mGetClassList.exceptionMessage,"GetClassList Fail");
+				AlertManager.displayMessage(mContext, mGetClassList.exceptionMessage,"GetClassList Fail");
 			}
 
 			if(true == mGetClassList.ClassListSuccess)
 			{
 				// Set result to list adapter
-				mClassListView.setAdapter(new ClassAdapter(mGetClassList.Classes));
+				mClassListView.setAdapter(new ClassAdapter(mGetClassList.classes));
 			}
 			else
 			{
-				AlertManager.DisplayErrorMessage(mContext, "Get ClassList Fail");
+				AlertManager.displayErrorMessage(mContext, "Get ClassList Fail");
 			}
 		}
 	};
@@ -138,7 +138,7 @@ public class ClassListActivity extends Activity {
         	
         	// Get view for display this item
         	listItemView = factory.inflate(R.layout.simplerow, null);
-            ((TextView)listItemView.findViewById(R.id.idTextView)).setText(classListDetailResult.ClassTitle);
+            ((TextView)listItemView.findViewById(R.id.idTextView)).setText(classListDetailResult.classTitle);
 
             return listItemView;
         }
@@ -155,7 +155,7 @@ public class ClassListActivity extends Activity {
 			// Load Unit base on selected class
 			mGetUnitList = new GetUnitListModel();
 			mGetUnitList.onCompleteCallback = onGetUnitListComplete;
-			mGetUnitList.execute(ConfigManager.gUserID, classListDetailResult.ClassID);
+			mGetUnitList.execute(ConfigManager.gUserID, classListDetailResult.classID);
 		}
 	};
 	
@@ -169,24 +169,24 @@ public class ClassListActivity extends Activity {
 			// Check result and display error popup
 			if(!mGetUnitList.errorMessage.equalsIgnoreCase("success"))
 			{
-				AlertManager.DisplayMessage(mContext, mGetUnitList.errorMessage,"GetClassList Fail");
+				AlertManager.displayMessage(mContext, mGetUnitList.errorMessage,"GetClassList Fail");
 			}
 			else if(null != mGetUnitList.exceptionMessage && mGetUnitList.exceptionMessage.length() > 0 && !mGetUnitList.exceptionMessage.equalsIgnoreCase("null") )
 			{
-				AlertManager.DisplayMessage(mContext, mGetUnitList.exceptionMessage,"GetClassList Fail");
+				AlertManager.displayMessage(mContext, mGetUnitList.exceptionMessage,"GetClassList Fail");
 			}
 
 			// Close wait dialog
         	AlertManager.hideWaitDlg();
         	
-			if(true == mGetUnitList.UnitListSuccess)
+			if(true == mGetUnitList.unitListSuccess)
 			{
 				// Set result to list adapter
 				mUnitListView.setAdapter(new UnitAdapter(mGetUnitList.Units));
 			}
 			else
 			{
-				AlertManager.DisplayErrorMessage(mContext, "Get UnitList Fail");
+				AlertManager.displayErrorMessage(mContext, "Get UnitList Fail");
 			}
 		}
 	};	
@@ -237,7 +237,7 @@ public class ClassListActivity extends Activity {
         	
         	// Get view for display this item
         	listItemView = factory.inflate(R.layout.simplerow, null);
-            ((TextView)listItemView.findViewById(R.id.idTextView)).setText(unitListDetailResult.UnitTitle);
+            ((TextView)listItemView.findViewById(R.id.idTextView)).setText(unitListDetailResult.unitTitle);
 
             return listItemView;
         }

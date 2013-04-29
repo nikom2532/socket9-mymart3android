@@ -19,7 +19,7 @@ import au.com.mymart3.mymartandroid.library.*;
  */
 public class SwipeAnimationControl extends Activity {
 	/** Called when the activity is first created. */
-	private LinearLayout MenuList, MenuComment;
+	private LinearLayout menuList, menuComment;
 
 	/** The btn toggle menu comment. */
 	private Button btnToggleMenuList, btnToggleMenuComment;
@@ -37,8 +37,8 @@ public class SwipeAnimationControl extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.name_table);
-		MenuList = (LinearLayout) findViewById(R.id.class_selection);
-		MenuComment = (LinearLayout) findViewById(R.id.comment_view);
+		menuList = (LinearLayout) findViewById(R.id.class_selection);
+		menuComment = (LinearLayout) findViewById(R.id.comment_view);
 
 		btnToggleMenuList = (Button) findViewById(R.id.btnToggleMenuList);
 		btnToggleMenuComment = (Button) findViewById(R.id.btnToggleMenuComment);
@@ -51,15 +51,15 @@ public class SwipeAnimationControl extends Activity {
 			public void onClick(View v) {
 				if (isExpanded) {
 					isExpanded = false;
-					MenuList.startAnimation(new CollapseAnimation(MenuList, 0,
+					menuList.startAnimation(new CollapseAnimation(menuList, 0,
 							(int) (screenWidth * 0.7), 20));
-					MenuComment.startAnimation(new CollapseAnimation(
-							MenuComment, 0, (int) (screenWidth * 0.7), 20));
+					menuComment.startAnimation(new CollapseAnimation(
+							menuComment, 0, (int) (screenWidth * 0.7), 20));
 				} else {
 					isExpanded = true;
-					MenuList.startAnimation(new ExpandAnimation(MenuList, 0,
+					menuList.startAnimation(new ExpandAnimation(menuList, 0,
 							(int) (screenWidth * 0.7), 20));
-					MenuComment.startAnimation(new ExpandAnimation(MenuComment,
+					menuComment.startAnimation(new ExpandAnimation(menuComment,
 							0, (int) (screenWidth * 0.7), 20));
 				}
 			}
@@ -70,12 +70,12 @@ public class SwipeAnimationControl extends Activity {
 				if (isExpanded) {
 					isExpanded = false;
 
-					MenuComment.startAnimation(new CollapseAnimation(
-							MenuComment, 0, (int) (screenWidth * 0.7), 20));
+					menuComment.startAnimation(new CollapseAnimation(
+							menuComment, 0, (int) (screenWidth * 0.7), 20));
 				} else {
 					isExpanded = true;
 
-					MenuComment.startAnimation(new ExpandAnimation(MenuComment,
+					menuComment.startAnimation(new ExpandAnimation(menuComment,
 							0, (int) (screenWidth * 0.7), 20));
 				}
 			}

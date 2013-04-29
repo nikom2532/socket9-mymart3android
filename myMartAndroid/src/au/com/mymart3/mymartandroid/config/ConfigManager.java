@@ -36,7 +36,7 @@ public class ConfigManager {
 	 *
 	 * @param context context
 	 */
-	static public void Init(Context context)
+	static public void init(Context context)
 	{
 		mContext = context;
 		
@@ -54,7 +54,7 @@ public class ConfigManager {
 	/**
 	 * Clean.
 	 */
-	static public void Clean()
+	static public void clean()
 	{		
 	}
 	

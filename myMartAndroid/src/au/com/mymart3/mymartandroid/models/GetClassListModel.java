@@ -45,14 +45,14 @@ public class GetClassListModel extends BaseModel {
 	{
 		
 		/** The Class id. */
-		public String ClassID = "";
+		public String classID = "";
 		
 		/** The Class title. */
-		public String ClassTitle = "";
+		public String classTitle = "";
 	}
 	
 	/** The Classes. */
-	public ArrayList<ClassListDetailResult> Classes = null;
+	public ArrayList<ClassListDetailResult> classes = null;
 	
 	public IGetClassListAPI _api = null;
 	
@@ -131,14 +131,14 @@ public class GetClassListModel extends BaseModel {
 				ClassListSuccess = jsonGetClassListJsonResult.getBoolean("ClassListSuccess");
 				ReportingPeriod = jsonGetClassListJsonResult.getString("ReportingPeriod");
 				exceptionMessage = jsonGetClassListJsonResult.getString("ExceptionMessage");
-				Classes = new ArrayList<ClassListDetailResult>();
+				classes = new ArrayList<ClassListDetailResult>();
 				if(null != jsonClasses) {
 					for(int i=0;i<jsonClasses.length();i++) {
 						JSONObject jsonClassListDetailResult = jsonClasses.getJSONObject(i);
 						ClassListDetailResult classListDetailResult = new ClassListDetailResult();
-						classListDetailResult.ClassID =jsonClassListDetailResult.getString("ClassID");
-						classListDetailResult.ClassTitle =jsonClassListDetailResult.getString("ClassTitle");
-						Classes.add(classListDetailResult);
+						classListDetailResult.classID =jsonClassListDetailResult.getString("ClassID");
+						classListDetailResult.classTitle =jsonClassListDetailResult.getString("ClassTitle");
+						classes.add(classListDetailResult);
 					}
 				}
 				

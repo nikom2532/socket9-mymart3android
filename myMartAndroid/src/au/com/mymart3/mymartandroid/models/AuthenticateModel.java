@@ -39,7 +39,7 @@ public class AuthenticateModel extends BaseModel{
 	public Boolean Authenticated = false;
 	
 	/** The User id. */
-	public String UserID = "";
+	public String userID = "";
 	
 	private IAuthenticateAPI _api = null;
 	
@@ -108,11 +108,11 @@ public class AuthenticateModel extends BaseModel{
 				JSONObject AuthenticateJsonResultObj = jsonResult.getJSONObject("AuthenticateJsonResult");
 				Authenticated = AuthenticateJsonResultObj.getBoolean("Authenticated");
 				exceptionMessage = AuthenticateJsonResultObj.getString("ExceptionMessage");
-				UserID = AuthenticateJsonResultObj.getString("UserID");
+				userID = AuthenticateJsonResultObj.getString("UserID");
 				
 				Log.v("## 1 ######",response);
 				
-				Log.v("0",UserID);
+				Log.v("0",userID);
 				
 			} catch (Exception e) {
 				log.debug(e.toString());

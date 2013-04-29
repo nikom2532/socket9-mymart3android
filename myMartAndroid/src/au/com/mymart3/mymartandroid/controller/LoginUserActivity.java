@@ -31,6 +31,7 @@ import au.com.mymart3.mymartandroid.library.PanelPin;
 import au.com.mymart3.mymartandroid.models.AuthenticateModel;
 import au.com.mymart3.mymartandroid.models.RegisterDeviceQuickPinModel;
 import au.com.mymart3.mymartandroid.webapis.AuthenticateAPI;
+import au.com.mymart3.mymartandroid.webapis.AuthenticateDeviceQuickPinAPI;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -65,7 +66,7 @@ public class LoginUserActivity extends Activity {
 				//helper.Popup(mContext, mAuthenticate.UserID,"Authentication Result");
 				
 				// Save UserID for use later
-				ConfigManager.gUserID = mAuthenticate.UserID;
+				ConfigManager.gUserID = mAuthenticate.userID;
 				
 				// Ask to enter pin if not enter before
 				String hasQuickPin = ConfigManager.getPrivateString("hasQuickPin");
@@ -114,11 +115,11 @@ public class LoginUserActivity extends Activity {
 			// Check result and display error popup
 			if(!mAuthenticate.errorMessage.equalsIgnoreCase("success"))
 			{
-				AlertManager.DisplayMessage(mContext, mAuthenticate.errorMessage,"Authentication Fail");
+				AlertManager.displayMessage(mContext, mAuthenticate.errorMessage,"Authentication Fail");
 			}
 			else if(null != mAuthenticate.exceptionMessage && mAuthenticate.exceptionMessage.length() > 0 && !mAuthenticate.exceptionMessage.equalsIgnoreCase("null") )
 			{
-				AlertManager.DisplayMessage(mContext, mAuthenticate.exceptionMessage,"Authentication Fail");
+				AlertManager.displayMessage(mContext, mAuthenticate.exceptionMessage,"Authentication Fail");
 			}
 
 			/*/
@@ -136,11 +137,11 @@ public class LoginUserActivity extends Activity {
 			// Check result and display error popup
 			if(!mRegisterDeviceQuickPin.errorMessage.equalsIgnoreCase("success"))
 			{
-				AlertManager.DisplayMessage(mContext, mRegisterDeviceQuickPin.errorMessage,"RegisterDeviceQuickPin Fail");
+				AlertManager.displayMessage(mContext, mRegisterDeviceQuickPin.errorMessage,"RegisterDeviceQuickPin Fail");
 			}
 			else if(null != mRegisterDeviceQuickPin.exceptionMessage && mRegisterDeviceQuickPin.exceptionMessage.length() > 0 && !mRegisterDeviceQuickPin.exceptionMessage.equalsIgnoreCase("null") )
 			{
-				AlertManager.DisplayMessage(mContext, mRegisterDeviceQuickPin.exceptionMessage,"RegisterDeviceQuickPin Fail");
+				AlertManager.displayMessage(mContext, mRegisterDeviceQuickPin.exceptionMessage,"RegisterDeviceQuickPin Fail");
 			}
 
 
@@ -151,7 +152,7 @@ public class LoginUserActivity extends Activity {
         	AlertManager.hideWaitDlg();
 			
 			
-			if(mRegisterDeviceQuickPin.RegisterSuccess)
+			if(mRegisterDeviceQuickPin.registerSuccess)
 			{
 				// Save to private string
 				ConfigManager.setPrivateString("hasQuickPin","true");
@@ -225,7 +226,8 @@ public class LoginUserActivity extends Activity {
 		
 		//PopupQuickPinDlg();
 		
-//		new AuthenticateModel().Authenticate("stirling.admin","duck121");
+//		new AuthenticateModel().execute("stirling.admin","duck121");
+//		new AuthenticateDeviceQuickPinAPI().execute("", ConfigManager.getDeviceID );
 		// For testing web service
 		//new AuthenticateAPI().Authenticate(this, "stirling.admin","duck121", null);
 		//new RegisterDeviceQuickPinAPI().RegisterDeviceQuickPin(this, "bc9ce5ff-1731-457f-bee3-336a99165c22", "1234", Configuration.gDeviceID, true, null);
@@ -285,7 +287,7 @@ public class LoginUserActivity extends Activity {
 		// Display wait dialog
 		Handler handler = new Handler();
 		handler.post(new Runnable() {
-			public void run() { AlertManager.DisplayLoadingMessage(mContext, "Authenticating...", null); } 
+			public void run() { AlertManager.displayLoadingMessage(mContext, "Authenticating...", null); } 
 		});
 	} 
 }
