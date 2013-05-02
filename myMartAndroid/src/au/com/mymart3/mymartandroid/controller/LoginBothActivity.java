@@ -15,7 +15,7 @@ import au.com.mymart3.mymartandroid.R;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class LoginBothActivity.
+ * The Class LoginBothActivity: LoginBothActivity Controller.
  */
 public class LoginBothActivity extends TabActivity {
 	

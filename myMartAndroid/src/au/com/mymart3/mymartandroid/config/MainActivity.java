@@ -49,7 +49,7 @@ import au.com.mymart3.mymartandroid.R;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class MainActivity.
+ * The Class MainActivity: MainActivity View.
  */
 public class MainActivity extends Activity {
 	
@@ -157,9 +157,9 @@ public class MainActivity extends Activity {
 	/**
 	 * Aes encrypt.
 	 *
-	 * @param data
-	 * @param key
-	 * @param iv
+	 * @param data the data
+	 * @param key the key
+	 * @param iv the iv
 	 * @return byte[]
 	 */
 	public byte[] aesEncrypt(byte[] data, byte[] key,byte[] iv)

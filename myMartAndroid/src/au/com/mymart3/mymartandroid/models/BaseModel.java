@@ -33,7 +33,10 @@ public class BaseModel {
 	/** The m on complete callback. */
 	public Runnable onCompleteCallback = null;
 	
+	/** The response. */
 	public String response = "";	
+	
+	/** The error message. */
 	public String errorMessage = "";
 	
 	/** The Exception message. */

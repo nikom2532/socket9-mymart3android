@@ -40,6 +40,7 @@ public class AuthenticateDeviceQuickPinModel extends BaseModel{
 	/** The User id. */
 	public String userID="";
 
+	/** The _api. */
 	public IAuthenticateDeviceQuickPinAPI _api = null;
 
 
@@ -51,6 +52,11 @@ public class AuthenticateDeviceQuickPinModel extends BaseModel{
 		_api = new AuthenticateDeviceQuickPinAPI();
 	}
 	
+	/**
+	 * Instantiates a new authenticate device quick pin model.
+	 *
+	 * @param api the api
+	 */
 	public AuthenticateDeviceQuickPinModel(IAuthenticateDeviceQuickPinAPI api) {
 		_api = api;
 	}
@@ -61,6 +67,7 @@ public class AuthenticateDeviceQuickPinModel extends BaseModel{
 	 *
 	 * @param QuickPin the quickpin
 	 * @param DeviceID the deviceid
+	 * @return the async task
 	 */
 	public AsyncTask AuthenticateDeviceQuickPin(String QuickPin,String DeviceID) {
 		// Save required param

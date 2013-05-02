@@ -23,6 +23,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
 //import android.content.res.Configuration;
 import au.com.mymart3.mymartandroid.config.ConfigManager;
 import au.com.mymart3.mymartandroid.config.Constants;
@@ -47,7 +48,8 @@ public class BaseAPI {
 	/**
 	 * Call api.
 	 *
-	 * @param request the request
+	 * @param url the url
+	 * @return the string
 	 */
 	public String callAPI(String url) {
 		try
@@ -89,10 +91,18 @@ public class BaseAPI {
 	 */
 	public static String getDateTime() {
 		SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",Locale.US);
-		dateFormatGmt.setTimeZone(TimeZone.getTimeZone("UTC"));
+		dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
+//		dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+		
+		Log.v("++ Date format +++", dateFormatGmt.format(new Date()));
 		return dateFormatGmt.format(new Date());
 	}	
 	
+	/**
+	 * Gets the response.
+	 *
+	 * @return the response
+	 */
 	public String getResponse()
 	{
 		return response;

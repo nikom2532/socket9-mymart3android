@@ -10,7 +10,7 @@ import android.view.animation.Animation;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class CollapseAnimation.
+ * The Class CollapseAnimation: Make the animation.
  */
 public class CollapseAnimation extends Animation implements Animation.AnimationListener {
 
@@ -35,10 +35,10 @@ public class CollapseAnimation extends Animation implements Animation.AnimationL
 	/**
 	 * Instantiates a new collapse animation.
 	 *
-	 * @param v 
-	 * @param FromWidth 
-	 * @param ToWidth 
-	 * @param Duration 
+	 * @param v the v
+	 * @param FromWidth the from width
+	 * @param ToWidth the to width
+	 * @param Duration the duration
 	 */
 	public CollapseAnimation(View v, int FromWidth, int ToWidth, int Duration) {
 		

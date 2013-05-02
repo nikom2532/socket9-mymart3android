@@ -25,7 +25,7 @@ import au.com.mymart3.mymartandroid.models.GetUnitListModel.UnitListDetailResult
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ClassListActivity.
+ * The Class ClassListActivity: ClassListActivity Controller.
  */
 public class ClassListActivity extends Activity {
 	
@@ -105,7 +105,7 @@ public class ClassListActivity extends Activity {
         /**
          * Instantiates a new class adapter.
          *
-         * @param Classes
+         * @param Classes the classes
          */
         public ClassAdapter(ArrayList<ClassListDetailResult> Classes) 
         {
@@ -204,7 +204,7 @@ public class ClassListActivity extends Activity {
         /**
          * Instantiates a new unit adapter.
          *
-         * @param Classes
+         * @param Classes the classes
          */
         public UnitAdapter(ArrayList<UnitListDetailResult> Classes) 
         {

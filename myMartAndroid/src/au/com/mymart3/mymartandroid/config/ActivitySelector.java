@@ -20,7 +20,7 @@ import au.com.mymart3.mymartandroid.controller.LoginUserActivity;
 
 // TODO: Auto-generated Javadoc
 /**
- *  Class ActivitySelector.
+ *  Class ActivitySelector: to choose the Activity.
  */
 public class ActivitySelector {
 	
@@ -42,7 +42,7 @@ public class ActivitySelector {
 	/**
 	 * Inits .
 	 *
-	 * @param rootActivity
+	 * @param rootActivity the root activity
 	 */
 	static public void init(Activity rootActivity) {
 		mCurrentMenuID = -1;
@@ -70,7 +70,7 @@ public class ActivitySelector {
 	/**
 	 * Startactivityby id.
 	 *
-	 * @param ID
+	 * @param ID the id
 	 * @return true, if successful
 	 */
 	static public boolean startactivitybyID(int ID)

@@ -45,13 +45,12 @@ public class RegisterDeviceQuickPinModel extends BaseModel {
 	/** The Already registered. */
 	public Boolean alreadyRegistered = false;
 	
+	/** The _api. */
 	IRegisterDeviceQuickPinAPI _api = null;
 
 	/**
 	 * Instantiates a new register device quick pin api.
 	 *
-	 * @param context the context
-	 * @param onRegisterDeviceQuickPinComplete the on register device quick pin complete
 	 */
 	public RegisterDeviceQuickPinModel() {
 		_api = new RegisterDeviceQuickPinAPI();
@@ -59,6 +58,8 @@ public class RegisterDeviceQuickPinModel extends BaseModel {
 	
 	/**
 	 * Instantiates a new register device quick pin.
+	 *
+	 * @param api the api
 	 */
 	public RegisterDeviceQuickPinModel(IRegisterDeviceQuickPinAPI api) {
 		_api = api;
@@ -72,6 +73,7 @@ public class RegisterDeviceQuickPinModel extends BaseModel {
 	 * @param QuickPin the quickpin
 	 * @param DeviceID the deviceid
 	 * @param forceoverride the forceoverride
+	 * @return the async task
 	 */
 	public AsyncTask RegisterDeviceQuickPin(String userid, String QuickPin,String DeviceID,Boolean forceoverride) {
 		// Save required param

@@ -5,14 +5,14 @@ package au.com.mymart3.mymartandroid.library;
 
 // TODO: Auto-generated Javadoc
 /**
- * A factory for creating Log objects.
+ * A factory for creating Log objects: .
  */
 public class LogFactory {
 	
 	/**
 	 * Gets the log.
 	 *
-	 * @param clazz
+	 * @param clazz the clazz
 	 * @return log
 	 */
 	public static LogManager getLog(Class clazz)
@@ -25,7 +25,7 @@ public class LogFactory {
 	/**
 	 * Gets the log.
 	 *
-	 * @param name
+	 * @param name the name
 	 * @return log
 	 */
 	public static LogManager getLog(java.lang.String name)

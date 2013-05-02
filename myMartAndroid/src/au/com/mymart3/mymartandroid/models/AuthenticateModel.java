@@ -41,6 +41,7 @@ public class AuthenticateModel extends BaseModel{
 	/** The User id. */
 	public String userID = "";
 	
+	/** The _api. */
 	private IAuthenticateAPI _api = null;
 	
 	/**
@@ -50,6 +51,11 @@ public class AuthenticateModel extends BaseModel{
 		_api = new AuthenticateAPI();
 	}
 	
+	/**
+	 * Instantiates a new authenticate model.
+	 *
+	 * @param api the api
+	 */
 	public AuthenticateModel(IAuthenticateAPI api) {
 		_api = api;
 	}
@@ -59,6 +65,10 @@ public class AuthenticateModel extends BaseModel{
 	
 	/**
 	 * Gets the authenticate task.
+	 *
+	 * @param userName the user name
+	 * @param password the password
+	 * @return the async task
 	 */
 	public AsyncTask authenticate(String userName, String password){
 		

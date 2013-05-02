@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ExpandAnimation.
+ * The Class ExpandAnimation: Make the animation.
  */
 public class ExpandAnimation extends Animation implements Animation.AnimationListener {
 	
@@ -36,10 +36,10 @@ public class ExpandAnimation extends Animation implements Animation.AnimationLis
 	/**
 	 * Instantiates a new expand animation.
 	 *
-	 * @param v 
-	 * @param FromWidth
-	 * @param ToWidth 
-	 * @param Duration 
+	 * @param v the v
+	 * @param FromWidth the from width
+	 * @param ToWidth the to width
+	 * @param Duration the duration
 	 */
 	public ExpandAnimation(View v, int FromWidth, int ToWidth, int Duration) {
 		

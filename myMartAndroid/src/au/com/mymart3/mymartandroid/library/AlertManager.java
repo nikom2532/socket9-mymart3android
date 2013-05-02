@@ -31,7 +31,7 @@ import android.widget.Toast;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class helper.
+ * The Class AlertManager: Display Alert.
  */
 public class AlertManager {
 
@@ -47,9 +47,9 @@ public class AlertManager {
     /**
      * Popup.
      *
-     * @param context 
-     * @param message 
-     * @param title 
+     * @param context the context
+     * @param message the message
+     * @param title the title
      */
     public static void displayMessage(Context context,String message,String title)
     {
@@ -70,8 +70,8 @@ public class AlertManager {
 	/**
 	 * Toast.
 	 *
-	 * @param context 
-	 * @param txt 
+	 * @param context the context
+	 * @param txt the txt
 	 */
 	static public void toast(Context context,String txt) {
 		CharSequence text = txt;
@@ -84,8 +84,8 @@ public class AlertManager {
     /**
      * Pop error.
      *
-     * @param context 
-     * @param message 
+     * @param context the context
+     * @param message the message
      */
     public static void displayErrorMessage(Context context,String message)
     {
@@ -102,15 +102,15 @@ public class AlertManager {
     	} 
 	    catch (Exception e) {
 	    	log.error("PopError : "+e.getMessage());
-	    }	        
+	    }
     }
 
 	/**
-	 * Show wait dlg.
+	 * Display Loading Message
 	 *
-	 * @param context 
-	 * @param txt 
-	 * @param onCancel 
+	 * @param context the context
+	 * @param txt the txt
+	 * @param onCancel the on cancel
 	 */
 	static public void displayLoadingMessage(Context context,String txt,final Runnable onCancel) {
 		try {
@@ -154,9 +154,9 @@ public class AlertManager {
     /**
      * Confirm dialog.
      *
-     * @param message 
-     * @param context 
-     * @param onConfirm 
+     * @param message the message
+     * @param context the context
+     * @param onConfirm the on confirm
      */
     public static void confirmDialog(String message,Context context, final Runnable onConfirm)
     {
@@ -183,7 +183,7 @@ public class AlertManager {
 	/**
 	 * Gets the file name.
 	 *
-	 * @param url 
+	 * @param url the url
 	 * @return file name
 	 */
 	static public String getFileName(String url) {
@@ -195,9 +195,9 @@ public class AlertManager {
 	/**
 	 * Sets the cache image.
 	 *
-	 * @param context 
-	 * @param url 
-	 * @param bitmap 
+	 * @param context the context
+	 * @param url the url
+	 * @param bitmap the bitmap
 	 */
 	static public void setCacheImage(Context context,String url,Bitmap bitmap) {
 		File cacheDir = context.getCacheDir(); 
@@ -224,8 +224,8 @@ public class AlertManager {
 	/**
 	 * Gets the cache image.
 	 *
-	 * @param context 
-	 * @param url 
+	 * @param context the context
+	 * @param url the url
 	 * @return bitmap
 	 */
 	static public Bitmap getCacheImage(Context context,String url) {
@@ -253,7 +253,7 @@ public class AlertManager {
     /**
      * Exit program.
      *
-     * @param activity 
+     * @param activity the activity
      */
     public static void exitProgram(final Activity activity)
     {

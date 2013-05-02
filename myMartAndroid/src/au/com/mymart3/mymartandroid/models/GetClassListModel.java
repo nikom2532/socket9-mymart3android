@@ -54,6 +54,7 @@ public class GetClassListModel extends BaseModel {
 	/** The Classes. */
 	public ArrayList<ClassListDetailResult> classes = null;
 	
+	/** The _api. */
 	public IGetClassListAPI _api = null;
 	
 	/**
@@ -68,8 +69,7 @@ public class GetClassListModel extends BaseModel {
 	/**
 	 * Instantiates a new gets the class list api.
 	 *
-	 * @param context the context
-	 * @param onCompleteCallback the on complete callback
+	 * @param api the api
 	 */
 	public GetClassListModel(IGetClassListAPI api){
 		_api = api;
@@ -79,6 +79,7 @@ public class GetClassListModel extends BaseModel {
 	 * Do get class list.
 	 *
 	 * @param UserID the user id
+	 * @return the async task
 	 */
 	public AsyncTask GetClassList(String UserID) {
 		// Save required param

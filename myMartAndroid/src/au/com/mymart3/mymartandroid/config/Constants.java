@@ -5,7 +5,7 @@ package au.com.mymart3.mymartandroid.config;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Interface Constants.
+ * The Interface Constants: Keep the variables.
  */
 public interface Constants {
 	

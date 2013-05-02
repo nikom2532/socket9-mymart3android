@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package au.com.mymart3.mymartandroid.webapis;
 
 // TODO: Auto-generated Javadoc
@@ -9,9 +12,16 @@ public interface IAuthenticateDeviceQuickPinAPI {
 	/**
 	 * Authenticate device quick pin.
 	 *
-	 * @param QuickPin the quick pin
-	 * @param DeviceID the device id
+	 * @param quickPin the quick pin
+	 * @param deviceID the device id
+	 * @return the string
 	 */
 	public String execute(String quickPin, String deviceID);
+	
+	/**
+	 * Gets the response.
+	 *
+	 * @return the response
+	 */
 	public String getResponse();
 }

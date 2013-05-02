@@ -37,6 +37,7 @@ public class GetUnitListModel extends BaseModel {
 	/** The Unit list success. */
 	public Boolean unitListSuccess = false;
 	
+	/** The _api. */
 	public IGetUnitListAPI _api = null;
 	
 	/**
@@ -61,6 +62,11 @@ public class GetUnitListModel extends BaseModel {
 		_api = new GetUnitListAPI();
 	}
 	
+	/**
+	 * Instantiates a new gets the unit list model.
+	 *
+	 * @param api the api
+	 */
 	public GetUnitListModel(IGetUnitListAPI api) {
 		_api = api;
 	}
@@ -70,6 +76,7 @@ public class GetUnitListModel extends BaseModel {
 	 *
 	 * @param UserID the user id
 	 * @param classID the class id
+	 * @return the async task
 	 */
 	public AsyncTask execute(String UserID,String classID) {
 		// Save required param

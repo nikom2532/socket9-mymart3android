@@ -28,7 +28,7 @@ public class LogManager {
 	/**
 	 * Inits the.
 	 *
-	 * @param tv
+	 * @param tv the tv
 	 */
 	public void init(TextView tv)
 	{
@@ -39,7 +39,7 @@ public class LogManager {
 	/**
 	 * Sets the class name.
 	 *
-	 * @param className 
+	 * @param className the new class name
 	 */
 	public void setClassName(String className){
 		m_classname = className + " : ";
@@ -48,7 +48,7 @@ public class LogManager {
 	/**
 	 * Log.
 	 *
-	 * @param strLog 
+	 * @param strLog the str log
 	 */
 	public void log(String strLog)
 	{

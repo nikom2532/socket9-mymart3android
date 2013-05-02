@@ -14,7 +14,7 @@ import android.provider.Settings.Secure;
 
 // TODO: Auto-generated Javadoc
 /**
- * Class Configuration.
+ * Class Configuration: to keep the Configulation.
  */
 public class ConfigManager {
 	
@@ -61,8 +61,8 @@ public class ConfigManager {
 	/**
 	 * Sets private string.
 	 *
-	 * @param name
-	 * @param val
+	 * @param name the name
+	 * @param val the val
 	 */
 	static public void setPrivateString(String name,String val)
 	{

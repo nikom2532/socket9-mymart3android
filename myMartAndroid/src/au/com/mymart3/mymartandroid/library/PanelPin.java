@@ -36,9 +36,9 @@ public class PanelPin implements View.OnClickListener {
 	/**
 	 * Instantiates a new panel pin.
 	 *
-	 * @param context
-	 * @param view 
-	 * @param onPinComplete
+	 * @param context the context
+	 * @param view the view
+	 * @param onPinComplete the on pin complete
 	 */
 	public PanelPin(Context context,View view,Runnable onPinComplete)
 	{

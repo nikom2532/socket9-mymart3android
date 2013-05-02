@@ -35,7 +35,7 @@ import au.com.mymart3.mymartandroid.webapis.AuthenticateDeviceQuickPinAPI;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class LoginUserActivity.
+ * The Class LoginUserActivity: LoginUserActivity Controller.
  */
 public class LoginUserActivity extends Activity {
 	
@@ -239,7 +239,7 @@ public class LoginUserActivity extends Activity {
 	/**
 	 * On start click.
 	 *
-	 * @param v
+	 * @param v the v
 	 */
 	public void onStartClick(View v) {
 		onStartClickMethod();

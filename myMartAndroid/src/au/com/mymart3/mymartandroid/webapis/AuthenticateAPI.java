@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package au.com.mymart3.mymartandroid.webapis;
 
 //import java.text.SimpleDateFormat;
@@ -26,13 +29,20 @@ import au.com.mymart3.mymartandroid.models.AuthenticateModel;
 
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AuthenticateAPI.
+ */
 public class AuthenticateAPI extends BaseAPI implements IAuthenticateAPI {
 	
 //	public S
 	/**
-	 * authenticate.
-	 *
-	 */
+ * authenticate.
+ *
+ * @param userName the user name
+ * @param password the password
+ * @return the string
+ */
 	
 	
 	/**

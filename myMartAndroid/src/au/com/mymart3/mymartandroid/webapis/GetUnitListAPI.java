@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package au.com.mymart3.mymartandroid.webapis;
 
 import java.lang.reflect.UndeclaredThrowableException;
@@ -20,12 +23,18 @@ import au.com.mymart3.mymartandroid.library.EncryptionConverter;
 import au.com.mymart3.mymartandroid.library.LogFactory;
 import au.com.mymart3.mymartandroid.library.LogManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GetUnitListAPI.
+ */
 public class GetUnitListAPI extends BaseAPI implements IGetUnitListAPI {
 	
 	/**
 	 * Call api.
 	 *
-	 * @param request the request
+	 * @param userID the user id
+	 * @param classID the class id
+	 * @return the string
 	 */
 	
 	public String execute(String userID, String classID) {

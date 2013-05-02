@@ -22,7 +22,7 @@ import au.com.mymart3.mymartandroid.config.Constants;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class MyMartCrypto.
+ * Encryption Converter Class: To convert the Encryption.
  */
 public class EncryptionConverter {
 	
@@ -45,9 +45,9 @@ public class EncryptionConverter {
     /**
      * Encrypt.
      *
-     * @param cleartext 
+     * @param cleartext the cleartext
      * @return result
-     * @throws Exception 
+     * @throws Exception the exception
      */
     public static Result encrypt(String cleartext) throws Exception {
     	Result result = new Result();

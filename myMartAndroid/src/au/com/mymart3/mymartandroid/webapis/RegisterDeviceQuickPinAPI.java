@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package au.com.mymart3.mymartandroid.webapis;
 
 import java.lang.reflect.UndeclaredThrowableException;
@@ -21,13 +24,21 @@ import au.com.mymart3.mymartandroid.library.EncryptionConverter;
 import au.com.mymart3.mymartandroid.library.LogFactory;
 import au.com.mymart3.mymartandroid.library.LogManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RegisterDeviceQuickPinAPI.
+ */
 public class RegisterDeviceQuickPinAPI extends BaseAPI implements IRegisterDeviceQuickPinAPI {
 
 
 	/**
 	 * Call api.
 	 *
-	 * @param request the request
+	 * @param userID the user id
+	 * @param quickPin the quick pin
+	 * @param deviceID the device id
+	 * @param forceOverride the force override
+	 * @return the string
 	 */
 	public String execute(String userID, String quickPin, String deviceID, Boolean forceOverride) {
 		try

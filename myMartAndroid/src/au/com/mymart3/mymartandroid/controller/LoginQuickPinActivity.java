@@ -19,7 +19,7 @@ import au.com.mymart3.mymartandroid.models.AuthenticateDeviceQuickPinModel;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class LoginQuickPinActivity.
+ * The Class LoginQuickPinActivity: LoginQuickPinActivity Controller.
  */
 public class LoginQuickPinActivity extends Activity {
 	
