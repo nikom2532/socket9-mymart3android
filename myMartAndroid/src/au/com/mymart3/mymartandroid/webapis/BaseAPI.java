@@ -4,6 +4,7 @@
 package au.com.mymart3.mymartandroid.webapis;
 
 import java.lang.reflect.UndeclaredThrowableException;
+import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -78,7 +79,10 @@ public class BaseAPI {
 		catch (Exception e) 
 		{
 			log.debug(e.getCause() + " : " + e.getMessage());
-			errorMessage = e.getCause() + " : " + e.getMessage();
+			if(e instanceof UnknownHostException) errorMessage = "No Internet Connection, Try Again";
+			else {
+				errorMessage = e.getCause() + " : " + e.getMessage();
+			}
 		}
 		
 		return errorMessage;

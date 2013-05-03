@@ -58,10 +58,12 @@ public class ClassListActivity extends Activity {
         
         mClassListView.setOnItemClickListener(OnClassListItemClickListener);
         
+		// Display wait dialog
+		AlertManager.displayLoadingMessage(mContext, "Getting class list...", null); 
+
         // Load class list
         mGetClassList = new GetClassListModel();
         mGetClassList.onCompleteCallback = onGetClassListComplete;
-	 	
         mGetClassList.GetClassList(ConfigManager.gUserID);
     }
     
@@ -71,6 +73,9 @@ public class ClassListActivity extends Activity {
 		@Override
 		public void run() {
 			
+			// Hide loading message
+			AlertManager.hideWaitDlg();
+						
 			// Check result and display error popup
 			if(!mGetClassList.errorMessage.equalsIgnoreCase("success"))
 			{
@@ -89,6 +94,12 @@ public class ClassListActivity extends Activity {
 			else
 			{
 				AlertManager.displayErrorMessage(mContext, "Get ClassList Fail");
+			}
+			
+			// Auto load unit list if has only one class
+			if(mGetClassList.classes.size() == 1)
+			{
+				LoadUnitList(mGetClassList.classes.get(0).classID);
 			}
 		}
 	};
@@ -153,18 +164,32 @@ public class ClassListActivity extends Activity {
 			ClassListDetailResult classListDetailResult = (ClassListDetailResult) adapter.getItemAtPosition(position);
 			
 			// Load Unit base on selected class
-			mGetUnitList = new GetUnitListModel();
-			mGetUnitList.onCompleteCallback = onGetUnitListComplete;
-			mGetUnitList.execute(ConfigManager.gUserID, classListDetailResult.classID);
+			LoadUnitList(classListDetailResult.classID);
 		}
 	};
+	
+	/**
+	 * Load unit in class.
+	 * 
+	 * @param classID the class ID which you want to see unit list
+	 */
+	protected void LoadUnitList(String classID) {
+		// Display wait dialog
+		AlertManager.displayLoadingMessage(mContext, "Getting unit list...", null); 
+		
+		mGetUnitList = new GetUnitListModel();
+		mGetUnitList.onCompleteCallback = onGetUnitListComplete;
+		mGetUnitList.execute(ConfigManager.gUserID, classID);		
+	}
+	
 	
     // This will called after GetUnitList is complete
     /** The on get unit list complete. */
     Runnable onGetUnitListComplete = new Runnable() {		
 		@Override
 		public void run() {
-			
+			// Close wait dialog
+        	AlertManager.hideWaitDlg();			
 
 			// Check result and display error popup
 			if(!mGetUnitList.errorMessage.equalsIgnoreCase("success"))
@@ -175,9 +200,6 @@ public class ClassListActivity extends Activity {
 			{
 				AlertManager.displayMessage(mContext, mGetUnitList.exceptionMessage,"GetClassList Fail");
 			}
-
-			// Close wait dialog
-        	AlertManager.hideWaitDlg();
         	
 			if(true == mGetUnitList.unitListSuccess)
 			{

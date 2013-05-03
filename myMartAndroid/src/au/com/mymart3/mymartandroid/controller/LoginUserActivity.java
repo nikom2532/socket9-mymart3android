@@ -53,12 +53,89 @@ public class LoginUserActivity extends Activity {
 	/** The m button user login. */
 	public Button mButtonUserLogin; 
 	
+
+	/** The m authenticate. */
+	private AuthenticateModel mAuthenticate = new AuthenticateModel();
+	
+	/** The m register device quick pin. */
+	private RegisterDeviceQuickPinModel mRegisterDeviceQuickPin = new RegisterDeviceQuickPinModel();
+	
+	/** The m panel pin. */
+	private PanelPin mPanelPin;
+	
+	/** The m pin. */
+	private String mPin="";
+	
+	/** The m pin for second attempt. */
+	private String mPinSecond="";
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.loginuser);
+		mContext = this;
+		
+		mEditTextUsername = (EditText)findViewById(R.id.EditTextUsername);
+		mEditTextPassword = (EditText)findViewById(R.id.EditTextPassword);
+		mButtonUserLogin = (Button)findViewById(R.id.buttonUserLogin);
+		
+//		Test
+		mEditTextUsername.setText("stirling.admin");
+		mEditTextPassword.setText("duck121");
+		
+		//PopupQuickPinDlg();
+		
+//		new AuthenticateModel().execute("stirling.admin","duck121");
+//		new AuthenticateDeviceQuickPinAPI().execute("", ConfigManager.getDeviceID );
+		// For testing web service
+		//new AuthenticateAPI().Authenticate(this, "stirling.admin","duck121", null);
+		//new RegisterDeviceQuickPinAPI().RegisterDeviceQuickPin(this, "bc9ce5ff-1731-457f-bee3-336a99165c22", "1234", Configuration.gDeviceID, true, null);
+		//new AuthenticateDeviceQuickPinAPI().doAuthenticateDeviceQuickPin(this, "1234", Configuration.gDeviceID, null);
+		//new GetClassListAPI().GetClassList(this, "bc9ce5ff-1731-457f-bee3-336a99165c22", null);
+		//new GetUnitListAPI().GetUnitList(this, "bc9ce5ff-1731-457f-bee3-336a99165c22","79795af1-ff89-47e9-905b-095d36bdeb94", null);
+	}
+	
+	/**
+	 * On start click.
+	 *
+	 * @param v the v
+	 */
+	public void onStartClick(View v) {
+		onStartClickMethod();
+	}
+	
+	/**
+	 * On start click.
+	 *
+	 */
+	public void onStartClickMethod() {		
+		// Display wait dialog
+		AlertManager.displayLoadingMessage(mContext, "Authenticating...", null); 
+		
+		mAuthenticate.onCompleteCallback = onAuthenticateComplete;
+		mAuthenticate.authenticate(mEditTextUsername.getText().toString(),mEditTextPassword.getText().toString());
+	}	
 	
 	/** The on authenticate complete. */
 	public Runnable onAuthenticateComplete = new Runnable() {
 		@Override
 		public void run() {
-			
+			// Hide loading message
+			AlertManager.hideWaitDlg();
+
+			// Check result and display error popup
+			if(!mAuthenticate.errorMessage.equalsIgnoreCase("success"))
+			{
+				AlertManager.displayMessage(mContext, mAuthenticate.errorMessage,"Authentication Fail");
+			}
+			else if(null != mAuthenticate.exceptionMessage && mAuthenticate.exceptionMessage.length() > 0 && !mAuthenticate.exceptionMessage.equalsIgnoreCase("null") )
+			{
+				AlertManager.displayMessage(mContext, mAuthenticate.exceptionMessage,"Authentication Fail");
+			}
+
 			// If Authenticated
 			if(mAuthenticate.Authenticated)
 			{
@@ -80,6 +157,7 @@ public class LoginUserActivity extends Activity {
 							public void onClick(DialogInterface dialog, int which) {
 								dialog.dismiss();
 								mPin="";
+								mPinSecond="";
 								PopupQuickPinDlg();
 							}
 						});
@@ -111,28 +189,8 @@ public class LoginUserActivity extends Activity {
 	public Runnable onRegisterDeviceQuickPinComplete = new Runnable() {
 		@Override
 		public void run() {
-						
-			// Check result and display error popup
-			if(!mAuthenticate.errorMessage.equalsIgnoreCase("success"))
-			{
-				AlertManager.displayMessage(mContext, mAuthenticate.errorMessage,"Authentication Fail");
-			}
-			else if(null != mAuthenticate.exceptionMessage && mAuthenticate.exceptionMessage.length() > 0 && !mAuthenticate.exceptionMessage.equalsIgnoreCase("null") )
-			{
-				AlertManager.displayMessage(mContext, mAuthenticate.exceptionMessage,"Authentication Fail");
-			}
-
-			/*/
-			// Check result and display error popup
-			if(!mAuthenticate.errorMessage.equalsIgnoreCase("success"))
-			{
-				AlertManager.DisplayMessage(mContext, mRegisterDeviceQuickPin.errorMessage,"AuthenticateDeviceQuickPin Success");
-			}
-			else if(null != mRegisterDeviceQuickPin.exceptionMessage && mRegisterDeviceQuickPin.exceptionMessage.length() > 0 && !mAuthenticate.exceptionMessage.equalsIgnoreCase("null") )
-			{
-				AlertManager.DisplayMessage(mContext, mRegisterDeviceQuickPin.exceptionMessage,"AuthenticateDeviceQuickPin Fail");
-			}
-			/*/
+			// Close wait dialog
+        	AlertManager.hideWaitDlg();
 			
 			// Check result and display error popup
 			if(!mRegisterDeviceQuickPin.errorMessage.equalsIgnoreCase("success"))
@@ -142,15 +200,7 @@ public class LoginUserActivity extends Activity {
 			else if(null != mRegisterDeviceQuickPin.exceptionMessage && mRegisterDeviceQuickPin.exceptionMessage.length() > 0 && !mRegisterDeviceQuickPin.exceptionMessage.equalsIgnoreCase("null") )
 			{
 				AlertManager.displayMessage(mContext, mRegisterDeviceQuickPin.exceptionMessage,"RegisterDeviceQuickPin Fail");
-			}
-
-
-			// Close wait dialog
-        	AlertManager.hideWaitDlg();
-			
-			// Close wait dialog
-        	AlertManager.hideWaitDlg();
-			
+			}			
 			
 			if(mRegisterDeviceQuickPin.registerSuccess)
 			{
@@ -166,94 +216,6 @@ public class LoginUserActivity extends Activity {
 		}
 	};
 	
-	/** The m authenticate. */
-	AuthenticateModel mAuthenticate = new AuthenticateModel();
-	
-	/** The m register device quick pin. */
-	RegisterDeviceQuickPinModel mRegisterDeviceQuickPin = new RegisterDeviceQuickPinModel();
-	
-	/** The m panel pin. */
-	PanelPin mPanelPin;
-	
-	/** The m pin. */
-	String mPin="";
-	
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.loginuser);
-		mContext = this;
-		
-		mEditTextUsername = (EditText)findViewById(R.id.EditTextUsername);
-		mEditTextPassword = (EditText)findViewById(R.id.EditTextPassword);
-		mButtonUserLogin = (Button)findViewById(R.id.buttonUserLogin);
-		
-//		Test
-		mEditTextUsername.setText("stirling.admin");
-		mEditTextPassword.setText("duck121");
-		
-		// ####### make search keyboard
-		mEditTextUsername.setInputType(InputType.TYPE_CLASS_TEXT);
-
-		// ####### make enter key when search
-//		mEditTextUsername.setOnKeyListener(new OnKeyListener() {
-//			@Override
-//			public boolean onKey(View v, int keyCode, KeyEvent event) {
-//				if ((keyCode == KeyEvent.KEYCODE_ENTER)) {
-//			    	return false;
-//				} else
-//					return true;
-//			}
-//		});
-//		
-//		mEditTextPassword.setOnKeyListener(new OnKeyListener() {
-//			@Override
-//			public boolean onKey(View v, int keyCode, KeyEvent event) {
-//				if ((keyCode == KeyEvent.ACTION_DOWN)) {
-//					onStartClickMethod();
-//			    	return true;
-//				} else
-//					return false;
-//			}
-//			
-//		 
-//		});
-		
-		
-		
-		//PopupQuickPinDlg();
-		
-//		new AuthenticateModel().execute("stirling.admin","duck121");
-//		new AuthenticateDeviceQuickPinAPI().execute("", ConfigManager.getDeviceID );
-		// For testing web service
-		//new AuthenticateAPI().Authenticate(this, "stirling.admin","duck121", null);
-		//new RegisterDeviceQuickPinAPI().RegisterDeviceQuickPin(this, "bc9ce5ff-1731-457f-bee3-336a99165c22", "1234", Configuration.gDeviceID, true, null);
-		//new AuthenticateDeviceQuickPinAPI().doAuthenticateDeviceQuickPin(this, "1234", Configuration.gDeviceID, null);
-		//new GetClassListAPI().GetClassList(this, "bc9ce5ff-1731-457f-bee3-336a99165c22", null);
-		//new GetUnitListAPI().GetUnitList(this, "bc9ce5ff-1731-457f-bee3-336a99165c22","79795af1-ff89-47e9-905b-095d36bdeb94", null);
-	}
-	
-	/**
-	 * On start click.
-	 *
-	 * @param v the v
-	 */
-	public void onStartClick(View v) {
-		onStartClickMethod();
-	}
-	
-	/**
-	 * On start click.
-	 *
-	 */
-	public void onStartClickMethod() {
-		mAuthenticate.onCompleteCallback = onAuthenticateComplete;
-		mAuthenticate.authenticate(mEditTextUsername.getText().toString(),mEditTextPassword.getText().toString());
-	}
-	
 	/**
 	 * Popup quick pin dlg.
 	 */
@@ -268,11 +230,32 @@ public class LoginUserActivity extends Activity {
 			@Override
 			public void run() {
 				dialog.dismiss();
-				mPin = mPanelPin.mStrPassword;
 				
-				// Call webservice to set pin 
-				mRegisterDeviceQuickPin.onCompleteCallback = onRegisterDeviceQuickPinComplete;
-				mRegisterDeviceQuickPin.RegisterDeviceQuickPin(ConfigManager.gUserID, mPin, ConfigManager.getDeviceID, true);
+				// If enter pin for the first time
+				if(mPin.length()==0)
+				{
+					mPin = mPanelPin.mStrPassword;
+					
+					// Ask pin for second time
+					PopupQuickPinDlg();
+				}
+				else
+				{
+					// Check pin matching
+					mPinSecond = mPanelPin.mStrPassword;
+					
+					if(!mPin.equals(mPinSecond)) {
+						AlertManager.displayMessage(mContext, "Pin does not match","RegisterDeviceQuickPin Fail");
+					}
+					else {
+						// Display wait dialog
+						AlertManager.displayLoadingMessage(mContext, "Registering...", null); 
+	
+						// Call webservice to set pin 
+						mRegisterDeviceQuickPin.onCompleteCallback = onRegisterDeviceQuickPinComplete;
+						mRegisterDeviceQuickPin.RegisterDeviceQuickPin(ConfigManager.gUserID, mPin, ConfigManager.getDeviceID, true);
+					}
+				}
 			}
 		});
 		
@@ -280,14 +263,4 @@ public class LoginUserActivity extends Activity {
     	dialog.show();
 	}
 	
-	/**
-	 * On pre execute.
-	 */
-	protected void onPreExecute() {
-		// Display wait dialog
-		Handler handler = new Handler();
-		handler.post(new Runnable() {
-			public void run() { AlertManager.displayLoadingMessage(mContext, "Authenticating...", null); } 
-		});
-	} 
 }
