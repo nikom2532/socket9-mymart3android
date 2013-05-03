@@ -1,0 +1,790 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		320AB4C017326B7E001527CB /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 320AB4BA17326B7E001527CB /* close.png */; };
+		320AB4C117326B7E001527CB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 320AB4BB17326B7E001527CB /* Default-568h@2x.png */; };
+		320AB4C217326B7E001527CB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 320AB4BC17326B7E001527CB /* Default.png */; };
+		320AB4C317326B7E001527CB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 320AB4BD17326B7E001527CB /* Default@2x.png */; };
+		320AB4C417326B7E001527CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 320AB4BE17326B7E001527CB /* main.m */; };
+		320AB4C517326B7E001527CB /* QPinBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 320AB4BF17326B7E001527CB /* QPinBG.png */; };
+		32BAD308173388C3003E46C9 /* NetConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BAD307173388C3003E46C9 /* NetConnection.m */; };
+		32DA000E17325D9A00614E71 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32DA000D17325D9A00614E71 /* QuartzCore.framework */; };
+		32DA001017325DE600614E71 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32DA000F17325DE600614E71 /* MessageUI.framework */; };
+		32DA00FA1732691A00614E71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00A41732691A00614E71 /* AppDelegate.m */; };
+		32DA00FB1732691A00614E71 /* AuthenticateAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00A71732691A00614E71 /* AuthenticateAPI.m */; };
+		32DA00FC1732691A00614E71 /* AuthenticateDeviceQuickPinAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00A91732691A00614E71 /* AuthenticateDeviceQuickPinAPI.m */; };
+		32DA00FD1732691A00614E71 /* GetClassListAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00AB1732691A00614E71 /* GetClassListAPI.m */; };
+		32DA00FE1732691A00614E71 /* GetUnitListAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00AD1732691A00614E71 /* GetUnitListAPI.m */; };
+		32DA00FF1732691A00614E71 /* RegisterDeviceQuickPinAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00AF1732691A00614E71 /* RegisterDeviceQuickPinAPI.m */; };
+		32DA01001732691A00614E71 /* ClassListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DA00B11732691A00614E71 /* ClassListViewController.xib */; };
+		32DA01011732691A00614E71 /* FirstLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DA00B21732691A00614E71 /* FirstLoginViewController.xib */; };
+		32DA01021732691A00614E71 /* InitialSlidingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DA00B31732691A00614E71 /* InitialSlidingViewController.xib */; };
+		32DA01031732691A00614E71 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DA00B41732691A00614E71 /* LoginViewController.xib */; };
+		32DA01041732691A00614E71 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DA00B51732691A00614E71 /* MainViewController.xib */; };
+		32DA01051732691A00614E71 /* ResultEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32DA00B61732691A00614E71 /* ResultEntryViewController.xib */; };
+		32DA01061732691A00614E71 /* ClassList.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00B91732691A00614E71 /* ClassList.m */; };
+		32DA01071732691A00614E71 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00BB1732691A00614E71 /* Login.m */; };
+		32DA01081732691A00614E71 /* QuickPinLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00BD1732691A00614E71 /* QuickPinLogin.m */; };
+		32DA01091732691A00614E71 /* RegisterDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00BF1732691A00614E71 /* RegisterDevice.m */; };
+		32DA010A1732691A00614E71 /* UnitList.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00C11732691A00614E71 /* UnitList.m */; };
+		32DA010B1732691A00614E71 /* ECSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00C41732691A00614E71 /* ECSlidingViewController.m */; };
+		32DA010C1732691A00614E71 /* EWHeaderHighlightLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00C61732691A00614E71 /* EWHeaderHighlightLayer.m */; };
+		32DA010D1732691A00614E71 /* EWMultiColumnTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00C81732691A00614E71 /* EWMultiColumnTableView.m */; };
+		32DA010E1732691A00614E71 /* EWMultiColumnTableViewBGScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00CA1732691A00614E71 /* EWMultiColumnTableViewBGScrollView.m */; };
+		32DA010F1732691A00614E71 /* EWMultiColumnTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00CC1732691A00614E71 /* EWMultiColumnTableViewCell.m */; };
+		32DA01101732691A00614E71 /* EWMultiColumnTableViewContentBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00CE1732691A00614E71 /* EWMultiColumnTableViewContentBackgroundView.m */; };
+		32DA01111732691A00614E71 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00D11732691A00614E71 /* MBProgressHUD.m */; };
+		32DA01121732691A00614E71 /* PullableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00D31732691A00614E71 /* PullableView.m */; };
+		32DA01131732691A00614E71 /* StyledPullableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00D51732691A00614E71 /* StyledPullableView.m */; };
+		32DA01141732691A00614E71 /* UIImage+ImageWithUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00D71732691A00614E71 /* UIImage+ImageWithUIView.m */; };
+		32DA01151732691A00614E71 /* UIView+AddLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00D91732691A00614E71 /* UIView+AddLine.m */; };
+		32DA01161732691A00614E71 /* CocoaSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00DC1732691A00614E71 /* CocoaSecurity.m */; };
+		32DA01171732691A00614E71 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00DE1732691A00614E71 /* Common.m */; };
+		32DA01181732691A00614E71 /* DeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00E01732691A00614E71 /* DeviceManager.m */; };
+		32DA01191732691A00614E71 /* NSData+Base64Converter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00E21732691A00614E71 /* NSData+Base64Converter.m */; };
+		32DA011A1732691A00614E71 /* NSString+HexToByteConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00E41732691A00614E71 /* NSString+HexToByteConverter.m */; };
+		32DA011B1732691A00614E71 /* RandomGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00E61732691A00614E71 /* RandomGenerator.m */; };
+		32DA011C1732691A00614E71 /* SignatureGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00E81732691A00614E71 /* SignatureGenerator.m */; };
+		32DA011D1732691A00614E71 /* ClassListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00EB1732691A00614E71 /* ClassListViewController.m */; };
+		32DA011F1732691A00614E71 /* FirstLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00EF1732691A00614E71 /* FirstLoginViewController.m */; };
+		32DA01201732691A00614E71 /* InitialSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00F11732691A00614E71 /* InitialSlidingViewController.m */; };
+		32DA01211732691A00614E71 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00F31732691A00614E71 /* LoginViewController.m */; };
+		32DA01221732691A00614E71 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00F51732691A00614E71 /* MainViewController.m */; };
+		32DA01231732691A00614E71 /* NSObject+DelayedBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00F71732691A00614E71 /* NSObject+DelayedBlock.m */; };
+		32DA01241732691A00614E71 /* ResultEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00F91732691A00614E71 /* ResultEntryViewController.m */; };
+		32DA0128173269D700614E71 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA0127173269D700614E71 /* ConfigManager.m */; };
+		32DAFF5617325ABA00614E71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32DAFF5517325ABA00614E71 /* UIKit.framework */; };
+		32DAFF5817325ABA00614E71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32DAFF5717325ABA00614E71 /* Foundation.framework */; };
+		32DAFF5A17325ABA00614E71 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32DAFF5917325ABA00614E71 /* CoreGraphics.framework */; };
+		32DAFF6017325ABB00614E71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32DAFF5E17325ABB00614E71 /* InfoPlist.strings */; };
+		32DAFF7A17325ABB00614E71 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32DAFF7917325ABB00614E71 /* SenTestingKit.framework */; };
+		32DAFF7B17325ABB00614E71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32DAFF5517325ABA00614E71 /* UIKit.framework */; };
+		32DAFF7C17325ABB00614E71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32DAFF5717325ABA00614E71 /* Foundation.framework */; };
+		32DAFF8417325ABB00614E71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32DAFF8217325ABB00614E71 /* InfoPlist.strings */; };
+		32DAFF8717325ABB00614E71 /* myMARTiPadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DAFF8617325ABB00614E71 /* myMARTiPadTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		32DAFF7D17325ABB00614E71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32DAFF4A17325ABA00614E71 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 32DAFF5117325ABA00614E71;
+			remoteInfo = myMARTiPad;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		320AB4BA17326B7E001527CB /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		320AB4BB17326B7E001527CB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		320AB4BC17326B7E001527CB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		320AB4BD17326B7E001527CB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		320AB4BE17326B7E001527CB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		320AB4BF17326B7E001527CB /* QPinBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QPinBG.png; sourceTree = "<group>"; };
+		32BAD306173388C3003E46C9 /* NetConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetConnection.h; sourceTree = "<group>"; };
+		32BAD307173388C3003E46C9 /* NetConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetConnection.m; sourceTree = "<group>"; };
+		32DA000D17325D9A00614E71 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		32DA000F17325DE600614E71 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		32DA00A31732691A00614E71 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		32DA00A41732691A00614E71 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		32DA00A61732691A00614E71 /* AuthenticateAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticateAPI.h; sourceTree = "<group>"; };
+		32DA00A71732691A00614E71 /* AuthenticateAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticateAPI.m; sourceTree = "<group>"; };
+		32DA00A81732691A00614E71 /* AuthenticateDeviceQuickPinAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticateDeviceQuickPinAPI.h; sourceTree = "<group>"; };
+		32DA00A91732691A00614E71 /* AuthenticateDeviceQuickPinAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticateDeviceQuickPinAPI.m; sourceTree = "<group>"; };
+		32DA00AA1732691A00614E71 /* GetClassListAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetClassListAPI.h; sourceTree = "<group>"; };
+		32DA00AB1732691A00614E71 /* GetClassListAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetClassListAPI.m; sourceTree = "<group>"; };
+		32DA00AC1732691A00614E71 /* GetUnitListAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetUnitListAPI.h; sourceTree = "<group>"; };
+		32DA00AD1732691A00614E71 /* GetUnitListAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetUnitListAPI.m; sourceTree = "<group>"; };
+		32DA00AE1732691A00614E71 /* RegisterDeviceQuickPinAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterDeviceQuickPinAPI.h; sourceTree = "<group>"; };
+		32DA00AF1732691A00614E71 /* RegisterDeviceQuickPinAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterDeviceQuickPinAPI.m; sourceTree = "<group>"; };
+		32DA00B11732691A00614E71 /* ClassListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassListViewController.xib; sourceTree = "<group>"; };
+		32DA00B21732691A00614E71 /* FirstLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstLoginViewController.xib; sourceTree = "<group>"; };
+		32DA00B31732691A00614E71 /* InitialSlidingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InitialSlidingViewController.xib; sourceTree = "<group>"; };
+		32DA00B41732691A00614E71 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		32DA00B51732691A00614E71 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		32DA00B61732691A00614E71 /* ResultEntryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultEntryViewController.xib; sourceTree = "<group>"; };
+		32DA00B81732691A00614E71 /* ClassList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassList.h; sourceTree = "<group>"; };
+		32DA00B91732691A00614E71 /* ClassList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassList.m; sourceTree = "<group>"; };
+		32DA00BA1732691A00614E71 /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
+		32DA00BB1732691A00614E71 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
+		32DA00BC1732691A00614E71 /* QuickPinLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickPinLogin.h; sourceTree = "<group>"; };
+		32DA00BD1732691A00614E71 /* QuickPinLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickPinLogin.m; sourceTree = "<group>"; };
+		32DA00BE1732691A00614E71 /* RegisterDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterDevice.h; sourceTree = "<group>"; };
+		32DA00BF1732691A00614E71 /* RegisterDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterDevice.m; sourceTree = "<group>"; };
+		32DA00C01732691A00614E71 /* UnitList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitList.h; sourceTree = "<group>"; };
+		32DA00C11732691A00614E71 /* UnitList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitList.m; sourceTree = "<group>"; };
+		32DA00C31732691A00614E71 /* ECSlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECSlidingViewController.h; sourceTree = "<group>"; };
+		32DA00C41732691A00614E71 /* ECSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECSlidingViewController.m; sourceTree = "<group>"; };
+		32DA00C51732691A00614E71 /* EWHeaderHighlightLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWHeaderHighlightLayer.h; sourceTree = "<group>"; };
+		32DA00C61732691A00614E71 /* EWHeaderHighlightLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWHeaderHighlightLayer.m; sourceTree = "<group>"; };
+		32DA00C71732691A00614E71 /* EWMultiColumnTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWMultiColumnTableView.h; sourceTree = "<group>"; };
+		32DA00C81732691A00614E71 /* EWMultiColumnTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWMultiColumnTableView.m; sourceTree = "<group>"; };
+		32DA00C91732691A00614E71 /* EWMultiColumnTableViewBGScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWMultiColumnTableViewBGScrollView.h; sourceTree = "<group>"; };
+		32DA00CA1732691A00614E71 /* EWMultiColumnTableViewBGScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWMultiColumnTableViewBGScrollView.m; sourceTree = "<group>"; };
+		32DA00CB1732691A00614E71 /* EWMultiColumnTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWMultiColumnTableViewCell.h; sourceTree = "<group>"; };
+		32DA00CC1732691A00614E71 /* EWMultiColumnTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWMultiColumnTableViewCell.m; sourceTree = "<group>"; };
+		32DA00CD1732691A00614E71 /* EWMultiColumnTableViewContentBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWMultiColumnTableViewContentBackgroundView.h; sourceTree = "<group>"; };
+		32DA00CE1732691A00614E71 /* EWMultiColumnTableViewContentBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWMultiColumnTableViewContentBackgroundView.m; sourceTree = "<group>"; };
+		32DA00CF1732691A00614E71 /* EWMultiColumnTableViewDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWMultiColumnTableViewDefaults.h; sourceTree = "<group>"; };
+		32DA00D01732691A00614E71 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		32DA00D11732691A00614E71 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		32DA00D21732691A00614E71 /* PullableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullableView.h; sourceTree = "<group>"; };
+		32DA00D31732691A00614E71 /* PullableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullableView.m; sourceTree = "<group>"; };
+		32DA00D41732691A00614E71 /* StyledPullableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyledPullableView.h; sourceTree = "<group>"; };
+		32DA00D51732691A00614E71 /* StyledPullableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyledPullableView.m; sourceTree = "<group>"; };
+		32DA00D61732691A00614E71 /* UIImage+ImageWithUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageWithUIView.h"; sourceTree = "<group>"; };
+		32DA00D71732691A00614E71 /* UIImage+ImageWithUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithUIView.m"; sourceTree = "<group>"; };
+		32DA00D81732691A00614E71 /* UIView+AddLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AddLine.h"; sourceTree = "<group>"; };
+		32DA00D91732691A00614E71 /* UIView+AddLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AddLine.m"; sourceTree = "<group>"; };
+		32DA00DB1732691A00614E71 /* CocoaSecurity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaSecurity.h; sourceTree = "<group>"; };
+		32DA00DC1732691A00614E71 /* CocoaSecurity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocoaSecurity.m; sourceTree = "<group>"; };
+		32DA00DD1732691A00614E71 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		32DA00DE1732691A00614E71 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
+		32DA00DF1732691A00614E71 /* DeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceManager.h; sourceTree = "<group>"; };
+		32DA00E01732691A00614E71 /* DeviceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceManager.m; sourceTree = "<group>"; };
+		32DA00E11732691A00614E71 /* NSData+Base64Converter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64Converter.h"; sourceTree = "<group>"; };
+		32DA00E21732691A00614E71 /* NSData+Base64Converter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64Converter.m"; sourceTree = "<group>"; };
+		32DA00E31732691A00614E71 /* NSString+HexToByteConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HexToByteConverter.h"; sourceTree = "<group>"; };
+		32DA00E41732691A00614E71 /* NSString+HexToByteConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HexToByteConverter.m"; sourceTree = "<group>"; };
+		32DA00E51732691A00614E71 /* RandomGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomGenerator.h; sourceTree = "<group>"; };
+		32DA00E61732691A00614E71 /* RandomGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomGenerator.m; sourceTree = "<group>"; };
+		32DA00E71732691A00614E71 /* SignatureGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureGenerator.h; sourceTree = "<group>"; };
+		32DA00E81732691A00614E71 /* SignatureGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureGenerator.m; sourceTree = "<group>"; };
+		32DA00EA1732691A00614E71 /* ClassListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassListViewController.h; sourceTree = "<group>"; };
+		32DA00EB1732691A00614E71 /* ClassListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassListViewController.m; sourceTree = "<group>"; };
+		32DA00EE1732691A00614E71 /* FirstLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstLoginViewController.h; sourceTree = "<group>"; };
+		32DA00EF1732691A00614E71 /* FirstLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstLoginViewController.m; sourceTree = "<group>"; };
+		32DA00F01732691A00614E71 /* InitialSlidingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialSlidingViewController.h; sourceTree = "<group>"; };
+		32DA00F11732691A00614E71 /* InitialSlidingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialSlidingViewController.m; sourceTree = "<group>"; };
+		32DA00F21732691A00614E71 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		32DA00F31732691A00614E71 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		32DA00F41732691A00614E71 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		32DA00F51732691A00614E71 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		32DA00F61732691A00614E71 /* NSObject+DelayedBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DelayedBlock.h"; sourceTree = "<group>"; };
+		32DA00F71732691A00614E71 /* NSObject+DelayedBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DelayedBlock.m"; sourceTree = "<group>"; };
+		32DA00F81732691A00614E71 /* ResultEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultEntryViewController.h; sourceTree = "<group>"; };
+		32DA00F91732691A00614E71 /* ResultEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultEntryViewController.m; sourceTree = "<group>"; };
+		32DA0126173269D700614E71 /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
+		32DA0127173269D700614E71 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
+		32DAFF5217325ABA00614E71 /* myMARTiPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myMARTiPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		32DAFF5517325ABA00614E71 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		32DAFF5717325ABA00614E71 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		32DAFF5917325ABA00614E71 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		32DAFF5D17325ABB00614E71 /* myMARTiPad-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "myMARTiPad-Info.plist"; sourceTree = "<group>"; };
+		32DAFF5F17325ABB00614E71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		32DAFF6317325ABB00614E71 /* myMARTiPad-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "myMARTiPad-Prefix.pch"; sourceTree = "<group>"; };
+		32DAFF7817325ABB00614E71 /* myMARTiPadTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = myMARTiPadTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		32DAFF7917325ABB00614E71 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		32DAFF8117325ABB00614E71 /* myMARTiPadTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "myMARTiPadTests-Info.plist"; sourceTree = "<group>"; };
+		32DAFF8317325ABB00614E71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		32DAFF8517325ABB00614E71 /* myMARTiPadTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = myMARTiPadTests.h; sourceTree = "<group>"; };
+		32DAFF8617325ABB00614E71 /* myMARTiPadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = myMARTiPadTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		32DAFF4F17325ABA00614E71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32DA001017325DE600614E71 /* MessageUI.framework in Frameworks */,
+				32DA000E17325D9A00614E71 /* QuartzCore.framework in Frameworks */,
+				32DAFF5617325ABA00614E71 /* UIKit.framework in Frameworks */,
+				32DAFF5817325ABA00614E71 /* Foundation.framework in Frameworks */,
+				32DAFF5A17325ABA00614E71 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32DAFF7417325ABB00614E71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32DAFF7A17325ABB00614E71 /* SenTestingKit.framework in Frameworks */,
+				32DAFF7B17325ABB00614E71 /* UIKit.framework in Frameworks */,
+				32DAFF7C17325ABB00614E71 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		320AB4B917326B7E001527CB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				320AB4BA17326B7E001527CB /* close.png */,
+				320AB4BB17326B7E001527CB /* Default-568h@2x.png */,
+				320AB4BC17326B7E001527CB /* Default.png */,
+				320AB4BD17326B7E001527CB /* Default@2x.png */,
+				320AB4BE17326B7E001527CB /* main.m */,
+				320AB4BF17326B7E001527CB /* QPinBG.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		32DA00A21732691A00614E71 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				32DA00A31732691A00614E71 /* AppDelegate.h */,
+				32DA00A41732691A00614E71 /* AppDelegate.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		32DA00A51732691A00614E71 /* WebAPIs */ = {
+			isa = PBXGroup;
+			children = (
+				32DA00A61732691A00614E71 /* AuthenticateAPI.h */,
+				32DA00A71732691A00614E71 /* AuthenticateAPI.m */,
+				32DA00A81732691A00614E71 /* AuthenticateDeviceQuickPinAPI.h */,
+				32DA00A91732691A00614E71 /* AuthenticateDeviceQuickPinAPI.m */,
+				32DA00AE1732691A00614E71 /* RegisterDeviceQuickPinAPI.h */,
+				32DA00AF1732691A00614E71 /* RegisterDeviceQuickPinAPI.m */,
+				32DA00AA1732691A00614E71 /* GetClassListAPI.h */,
+				32DA00AB1732691A00614E71 /* GetClassListAPI.m */,
+				32DA00AC1732691A00614E71 /* GetUnitListAPI.h */,
+				32DA00AD1732691A00614E71 /* GetUnitListAPI.m */,
+			);
+			path = WebAPIs;
+			sourceTree = "<group>";
+		};
+		32DA00B01732691A00614E71 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				32DA00B21732691A00614E71 /* FirstLoginViewController.xib */,
+				32DA00B41732691A00614E71 /* LoginViewController.xib */,
+				32DA00B11732691A00614E71 /* ClassListViewController.xib */,
+				32DA00B31732691A00614E71 /* InitialSlidingViewController.xib */,
+				32DA00B51732691A00614E71 /* MainViewController.xib */,
+				32DA00B61732691A00614E71 /* ResultEntryViewController.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		32DA00B71732691A00614E71 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				32DA00BA1732691A00614E71 /* Login.h */,
+				32DA00BB1732691A00614E71 /* Login.m */,
+				32DA00BC1732691A00614E71 /* QuickPinLogin.h */,
+				32DA00BD1732691A00614E71 /* QuickPinLogin.m */,
+				32DA00BE1732691A00614E71 /* RegisterDevice.h */,
+				32DA00BF1732691A00614E71 /* RegisterDevice.m */,
+				32DA00B81732691A00614E71 /* ClassList.h */,
+				32DA00B91732691A00614E71 /* ClassList.m */,
+				32DA00C01732691A00614E71 /* UnitList.h */,
+				32DA00C11732691A00614E71 /* UnitList.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		32DA00C21732691A00614E71 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				32DA00C31732691A00614E71 /* ECSlidingViewController.h */,
+				32DA00C41732691A00614E71 /* ECSlidingViewController.m */,
+				32DA00C51732691A00614E71 /* EWHeaderHighlightLayer.h */,
+				32DA00C61732691A00614E71 /* EWHeaderHighlightLayer.m */,
+				32DA00C71732691A00614E71 /* EWMultiColumnTableView.h */,
+				32DA00C81732691A00614E71 /* EWMultiColumnTableView.m */,
+				32DA00C91732691A00614E71 /* EWMultiColumnTableViewBGScrollView.h */,
+				32DA00CA1732691A00614E71 /* EWMultiColumnTableViewBGScrollView.m */,
+				32DA00CB1732691A00614E71 /* EWMultiColumnTableViewCell.h */,
+				32DA00CC1732691A00614E71 /* EWMultiColumnTableViewCell.m */,
+				32DA00CD1732691A00614E71 /* EWMultiColumnTableViewContentBackgroundView.h */,
+				32DA00CE1732691A00614E71 /* EWMultiColumnTableViewContentBackgroundView.m */,
+				32DA00CF1732691A00614E71 /* EWMultiColumnTableViewDefaults.h */,
+				32DA00D01732691A00614E71 /* MBProgressHUD.h */,
+				32DA00D11732691A00614E71 /* MBProgressHUD.m */,
+				32DA00D21732691A00614E71 /* PullableView.h */,
+				32DA00D31732691A00614E71 /* PullableView.m */,
+				32DA00D41732691A00614E71 /* StyledPullableView.h */,
+				32DA00D51732691A00614E71 /* StyledPullableView.m */,
+				32DA00D61732691A00614E71 /* UIImage+ImageWithUIView.h */,
+				32DA00D71732691A00614E71 /* UIImage+ImageWithUIView.m */,
+				32DA00D81732691A00614E71 /* UIView+AddLine.h */,
+				32DA00D91732691A00614E71 /* UIView+AddLine.m */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		32DA00DA1732691A00614E71 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				32DA00DB1732691A00614E71 /* CocoaSecurity.h */,
+				32DA00DC1732691A00614E71 /* CocoaSecurity.m */,
+				32DA00DD1732691A00614E71 /* Common.h */,
+				32DA00DE1732691A00614E71 /* Common.m */,
+				32DA00DF1732691A00614E71 /* DeviceManager.h */,
+				32DA00E01732691A00614E71 /* DeviceManager.m */,
+				32DA00E11732691A00614E71 /* NSData+Base64Converter.h */,
+				32DA00E21732691A00614E71 /* NSData+Base64Converter.m */,
+				32DA00E31732691A00614E71 /* NSString+HexToByteConverter.h */,
+				32DA00E41732691A00614E71 /* NSString+HexToByteConverter.m */,
+				32DA00E51732691A00614E71 /* RandomGenerator.h */,
+				32DA00E61732691A00614E71 /* RandomGenerator.m */,
+				32DA00E71732691A00614E71 /* SignatureGenerator.h */,
+				32DA00E81732691A00614E71 /* SignatureGenerator.m */,
+				32BAD306173388C3003E46C9 /* NetConnection.h */,
+				32BAD307173388C3003E46C9 /* NetConnection.m */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		32DA00E91732691A00614E71 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				32DA00EE1732691A00614E71 /* FirstLoginViewController.h */,
+				32DA00EF1732691A00614E71 /* FirstLoginViewController.m */,
+				32DA00F21732691A00614E71 /* LoginViewController.h */,
+				32DA00F31732691A00614E71 /* LoginViewController.m */,
+				32DA00F01732691A00614E71 /* InitialSlidingViewController.h */,
+				32DA00F11732691A00614E71 /* InitialSlidingViewController.m */,
+				32DA00EA1732691A00614E71 /* ClassListViewController.h */,
+				32DA00EB1732691A00614E71 /* ClassListViewController.m */,
+				32DA00F41732691A00614E71 /* MainViewController.h */,
+				32DA00F51732691A00614E71 /* MainViewController.m */,
+				32DA00F61732691A00614E71 /* NSObject+DelayedBlock.h */,
+				32DA00F71732691A00614E71 /* NSObject+DelayedBlock.m */,
+				32DA00F81732691A00614E71 /* ResultEntryViewController.h */,
+				32DA00F91732691A00614E71 /* ResultEntryViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		32DA0125173269D700614E71 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				32DA0126173269D700614E71 /* ConfigManager.h */,
+				32DA0127173269D700614E71 /* ConfigManager.m */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		32DAFF4917325ABA00614E71 = {
+			isa = PBXGroup;
+			children = (
+				32DAFF5B17325ABB00614E71 /* myMARTiPad */,
+				32DAFF7F17325ABB00614E71 /* myMARTiPadTests */,
+				32DAFF5417325ABA00614E71 /* Frameworks */,
+				32DAFF5317325ABA00614E71 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		32DAFF5317325ABA00614E71 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32DAFF5217325ABA00614E71 /* myMARTiPad.app */,
+				32DAFF7817325ABB00614E71 /* myMARTiPadTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		32DAFF5417325ABA00614E71 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				32DA000F17325DE600614E71 /* MessageUI.framework */,
+				32DA000D17325D9A00614E71 /* QuartzCore.framework */,
+				32DAFF5517325ABA00614E71 /* UIKit.framework */,
+				32DAFF5717325ABA00614E71 /* Foundation.framework */,
+				32DAFF5917325ABA00614E71 /* CoreGraphics.framework */,
+				32DAFF7917325ABB00614E71 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		32DAFF5B17325ABB00614E71 /* myMARTiPad */ = {
+			isa = PBXGroup;
+			children = (
+				32DA0125173269D700614E71 /* Config */,
+				32DA00C21732691A00614E71 /* External */,
+				32DA00DA1732691A00614E71 /* Library */,
+				32DA00A51732691A00614E71 /* WebAPIs */,
+				32DA00B01732691A00614E71 /* Views */,
+				32DA00B71732691A00614E71 /* Model */,
+				32DA00E91732691A00614E71 /* Controller */,
+				32DA00A21732691A00614E71 /* Main */,
+				32DAFF5C17325ABB00614E71 /* Supporting Files */,
+			);
+			path = myMARTiPad;
+			sourceTree = "<group>";
+		};
+		32DAFF5C17325ABB00614E71 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				320AB4B917326B7E001527CB /* Resources */,
+				32DAFF5D17325ABB00614E71 /* myMARTiPad-Info.plist */,
+				32DAFF5E17325ABB00614E71 /* InfoPlist.strings */,
+				32DAFF6317325ABB00614E71 /* myMARTiPad-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		32DAFF7F17325ABB00614E71 /* myMARTiPadTests */ = {
+			isa = PBXGroup;
+			children = (
+				32DAFF8517325ABB00614E71 /* myMARTiPadTests.h */,
+				32DAFF8617325ABB00614E71 /* myMARTiPadTests.m */,
+				32DAFF8017325ABB00614E71 /* Supporting Files */,
+			);
+			path = myMARTiPadTests;
+			sourceTree = "<group>";
+		};
+		32DAFF8017325ABB00614E71 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				32DAFF8117325ABB00614E71 /* myMARTiPadTests-Info.plist */,
+				32DAFF8217325ABB00614E71 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		32DAFF5117325ABA00614E71 /* myMARTiPad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32DAFF8A17325ABB00614E71 /* Build configuration list for PBXNativeTarget "myMARTiPad" */;
+			buildPhases = (
+				32DAFF4E17325ABA00614E71 /* Sources */,
+				32DAFF4F17325ABA00614E71 /* Frameworks */,
+				32DAFF5017325ABA00614E71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = myMARTiPad;
+			productName = myMARTiPad;
+			productReference = 32DAFF5217325ABA00614E71 /* myMARTiPad.app */;
+			productType = "com.apple.product-type.application";
+		};
+		32DAFF7717325ABB00614E71 /* myMARTiPadTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32DAFF8D17325ABB00614E71 /* Build configuration list for PBXNativeTarget "myMARTiPadTests" */;
+			buildPhases = (
+				32DAFF7317325ABB00614E71 /* Sources */,
+				32DAFF7417325ABB00614E71 /* Frameworks */,
+				32DAFF7517325ABB00614E71 /* Resources */,
+				32DAFF7617325ABB00614E71 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				32DAFF7E17325ABB00614E71 /* PBXTargetDependency */,
+			);
+			name = myMARTiPadTests;
+			productName = myMARTiPadTests;
+			productReference = 32DAFF7817325ABB00614E71 /* myMARTiPadTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		32DAFF4A17325ABA00614E71 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Komsan Noipitak";
+			};
+			buildConfigurationList = 32DAFF4D17325ABA00614E71 /* Build configuration list for PBXProject "myMARTiPad" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 32DAFF4917325ABA00614E71;
+			productRefGroup = 32DAFF5317325ABA00614E71 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				32DAFF5117325ABA00614E71 /* myMARTiPad */,
+				32DAFF7717325ABB00614E71 /* myMARTiPadTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		32DAFF5017325ABA00614E71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32DAFF6017325ABB00614E71 /* InfoPlist.strings in Resources */,
+				32DA01001732691A00614E71 /* ClassListViewController.xib in Resources */,
+				32DA01011732691A00614E71 /* FirstLoginViewController.xib in Resources */,
+				32DA01021732691A00614E71 /* InitialSlidingViewController.xib in Resources */,
+				32DA01031732691A00614E71 /* LoginViewController.xib in Resources */,
+				32DA01041732691A00614E71 /* MainViewController.xib in Resources */,
+				32DA01051732691A00614E71 /* ResultEntryViewController.xib in Resources */,
+				320AB4C017326B7E001527CB /* close.png in Resources */,
+				320AB4C117326B7E001527CB /* Default-568h@2x.png in Resources */,
+				320AB4C217326B7E001527CB /* Default.png in Resources */,
+				320AB4C317326B7E001527CB /* Default@2x.png in Resources */,
+				320AB4C517326B7E001527CB /* QPinBG.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32DAFF7517325ABB00614E71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32DAFF8417325ABB00614E71 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		32DAFF7617325ABB00614E71 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		32DAFF4E17325ABA00614E71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32DA00FA1732691A00614E71 /* AppDelegate.m in Sources */,
+				32DA00FB1732691A00614E71 /* AuthenticateAPI.m in Sources */,
+				32DA00FC1732691A00614E71 /* AuthenticateDeviceQuickPinAPI.m in Sources */,
+				32DA00FD1732691A00614E71 /* GetClassListAPI.m in Sources */,
+				32DA00FE1732691A00614E71 /* GetUnitListAPI.m in Sources */,
+				32DA00FF1732691A00614E71 /* RegisterDeviceQuickPinAPI.m in Sources */,
+				32DA01061732691A00614E71 /* ClassList.m in Sources */,
+				32DA01071732691A00614E71 /* Login.m in Sources */,
+				32DA01081732691A00614E71 /* QuickPinLogin.m in Sources */,
+				32DA01091732691A00614E71 /* RegisterDevice.m in Sources */,
+				32DA010A1732691A00614E71 /* UnitList.m in Sources */,
+				32DA010B1732691A00614E71 /* ECSlidingViewController.m in Sources */,
+				32DA010C1732691A00614E71 /* EWHeaderHighlightLayer.m in Sources */,
+				32DA010D1732691A00614E71 /* EWMultiColumnTableView.m in Sources */,
+				32DA010E1732691A00614E71 /* EWMultiColumnTableViewBGScrollView.m in Sources */,
+				32DA010F1732691A00614E71 /* EWMultiColumnTableViewCell.m in Sources */,
+				32DA01101732691A00614E71 /* EWMultiColumnTableViewContentBackgroundView.m in Sources */,
+				32DA01111732691A00614E71 /* MBProgressHUD.m in Sources */,
+				32DA01121732691A00614E71 /* PullableView.m in Sources */,
+				32DA01131732691A00614E71 /* StyledPullableView.m in Sources */,
+				32DA01141732691A00614E71 /* UIImage+ImageWithUIView.m in Sources */,
+				32DA01151732691A00614E71 /* UIView+AddLine.m in Sources */,
+				32DA01161732691A00614E71 /* CocoaSecurity.m in Sources */,
+				32DA01171732691A00614E71 /* Common.m in Sources */,
+				32DA01181732691A00614E71 /* DeviceManager.m in Sources */,
+				32DA01191732691A00614E71 /* NSData+Base64Converter.m in Sources */,
+				32DA011A1732691A00614E71 /* NSString+HexToByteConverter.m in Sources */,
+				32DA011B1732691A00614E71 /* RandomGenerator.m in Sources */,
+				32DA011C1732691A00614E71 /* SignatureGenerator.m in Sources */,
+				32DA011D1732691A00614E71 /* ClassListViewController.m in Sources */,
+				32DA011F1732691A00614E71 /* FirstLoginViewController.m in Sources */,
+				32DA01201732691A00614E71 /* InitialSlidingViewController.m in Sources */,
+				32DA01211732691A00614E71 /* LoginViewController.m in Sources */,
+				32DA01221732691A00614E71 /* MainViewController.m in Sources */,
+				32DA01231732691A00614E71 /* NSObject+DelayedBlock.m in Sources */,
+				32DA01241732691A00614E71 /* ResultEntryViewController.m in Sources */,
+				32DA0128173269D700614E71 /* ConfigManager.m in Sources */,
+				320AB4C417326B7E001527CB /* main.m in Sources */,
+				32BAD308173388C3003E46C9 /* NetConnection.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32DAFF7317325ABB00614E71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32DAFF8717325ABB00614E71 /* myMARTiPadTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		32DAFF7E17325ABB00614E71 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 32DAFF5117325ABA00614E71 /* myMARTiPad */;
+			targetProxy = 32DAFF7D17325ABB00614E71 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		32DAFF5E17325ABB00614E71 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32DAFF5F17325ABB00614E71 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		32DAFF8217325ABB00614E71 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32DAFF8317325ABB00614E71 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		32DAFF8817325ABB00614E71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		32DAFF8917325ABB00614E71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		32DAFF8B17325ABB00614E71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "myMARTiPad/myMARTiPad-Prefix.pch";
+				INFOPLIST_FILE = "myMARTiPad/myMARTiPad-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		32DAFF8C17325ABB00614E71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "myMARTiPad/myMARTiPad-Prefix.pch";
+				INFOPLIST_FILE = "myMARTiPad/myMARTiPad-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		32DAFF8E17325ABB00614E71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/myMARTiPad.app/myMARTiPad";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "myMARTiPad/myMARTiPad-Prefix.pch";
+				INFOPLIST_FILE = "myMARTiPadTests/myMARTiPadTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		32DAFF8F17325ABB00614E71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/myMARTiPad.app/myMARTiPad";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "myMARTiPad/myMARTiPad-Prefix.pch";
+				INFOPLIST_FILE = "myMARTiPadTests/myMARTiPadTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		32DAFF4D17325ABA00614E71 /* Build configuration list for PBXProject "myMARTiPad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32DAFF8817325ABB00614E71 /* Debug */,
+				32DAFF8917325ABB00614E71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		32DAFF8A17325ABB00614E71 /* Build configuration list for PBXNativeTarget "myMARTiPad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32DAFF8B17325ABB00614E71 /* Debug */,
+				32DAFF8C17325ABB00614E71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		32DAFF8D17325ABB00614E71 /* Build configuration list for PBXNativeTarget "myMARTiPadTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32DAFF8E17325ABB00614E71 /* Debug */,
+				32DAFF8F17325ABB00614E71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 32DAFF4A17325ABA00614E71 /* Project object */;
+}
