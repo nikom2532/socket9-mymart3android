@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="0b0cdc55-0320-4961-a791-89cd4bed4bc0" Publisher="CN=Supote" Version="1.0.0.0" />
+  <Properties>
+    <DisplayName>MyMart</DisplayName>
+    <PublisherDisplayName>Supote</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="myMART.App">
+      <VisualElements DisplayName="myMART" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="myMART" ForegroundText="light" BackgroundColor="#464646">
+        <DefaultTile ShortName="myMART" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#4a4741" />
+        <InitialRotationPreference>
+          <Rotation Preference="landscape" />
+        </InitialRotationPreference>
+      </VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>
