@@ -1,9 +1,12 @@
-﻿using System;
+﻿using MyMart.Library;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,7 +28,7 @@ namespace MyMart.UserControls
         {
             this.InitializeComponent();
 
-            if (App.IsFirstTimeLogin)
+            if (!LocalSetting.IsRegisterDevice)
             {
                 firstLoginTextBlock.Visibility = Visibility.Visible;
             }
@@ -33,9 +36,20 @@ namespace MyMart.UserControls
             
         }
 
-        private void loginButton_Click(object sender, RoutedEventArgs e)
+        private async void loginButton_Click(object sender, RoutedEventArgs e)
         {
-            LoggedIn(sender, e);
+            AuthenticateJsonResult result = await MyMartService.AuthenWithUsername(userNameTextBox.Text, passwordBox.Password);
+
+            if (result.Authenticated)
+            {
+                LocalSetting.UserID = result.UserID;
+                LoggedIn(sender, e);
+            }
+            else
+            {
+                MessageDialog messageDialog = new MessageDialog(result.ExceptionMessage, "Authentication Fail");
+                await messageDialog.ShowAsync();
+            }
         }
     }
 }

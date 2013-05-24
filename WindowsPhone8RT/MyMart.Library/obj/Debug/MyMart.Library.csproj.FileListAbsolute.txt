@@ -1,0 +1,10 @@
+C:\Users\Supote\Documents\MyMart\mymart\trunk\src\Win8RT\MyMart.Library\bin\Debug\MyMart.Library.dll
+C:\Users\Supote\Documents\MyMart\mymart\trunk\src\Win8RT\MyMart.Library\bin\Debug\MyMart.Library.pdb
+C:\Users\Supote\Documents\MyMart\mymart\trunk\src\Win8RT\MyMart.Library\bin\Debug\MyMart.Library.pri
+C:\Users\Supote\Documents\MyMart\mymart\trunk\src\Win8RT\MyMart.Library\obj\Debug\MyMart.Library.dll
+C:\Users\Supote\Documents\MyMart\mymart\trunk\src\Win8RT\MyMart.Library\obj\Debug\MyMart.Library.pdb
+C:\Users\Supote\Documents\MyMart\mymart\trunk\src\Win8RT\MyMart.Library\obj\Debug\priconfig.xml
+C:\Users\Supote\Documents\MyMart\mymart\trunk\src\Win8RT\MyMart.Library\obj\Debug\layout.resfiles
+C:\Users\Supote\Documents\MyMart\mymart\trunk\src\Win8RT\MyMart.Library\obj\Debug\resources.resfiles
+C:\Users\Supote\Documents\MyMart\mymart\trunk\src\Win8RT\MyMart.Library\obj\Debug\pri.resfiles
+C:\Users\Supote\Documents\MyMart\mymart\trunk\src\Win8RT\MyMart.Library\obj\Debug\LanguageQualifiers.txt

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyMart.Library;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -31,8 +32,22 @@ namespace MyMart.View
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.  The Parameter
         /// property is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            ClassListJsonResult result = await MyMartService.GetClassList();
+            classListBox.ItemsSource = result.Classes;
+        }
+
+        private async void classListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (classListBox.SelectedIndex >= 0)
+            {
+                Class clas = classListBox.SelectedItem as Class;
+                UnitListJsonResult result = await MyMartService.GetUnitList(clas.ClassID);
+                unitListBox.ItemsSource = result.Units;
+            }
+            
+
         }
     }
 }

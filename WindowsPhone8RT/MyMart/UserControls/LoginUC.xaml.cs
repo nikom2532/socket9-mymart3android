@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyMart.Library;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace MyMart.UserControls
             loginUserPassUC.LoggedIn += loginUserPassUC_LoggedIn;
             contentBorder.Child = loginUserPassUC;
 
-            if (App.IsFirstTimeLogin)
+            if (!LocalSetting.IsRegisterDevice)
             {
                 tabGrid.Visibility = Visibility.Collapsed;
             }
@@ -45,7 +46,7 @@ namespace MyMart.UserControls
 
         async void loginUserPassUC_LoggedIn(object sender, RoutedEventArgs e)
         {
-            if (App.IsFirstTimeLogin)
+            if (!LocalSetting.IsRegisterDevice)
             {
                 MessageDialog messageDialog = new MessageDialog("This is the first time you have logged into myMART using this device.\n\n- If this is your personal (trusted) device. you may setup a 'quick-pin' for easier future access.\n- If this a shared (public), please select 'No'\n\nThank You.", "Register your device?");
                 messageDialog.Commands.Add(new UICommand("No", new UICommandInvokedHandler(this.FirstTimeQuickPinInvokedHandler)));
@@ -72,7 +73,6 @@ namespace MyMart.UserControls
 
         void loginQuickPinUC_LoggedIn(object sender, RoutedEventArgs e)
         {
-            App.IsFirstTimeLogin = false;
             LoggedIn();
         }
 

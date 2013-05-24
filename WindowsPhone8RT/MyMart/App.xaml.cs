@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -13,6 +16,17 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+
+using Windows.Security.Cryptography;
+using System.Text;
+using System.Runtime.Serialization.Json;
+using Windows.Security.Cryptography.Core;
+using Windows.Storage.Streams;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Net;
+using MyMart.Library;
+using System.Net.Http;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -22,9 +36,7 @@ namespace MyMart
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
     sealed partial class App : Application
-    {
-        public static bool IsFirstTimeLogin { get; set; }
-
+    {  
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -89,5 +101,6 @@ namespace MyMart
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
+
     }
 }

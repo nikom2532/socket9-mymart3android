@@ -24,9 +24,13 @@
                     FontSize="20"
                     FontWeight="Bold"/>
         <TextBox Grid.Row="1"
-                 Margin="20 20 20 0"/>
+                 Margin="20 20 20 0"
+                 x:Name="userNameTextBox"
+                 Text="stirling.admin"/>
         <PasswordBox Grid.Row="2"
-                     Margin="20 20 20 0"/>
+                     Margin="20 20 20 0"
+                     x:Name="passwordBox"
+                     Password="duck121"/>
         <Button Grid.Row="3"
                 x:Name="loginButton"
                 Content="Log in"

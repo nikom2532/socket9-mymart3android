@@ -8,6 +8,38 @@
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
+        <Border Background="DarkGray" 
+                Grid.ColumnSpan="2"
+                Padding="5">
+            <TextBlock Text="myMART Windows 8 RT"/>
+        </Border>
+        <ListBox x:Name="classListBox"
+                 Grid.Row="1"
+                 Background="White" SelectionChanged="classListBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=ClassTitle}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox x:Name="unitListBox"
+                 Grid.Column="1"
+                 Grid.Row="1"
+                 Background="White">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=UnitTitle}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>

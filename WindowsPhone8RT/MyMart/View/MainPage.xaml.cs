@@ -34,11 +34,10 @@ namespace MyMart.View
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            App.IsFirstTimeLogin = false;
-
             LoginUC loginUC = new LoginUC();
             loginUC.SetValue(Grid.HorizontalAlignmentProperty, HorizontalAlignment.Center);
             loginUC.SetValue(Grid.VerticalAlignmentProperty, VerticalAlignment.Center);
+            
             layoutRoot.Children.Add(loginUC);
         }
     }
