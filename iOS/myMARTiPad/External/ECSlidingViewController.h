@@ -6,6 +6,18 @@
 //  Copyright (c) 2012 EdgeCase. All rights reserved.
 //
 
+
+//////////////////////////////////////// Objective /////////////////////////////////////////////////////
+/** 
+ * ECSlidingViewController is a view controller container for iOS that presents its child view controllers
+ * in two layers. It provides functionality for sliding the top view to reveal the views underneath it
+ * 
+ * Using in InitialSlidingViewController for setting a ResultEntryViewController as a top view and a
+ * ClassListViewcontroller as a child view
+ */
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+ 
 #import <UIKit/UIKit.h>
 #import "UIImage+ImageWithUIView.h"
 

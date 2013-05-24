@@ -1,12 +1,10 @@
 //
 //  NSString+HexToByteConverter.h
-//  MyMart
-//
-//  Created by Komsan Noipitak on 4/22/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
+//  myMARTiPad
 //
 
 #import <Foundation/Foundation.h>
+#import "LogManager.h"
 
 @interface NSString (HexToByteConverter)
 

@@ -66,11 +66,7 @@ void *NewBase64Decode(
                       size_t length,
                       size_t *outputLength)
 {
-	if (length == -1)
-	{
-		length = strlen(inputBuffer);
-	}
-	
+    
 	size_t outputBufferSize =
     ((length+BASE64_UNIT_SIZE-1) / BASE64_UNIT_SIZE) * BINARY_UNIT_SIZE;
 	unsigned char *outputBuffer = (unsigned char *)malloc(outputBufferSize);
@@ -262,12 +258,28 @@ char *NewBase64Encode(
 //
 + (NSData *)dataFromBase64String:(NSString *)aString
 {
-	NSData *data = [aString dataUsingEncoding:NSASCIIStringEncoding];
-	size_t outputLength;
-	void *outputBuffer = NewBase64Decode([data bytes], [data length], &outputLength);
-	NSData *result = [NSData dataWithBytes:outputBuffer length:outputLength];
-	free(outputBuffer);
-	return result;
+    @try {
+        
+        if ([aString length] != 0) {
+            
+            NSData *data = [aString dataUsingEncoding:NSASCIIStringEncoding];
+            size_t outputLength;
+            void *outputBuffer = NewBase64Decode([data bytes], [data length], &outputLength);
+            NSData *result = [NSData dataWithBytes:outputBuffer length:outputLength];
+            free(outputBuffer);
+            
+            return result;
+            
+        }else{
+            
+            return nil;
+        }
+    }
+    @catch (NSException *exception) {
+        
+        LogManager *logManager = [[LogManager alloc]init];
+        [logManager writeToLogFile:exception];
+    }
 }
 
 //
@@ -282,40 +294,73 @@ char *NewBase64Encode(
 
 - (NSString *)convertToBase64
 {
-	size_t outputLength;
-	char *outputBuffer =
-    NewBase64Encode([self bytes], [self length], true, &outputLength);
+    
+    @try {
+        
+        if ([self length] != 0) {
+            
+            size_t outputLength;
+            char *outputBuffer =
+            NewBase64Encode([self bytes], [self length], true, &outputLength);
+            
+            NSString *result =[[NSString alloc]initWithBytes:outputBuffer
+                                                      length:outputLength
+                                                    encoding:NSUTF8StringEncoding];
+            free(outputBuffer);
+            
+            result = [result stringByReplacingOccurrencesOfString:@"+" withString:@"-"];
+            result = [result stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
+            
+            int times = [[result componentsSeparatedByString:@"="] count]-1;
+            result = [result stringByAppendingFormat:@"%i",times];
+            result = [result stringByReplacingOccurrencesOfString:@"=" withString:@""];
+            
+            return result;
+            
+        }else{
+            
+            return nil;
+        }
+        
+    }
+    @catch (NSException *exception) {
+        
+        LogManager *logManager = [[LogManager alloc]init];
+        [logManager writeToLogFile:exception];
+    }
 	
-	NSString *result =[[NSString alloc]initWithBytes:outputBuffer
-                                              length:outputLength
-                                            encoding:NSUTF8StringEncoding];
-	free(outputBuffer);
-    
-    result = [result stringByReplacingOccurrencesOfString:@"+" withString:@"-"];
-    result = [result stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
-    
-    int times = [[result componentsSeparatedByString:@"="] count]-1;
-    result = [result stringByAppendingFormat:@"%i",times];
-    
-    result = [result stringByReplacingOccurrencesOfString:@"=" withString:@""];
-    
-    
-	return result;
 }
 
 // added by Hiroshi Hashiguchi
 - (NSString *)base64EncodedStringWithSeparateLines:(BOOL)separateLines
 {
-	size_t outputLength;
-	char *outputBuffer =
-    NewBase64Encode([self bytes], [self length], separateLines, &outputLength);
-	
-	NSString *result = [[NSString alloc]initWithBytes:outputBuffer
-                                               length:outputLength
-                                             encoding:NSASCIIStringEncoding];
-	free(outputBuffer);
+    @try {
+        
+        if ([self length] != 0) {
+            
+            size_t outputLength;
+            char *outputBuffer =
+            NewBase64Encode([self bytes], [self length], separateLines, &outputLength);
+            
+            NSString *result = [[NSString alloc]initWithBytes:outputBuffer
+                                                       length:outputLength
+                                                     encoding:NSASCIIStringEncoding];
+            free(outputBuffer);
+            
+            return result;
+            
+        }else{
+            
+            return nil;
+        }
+        
+    }
+    @catch (NSException *exception) {
+        
+        LogManager *logManager = [[LogManager alloc]init];
+        [logManager writeToLogFile:exception];
+    }
     
-	return result;
 }
 
 

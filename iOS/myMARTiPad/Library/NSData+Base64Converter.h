@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LogManager.h"
 
 void *NewBase64Decode(
                       const char *inputBuffer,

@@ -2,9 +2,7 @@
 //  ClassList.m
 //  MyMart
 //
-//  Created by Komsan Noipitak on 4/24/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
 
 #import "ClassList.h"
 
@@ -15,9 +13,37 @@
 @synthesize exceptionMessage;
 @synthesize isUserHasOnlyOneClass;
 @synthesize errorMessage;
+@synthesize delegate;
 
 static ClassList *sharedInstance = nil;
 
+
+// For UI
+- (id)init
+{
+    self = [super init];
+    
+    if (self) {
+        
+        getClassListAPI = [[GetClassListAPI alloc]init];
+        [getClassListAPI setAPICallBackDelegate:self];
+    }
+    return self;
+}
+
+// For unit testing
+-(id)init:(id<InterfaceGetClassListAPI>)api
+{
+    self = [super init];
+    
+    if (self) {
+        
+        getClassListAPI = api;
+        [getClassListAPI setAPICallBackDelegate:self];
+        
+    }
+    return self;
+}
 
 + (ClassList *)sharedInstance
 {
@@ -29,12 +55,28 @@ static ClassList *sharedInstance = nil;
     return sharedInstance;
 }
 
+
+/**
+ * Method name: allocWithZone:
+ * Description: Returns a new instance of the receiving class.
+ * Parameters: zone
+ * Return: A new instance of the receiver.
+ */
+
 + (id)allocWithZone:(NSZone *)zone
 {
     return [self sharedInstance];
 }
 
--(id)copyWithZone:(NSZone *)zone
+
+/**
+ * Method name: copyWithZone:
+ * Description: Returns the receiver.
+ * Parameters: zone
+ * Return: The receiver.
+ */
+
+- (id)copyWithZone:(NSZone *)zone
 {
     return self;
 }
@@ -56,53 +98,88 @@ static ClassList *sharedInstance = nil;
 
 - (void)getClassList:(NSString *)userID{
     
-    GetClassListAPI *getClassListAPI = [[GetClassListAPI alloc]init];
-    [getClassListAPI getClassList:userID];
+    if ([userID length] == 0) {
+        
+        self.classListSuccess = false;
+        
+        ConfigManager *configManager = [[ConfigManager alloc]init];
+        self.errorMessage = configManager.parameterIsEmpty;
+        
+        return;
+    
+    }
+    
+    @try {
+       
+        [getClassListAPI getClassList:userID];
+        
+    }
+    @catch (NSException *exception) {
+        
+        LogManager *logManager = [[LogManager alloc]init];
+        [logManager writeToLogFile:exception];
+        
+    }
+    
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark -
-#pragma mark === Handle Function ===
+#pragma mark === GetClassList Delegate ===
 #pragma mark -
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * Method name: getClassListAPIFinished
- * Description: Sent when GetClassListAPI has finished calling successfully. 
- * Parameters: -
+ * Description: Sent from GetClassListAPI when NetConnection has finished calling successfully. 
+ * Parameters: dictionary
  */
 
-- (void)getClassListAPIFinished{
+- (void)onAPIFinished:(NSDictionary *)dictionary {
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"classList"
-                                                       object:nil];
+    NSDictionary *resultDictionary = dictionary;
+    classListSuccess = [[[resultDictionary objectForKey:@"GetClassListJsonResult"]
+                         objectForKey:@"ClassListSuccess"]boolValue];
+    
+    if (!classListSuccess) {
+        
+        self.classListSuccess = classListSuccess;
+        exceptionMessage = [[resultDictionary objectForKey:@"GetClassListJsonResult"]
+                            objectForKey:@"ExceptionMessage"];
+        self.exceptionMessage = [[NSString stringWithString:exceptionMessage]copy];
+        
+    }else{
+        
+        self.userClassList = [[NSArray alloc]init];
+        self.userClassList = [[resultDictionary objectForKey:@"GetClassListJsonResult"]
+                              objectForKey:@"Classes"];
+        self.userClassList = userClassList;
+        self.classListSuccess = YES;
+        
+        if ([userClassList count] == 1) {
+            self.isUserHasOnlyOneClass = YES;
+        }
+    }
+   
 
+    [self.delegate classListFinished];
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-#pragma mark -
-#pragma mark === Handle Error Function ===
-#pragma mark -
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * Method name: authenticateAPIFinished
- * Description: Sent when GetClassListAPI fails to load successfully.
- * Parameters: -
+ * Description: Sent from GetClassListAPI when NetConnection fails to load successfully.
+ * Parameters: error
  */
 
-- (void)getClassListAPIDidFailWithError{
+- (void)onAPIDidFailWithError:(NSError *)error {
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"classListError"
-                                                       object:nil];
+    self.errorMessage = [error localizedDescription];
+    [self.delegate classListDidFailWithError];
 }
-
-
 
 
 @end

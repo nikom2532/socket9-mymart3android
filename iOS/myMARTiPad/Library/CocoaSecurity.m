@@ -18,89 +18,157 @@
 // default AES Encrypt, key -> SHA384(key).sub(0, 32), iv -> SHA384(key).sub(32, 16)
 + (CocoaSecurityResult *)aesEncrypt:(NSString *)data key:(NSString *)key
 {
-    CocoaSecurity *cs = [CocoaSecurity new];
-    return [cs aesEncrypt:data key:key];
+    if (![data length] == 0 || ![key length] == 0 ) {
+        
+        CocoaSecurity *cs = [CocoaSecurity new];
+        return [cs aesEncrypt:data key:key];
+        
+    }else {
+        
+        return nil;
+    }
+    
 }
 - (CocoaSecurityResult *)aesEncrypt:(NSString *)data key:(NSString *)key
 {
-    CocoaSecurityResult * sha = [self sha384:key];
-    NSData *aesKey = [sha.data subdataWithRange:NSMakeRange(0, 32)];
-    NSData *aesIv = [sha.data subdataWithRange:NSMakeRange(32, 16)];
     
-    return [self aesEncrypt:data key:aesKey iv:aesIv];
+    if (![data length] == 0 || ![key length] == 0 ) {
+        
+        CocoaSecurityResult * sha = [self sha384:key];
+        NSData *aesKey = [sha.data subdataWithRange:NSMakeRange(0, 32)];
+        NSData *aesIv = [sha.data subdataWithRange:NSMakeRange(32, 16)];
+        
+        return [self aesEncrypt:data key:aesKey iv:aesIv];
+        
+    }else {
+        
+        return nil;
+    }
 }
+
 #pragma mark AES Encrypt 128, 192, 256
 + (CocoaSecurityResult *)aesEncrypt:(NSString *)data hexKey:(NSString *)key hexIv:(NSString *)iv
 {
-    CocoaSecurity *cs = [CocoaSecurity new];
-    return [cs aesEncrypt:data hexKey:key hexIv:iv];
+    
+    if (![data length] == 0 || ![key length] == 0 || ![iv length] == 0 ) {
+        
+        CocoaSecurity *cs = [CocoaSecurity new];
+        return [cs aesEncrypt:data hexKey:key hexIv:iv];
+        
+    }else {
+        
+        return nil;
+    }
 }
 + (CocoaSecurityResult *)aesEncrypt:(NSString *)data key:(NSData *)key iv:(NSData *)iv
 {
-    CocoaSecurity *cs = [CocoaSecurity new];
-    return [cs aesEncrypt:data key:key iv:iv];
+    if (![data length] == 0 || ![key length] == 0 || ![iv length] == 0 ) {
+        
+        CocoaSecurity *cs = [CocoaSecurity new];
+        return [cs aesEncrypt:data key:key iv:iv];
+        
+    }else {
+        
+        return nil;
+    }
+   
 }
 + (CocoaSecurityResult *)aesEncryptWithData:(NSData *)data key:(NSData *)key iv:(NSData *)iv
 {
-    CocoaSecurity *cs = [CocoaSecurity new];
-    return [cs aesEncryptWithData:data key:key iv:iv];
+    if (![data length] == 0 || ![key length] == 0 || ![iv length] == 0 ) {
+        
+        CocoaSecurity *cs = [CocoaSecurity new];
+        return [cs aesEncryptWithData:data key:key iv:iv];
+        
+    }else {
+        
+        return nil;
+    }
 }
 - (CocoaSecurityResult *)aesEncrypt:(NSString *)data hexKey:(NSString *)key hexIv:(NSString *)iv
 {
-    CocoaSecurityDecoder *decoder = [CocoaSecurityDecoder new];
-    NSData *aesKey = [decoder hex:key];
-    NSData *aesIv = [decoder hex:iv];
     
-    return [self aesEncrypt:data key:aesKey iv:aesIv];
+    if (![data length] == 0 || ![key length] == 0 || ![iv length] == 0 ) {
+        
+        CocoaSecurityDecoder *decoder = [CocoaSecurityDecoder new];
+        NSData *aesKey = [decoder hex:key];
+        NSData *aesIv = [decoder hex:iv];
+        
+        return [self aesEncrypt:data key:aesKey iv:aesIv];
+        
+    }else {
+        
+        return nil;
+    }
+    
+   
 }
 - (CocoaSecurityResult *)aesEncrypt:(NSString *)data key:(NSData *)key iv:(NSData *)iv
 {
-    return [self aesEncryptWithData:[data dataUsingEncoding:NSUTF8StringEncoding] key:key iv:iv];
+    
+    if (![data length] == 0 || ![key length] == 0 || ![iv length] == 0 ) {
+        
+        return [self aesEncryptWithData:[data dataUsingEncoding:NSUTF8StringEncoding] key:key iv:iv];
+        
+    }else {
+        
+        return nil;
+    }
+    
 }
 - (CocoaSecurityResult *)aesEncryptWithData:(NSData *)data key:(NSData *)key iv:(NSData *)iv
 {
-    // check length of key and iv
-    if ([iv length] != 16) {
-        @throw [NSException exceptionWithName:@"Cocoa Security"
-                                       reason:@"Length of iv is wrong. Length of iv should be 16(128bits)"
-                                     userInfo:nil];
-    }
-    if ([key length] != 16 && [key length] != 24 && [key length] != 32 ) {
-        @throw [NSException exceptionWithName:@"Cocoa Security"
-                                       reason:@"Length of key is wrong. Length of iv should be 16, 24 or 32(128, 192 or 256bits)"
-                                     userInfo:nil];
-    }
     
-    // setup output buffer
-	size_t bufferSize = [data length] + kCCBlockSizeAES128;
-	void *buffer = malloc(bufferSize);
-    
-    // do encrypt
-	size_t encryptedSize = 0;
-	CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt,
-                                          kCCAlgorithmAES128,
-                                          kCCOptionPKCS7Padding,
-                                          [key bytes],     // Key
-                                          [key length],    // kCCKeySizeAES
-                                          [iv bytes],       // IV
-                                          [data bytes],
-                                          [data length],
-                                          buffer,
-                                          bufferSize,
-                                          &encryptedSize);
-	if (cryptStatus == kCCSuccess) {
-        CocoaSecurityResult *result = [[CocoaSecurityResult alloc] initWithBytes:buffer length:encryptedSize];
-        free(buffer);
+    if (![data length] == 0 || ![key length] == 0 || ![iv length] == 0 ) {
         
-        return result;
-    }
-    else {
-        free(buffer);
-        @throw [NSException exceptionWithName:@"Cocoa Security"
-                                       reason:@"Encrypt Error!"
-                                     userInfo:nil];
+        // check length of key and iv
+        if ([iv length] != 16) {
+            @throw [NSException exceptionWithName:@"Cocoa Security"
+                                           reason:@"Length of iv is wrong. Length of iv should be 16(128bits)"
+                                         userInfo:nil];
+        }
+        if ([key length] != 16 && [key length] != 24 && [key length] != 32 ) {
+            @throw [NSException exceptionWithName:@"Cocoa Security"
+                                           reason:@"Length of key is wrong. Length of iv should be 16, 24 or 32(128, 192 or 256bits)"
+                                         userInfo:nil];
+        }
+        
+        // setup output buffer
+        size_t bufferSize = [data length] + kCCBlockSizeAES128;
+        void *buffer = malloc(bufferSize);
+        
+        // do encrypt
+        size_t encryptedSize = 0;
+        CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt,
+                                              kCCAlgorithmAES128,
+                                              kCCOptionPKCS7Padding,
+                                              [key bytes],     // Key
+                                              [key length],    // kCCKeySizeAES
+                                              [iv bytes],       // IV
+                                              [data bytes],
+                                              [data length],
+                                              buffer,
+                                              bufferSize,
+                                              &encryptedSize);
+        if (cryptStatus == kCCSuccess) {
+            CocoaSecurityResult *result = [[CocoaSecurityResult alloc] initWithBytes:buffer length:encryptedSize];
+            free(buffer);
+            
+            return result;
+        }
+        else {
+            free(buffer);
+            @throw [NSException exceptionWithName:@"Cocoa Security"
+                                           reason:@"Encrypt Error!"
+                                         userInfo:nil];
+            return nil;
+        }
+        
+    }else {
+        
         return nil;
     }
+  
 }
 #pragma mark - AES Decrypt
 // default AES Decrypt, key -> SHA384(key).sub(0, 32), iv -> SHA384(key).sub(32, 16)
@@ -304,28 +372,49 @@
 #pragma mark SHA256
 + (CocoaSecurityResult *)sha256:(NSString *)hashString
 {
-    CocoaSecurity *cs = [CocoaSecurity new];
-    return [cs sha256:hashString];
+    if ([hashString length] != 0) {
+        CocoaSecurity *cs = [CocoaSecurity new];
+        return [cs sha256:hashString];
+    }else{
+        return nil;
+    }
+    
 }
 + (CocoaSecurityResult *)sha256WithData:(NSData *)hashData
 {
-    CocoaSecurity *cs = [CocoaSecurity new];
-    return [cs sha256WithData:hashData];
+    if (hashData != nil) {
+        CocoaSecurity *cs = [CocoaSecurity new];
+        return [cs sha256WithData:hashData];
+    }else{
+        return nil;
+    }
+    
 }
 - (CocoaSecurityResult *)sha256:(NSString *)hashString
 {
-    return [self sha256WithData:[hashString dataUsingEncoding:NSUTF8StringEncoding]];
+    if ([hashString length] != 0) {
+        return [self sha256WithData:[hashString dataUsingEncoding:NSUTF8StringEncoding]];
+    }else{
+        return nil;
+    }
 }
 - (CocoaSecurityResult *)sha256WithData:(NSData *)hashData
 {
-    unsigned char *digest;
-    digest = malloc(CC_SHA256_DIGEST_LENGTH);
-    
-    CC_SHA256([hashData bytes], [hashData length], digest);
-    CocoaSecurityResult *result = [[CocoaSecurityResult alloc] initWithBytes:digest length:CC_SHA256_DIGEST_LENGTH];
-    free(digest);
-    
-    return result;
+    if (hashData != nil) {
+        
+        unsigned char *digest;
+        digest = malloc(CC_SHA256_DIGEST_LENGTH);
+        
+        CC_SHA256([hashData bytes], [hashData length], digest);
+        CocoaSecurityResult *result = [[CocoaSecurityResult alloc] initWithBytes:digest length:CC_SHA256_DIGEST_LENGTH];
+        free(digest);
+        
+        return result;
+    }else {
+        
+       return nil; 
+    }
+   
 }
 #pragma mark SHA384
 + (CocoaSecurityResult *)sha384:(NSString *)hashString
@@ -454,17 +543,27 @@
 }
 - (CocoaSecurityResult *)hmacSha256WithData:(NSData *)hashData hmacKey:(NSString *)key
 {
-    unsigned char *digest;
-    digest = malloc(CC_SHA256_DIGEST_LENGTH);
-    const char *cKey = [key cStringUsingEncoding:NSUTF8StringEncoding];
     
-    CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), [hashData bytes], [hashData length], digest);
-    CocoaSecurityResult *result = [[CocoaSecurityResult alloc] initWithBytes:digest length:CC_SHA256_DIGEST_LENGTH];
-    free(digest);
-    cKey = nil;
+    @try {
+        unsigned char *digest;
+        digest = malloc(CC_SHA256_DIGEST_LENGTH);
+        const char *cKey = [key cStringUsingEncoding:NSUTF8StringEncoding];
+        
+        CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), [hashData bytes], [hashData length], digest);
+        CocoaSecurityResult *result = [[CocoaSecurityResult alloc] initWithBytes:digest length:CC_SHA256_DIGEST_LENGTH];
+        free(digest);
+        cKey = nil;
+        
+        return result;
+    }
+    @catch (NSException *exception) {
+        
+        LogManager *logManager = [[LogManager alloc]init];
+        [logManager writeToLogFile:exception];
+    }
     
-    return result;
 }
+
 #pragma mark HMAC-SHA384
 + (CocoaSecurityResult *)hmacSha384:(NSString *)hashString hmacKey:(NSString *)key
 {
@@ -624,11 +723,10 @@
     }
     free(outputBytes);
     
-    NSLog(@"res %@",result);
     result = [result stringByReplacingOccurrencesOfString:@"+" withString:@"-"];
     result = [result stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
     
-    int times = [[result componentsSeparatedByString:@"="] count]-1;
+    int times = [[result componentsSeparatedByString:@"="]count]-1;
     result = [result stringByAppendingFormat:@"%i",times];
     
     result = [result stringByReplacingOccurrencesOfString:@"=" withString:@""];

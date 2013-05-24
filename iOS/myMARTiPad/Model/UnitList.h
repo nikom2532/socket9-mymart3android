@@ -2,14 +2,19 @@
 //  UnitList.h
 //  MyMart
 //
-//  Created by Komsan Noipitak on 4/24/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
+
+@protocol UnitListDelegate
+- (void) unitListFinished;
+- (void) unitListDidFailWithError;
+@end
 
 #import <Foundation/Foundation.h>
 #import "GetUnitListAPI.h"
+#import "ConfigManager.h"
+#import "LogManager.h"
 
-@interface UnitList : NSObject {
+@interface UnitList : NSObject <APICallBackDelegate> {
     
     BOOL unitListSuccess;
     BOOL isUserHasOnlyOneUnit;
@@ -17,7 +22,8 @@
     NSString *exceptionMessage;
     NSString *errorMessage;
    
-    
+    id <UnitListDelegate> delegate;
+    id <InterfaceGetUnitListAPI> getUnitListAPI;
 }
 
 @property (nonatomic, assign) BOOL unitListSuccess;
@@ -26,11 +32,11 @@
 @property (nonatomic, assign) BOOL isUserHasOnlyOneUnit;
 @property (nonatomic, retain) NSString *errorMessage;
 
+@property (nonatomic, retain) id <UnitListDelegate> delegate;
+
 - (void)getUnitList :(NSString *)userID :(NSString *)classID;
 + (UnitList *)sharedInstance;
-- (void)getUnitListAPIFinished;
-- (void)getUnitListAPIDidFailWithError;
-
+- (id)init:(id <InterfaceGetUnitListAPI>)api;
 
 
 @end

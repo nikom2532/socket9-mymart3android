@@ -2,9 +2,7 @@
 //  AuthenticateAPI.h
 //  MyMart
 //
-//  Created by Komsan Noipitak on 4/23/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
 
 #import <Foundation/Foundation.h>
 #import "CocoaSecurity.h"
@@ -12,12 +10,18 @@
 #import "RandomGenerator.h"
 #import "SignatureGenerator.h"
 #import "NSString+HexToByteConverter.h"
-#import "Login.h"
 #import "ConfigManager.h"
+#import "StringToHexConvertor.h"
 #import "NetConnection.h"
+#import "APICallBack.h"
 
 
-@interface AuthenticateAPI : NSObject {
+@protocol InterfaceAuthenticateAPI
+- (void)authenticate:(NSString *)username :(NSString *)password;
+- (void)setAPICallBackDelegate:(id <APICallBackDelegate>)apiCallBackDelegate;
+@end
+
+@interface AuthenticateAPI : APICallBack <InterfaceAuthenticateAPI, NetConnectionDelegate> {
     
     BOOL authenticated;
     NSString *exceptionMessage;
@@ -27,13 +31,12 @@
     NSMutableData   *loginResponseData;
     NSDictionary    *resultDictionary;
 
+
 }
 
 @property (retain, nonatomic) NSDictionary *resultDictionary;
 
 - (void)authenticate:(NSString *)username :(NSString *)password;
-- (void)netConnectionFinished;
-- (void)connectionDidFailWithError:(NSError *)error;
 
 @end
 

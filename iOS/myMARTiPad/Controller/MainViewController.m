@@ -2,20 +2,27 @@
 //  MainViewController.m
 //  MyMart
 //
-//  Created by Komsan Noipitak on 4/10/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
 
 #import "MainViewController.h"
 
 
 ClassListViewController *classListViewController;
+UIThemeManager *uiThemeManager;
 
 @interface MainViewController ()
 
 @end
 
 @implementation MainViewController
+
+
+
+/**
+ * Method name: initWithNibName: bundle:
+ * Description: Returns a newly initialized view controller with the nib file in the specified bundle.
+ * Parameters: nibNameOrNil, nibBundleOrNil
+ */
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,16 +33,24 @@ ClassListViewController *classListViewController;
     return self;
 }
 
+
+/**
+ * Method name: viewDidLoad
+ * Description: Called after the controller’s view is loaded into memory.
+ * Parameters: -
+ */
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    uiThemeManager = [[UIThemeManager alloc]init];
     
     self.navigationController.navigationBarHidden = YES;
     
     self.view.layer.shadowOpacity = 0.75f;
     self.view.layer.shadowRadius = 10.0f;
-    self.view.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.view.layer.shadowColor = uiThemeManager.shadowColor.CGColor;
     
     // Set ClassListViewController as a underLeftViewController
     classListViewController = [[ClassListViewController alloc]initWithNibName:@"ClassListViewController"
@@ -45,11 +60,19 @@ ClassListViewController *classListViewController;
     
 }
 
+
+/**
+ * Method name: didReceiveMemoryWarning
+ * Description: Sent to the view controller when the app receives a memory warning.
+ * Parameters: -
+ */
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

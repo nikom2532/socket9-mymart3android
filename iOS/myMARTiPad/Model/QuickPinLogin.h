@@ -2,19 +2,27 @@
 //  QuickPinLogin.h
 //  MyMart
 //
-//  Created by Komsan Noipitak on 4/24/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
+
+@protocol QuickPinLoginDelegate
+- (void) quickPinLoginFinished;
+- (void) quickPinLoginDidFailWithError;
+@end
 
 #import <Foundation/Foundation.h>
 #import "AuthenticateDeviceQuickPinAPI.h"
+#import "ConfigManager.h"
+#import "LogManager.h"
 
-@interface QuickPinLogin : NSObject {
+@interface QuickPinLogin : NSObject <APICallBackDelegate> {
     
     BOOL authenticated;
     NSString *exceptionMessage;
     NSString *userID;
     NSString *errorMessage;
+    
+    id <QuickPinLoginDelegate> delegate;
+    id <InterfaceAuthenticateDeviceQuickPinAPI> authenticateDeviceQuickPinAPI;
     
 }
 
@@ -23,10 +31,11 @@
 @property (nonatomic, retain)  NSString *userID;
 @property (nonatomic, retain) NSString *errorMessage;
 
+@property (nonatomic, retain) id <QuickPinLoginDelegate> delegate;
+
+
 - (void) loginByDeviceQuickPin :(NSString *)quickPin;
 + (QuickPinLogin *)sharedInstance;
-- (void)authenticateDeviceQuickPinFinished;
-- (void)authenticateDeviceQuickPinAPIDidFailWithError;
-
+- (id)init:(id <InterfaceAuthenticateDeviceQuickPinAPI>)api;
 
 @end

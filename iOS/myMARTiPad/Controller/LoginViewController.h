@@ -2,16 +2,14 @@
 //  LoginViewController.h
 //  MyMart
 //
-//  Created by Komsan Noipitak on 4/6/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
 
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 #import "Login.h"
 #import "QuickPinLogin.h"
 
-@interface LoginViewController : UIViewController <UIAlertViewDelegate,UITextFieldDelegate, NSURLConnectionDelegate> {
+@interface LoginViewController : UIViewController <UIAlertViewDelegate,UITextFieldDelegate, NSURLConnectionDelegate, LoginDelegate, QuickPinLoginDelegate> {
     
     IBOutlet UILabel *passcodeLabel1;
     IBOutlet UILabel *passcodeLabel2;

@@ -2,9 +2,7 @@
 //  Login.m
 //  MyMart
 //
-//  Created by Komsan Noipitak on 4/23/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
 
 #import "Login.h"
 
@@ -14,37 +12,74 @@
 @synthesize userID;
 @synthesize isDeviceAlreadyRegistered;
 @synthesize errorMessage;
+@synthesize delegate;
+
 
 static Login *sharedInstance = nil;
 
-- (id)init {
-    
+
+// For UI
+- (id)init
+{
     self = [super init];
+    
     if (self) {
         
+        authenticateAPI = [[AuthenticateAPI alloc]init];
+        [authenticateAPI setAPICallBackDelegate:self];
     }
-    
     return self;
 }
+
+// For unit testing
+
+- (id) init: (id <InterfaceAuthenticateAPI>) api
+{
+    self = [super init];
+    
+    if (self) {
+        
+       authenticateAPI = api;
+       [authenticateAPI setAPICallBackDelegate:self];
+    }
+    return self;
+}
+
 
 + (Login *)sharedInstance
 {
     if (sharedInstance == nil) {
+        
         sharedInstance = [[super allocWithZone:NULL]init];
-   
     }
     return sharedInstance;
 }
+
+
+/**
+ * Method name: allocWithZone:
+ * Description: Returns a new instance of the receiving class.
+ * Parameters: zone
+ * Return: A new instance of the receiver.
+ */
 
 + (id) allocWithZone:(NSZone *)zone
 {
     return [self sharedInstance];
 }
 
+/**
+ * Method name: copyWithZone:
+ * Description: Returns the receiver.
+ * Parameters: zone
+ * Return: The receiver.
+ */
+
 - (id)copyWithZone:(NSZone *)zone
 {
     return self;
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -59,50 +94,85 @@ static Login *sharedInstance = nil;
  * Description: For Calling authenticate API
  * Parameters: username, password
  */
+
 - (void)loginWithUsernameAndPassword:(NSString *)username :(NSString *)password
 {
-    AuthenticateAPI *authenticateAPI = [[AuthenticateAPI alloc]init];
-    [authenticateAPI authenticate:username :password];
     
-}
+    if ([password length] == 0 || [username length] == 0) {
+        
+        self.authenticated = false;
+        
+        ConfigManager *configManager = [[ConfigManager alloc]init];
+        self.errorMessage = configManager.parameterIsEmpty;
 
+        return;
+    }
+    
+    @try {
+   
+        [authenticateAPI authenticate:username :password];
+    }
+    @catch (NSException *exception) {
+        
+        LogManager *logManager = [[LogManager alloc]init];
+        [logManager writeToLogFile:exception];
+    }
+
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark -
-#pragma mark === Handle Function ===
+#pragma mark === AuthenticateAPI Delegate ===
 #pragma mark -
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * Method name: authenticateAPIFinished
- * Description: Sent when authenticateAPI has finished calling successfully.
- * Parameters: -
+ * Description: Sent from AuthenticateAPI when NetConnection has finished calling successfully.
+ * Parameters: dictionary
  */
-- (void)authenticateAPIFinished{
+
+- (void) onAPIFinished:(NSDictionary *)dictionary {
+
+    NSDictionary *resultDictionary = dictionary;
+    authenticated = [[[resultDictionary objectForKey:@"AuthenticateJsonResult"]
+                                        objectForKey:@"Authenticated"]boolValue];
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"login"
-                                                       object:nil];
+    // Authenticated : False
+    if (!authenticated) {
+        
+        self.authenticated = authenticated;
+        exceptionMessage = [[resultDictionary objectForKey:@"AuthenticateJsonResult"]
+                                              objectForKey:@"ExceptionMessage"];
+        self.exceptionMessage = [[NSString stringWithString:exceptionMessage] copy];
+        
+        // Authenticated : True
+    }else {
+        
+        self.authenticated = authenticated;
+        userID = [[resultDictionary objectForKey:@"AuthenticateJsonResult"]
+                  objectForKey:@"UserID"];
+        self.userID = userID;
+        
+    }
+
+    [self.delegate loginFinished];
+    
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-#pragma mark -
-#pragma mark === Handle Error Function ===
-#pragma mark -
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * Method name: authenticateAPIDidFailWithError
- * Description: Sent when authenticateAPI fails to load successfully.
- * Parameters: -
+ * Description: Sent from AuthenticateAPI when NetConnection fails to load successfully.
+ * Parameters: error
  */
-- (void)authenticateAPIDidFailWithError {
+
+- (void)onAPIDidFailWithError:(NSError *)error {
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"loginError"
-                                                       object:nil];
+    self.errorMessage = [error localizedDescription];
+    [self.delegate loginDidFailWithError];
 }
 
 

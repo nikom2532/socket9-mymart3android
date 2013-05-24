@@ -2,20 +2,15 @@
 //  GetClassListAPI.m
 //  MyMart
 //
-//  Created by Komsan Noipitak on 4/23/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
 
 #import "GetClassListAPI.h"
 
 @implementation GetClassListAPI
 @synthesize resultDictionary;
 
-ClassList *classList;
-
 /**
  * Method name: getClassList
- * Description: Create url for calling API
+ * Description: Create URL for calling GetClassListAPI
  * Parameters: userID
  */
 
@@ -37,43 +32,11 @@ ClassList *classList;
     
     // Request GetClassList API using NSURLConection
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    NetConnection *netConnection = [[NetConnection alloc]initWithRequest:request tag:@"getClassListAPI"];
+    NetConnection *netConnection = [[NetConnection alloc]initWithRequest:request];
+    netConnection.delegate = self;
     [netConnection start];
 }
 
-/**
- * Method name: netConnectionFinished
- * Description: NetConnection did finish
- * Parameters: -
- */
-
-- (void)netConnectionFinished{
-    
-    ClassList *classList = [[ClassList alloc]init];
-    userClassList = [[NSArray alloc]init];
-    userClassList = [[resultDictionary objectForKey:@"GetClassListJsonResult"]
-                     objectForKey:@"Classes"];
-    classList.userClassList = userClassList;
-    classList.classListSuccess = YES;
-    
-    if ([userClassList count] == 1) {
-        classList.isUserHasOnlyOneClass = YES;
-    }
-    
-    [classList getClassListAPIFinished];
-}
-
-/**
- * Method name: connectionDidFailWithError:
- * Description: NSURLConnection did fail
- * Parameters: error
- */
-
-- (void)connectionDidFailWithError:(NSError *)error
-{
-    classList.errorMessage = [error localizedDescription];
-    [classList getClassListAPIDidFailWithError];
-}
 
 
 @end

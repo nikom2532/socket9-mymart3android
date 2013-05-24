@@ -2,15 +2,14 @@
 //  FirstLoginViewController.m
 //  MyMart
 //
-//  Created by Komsan Noipitak on 3/26/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
 
 
 #import "FirstLoginViewController.h"
 
 Login *login;
 RegisterDevice *registerDevice;
+ConfigManager *configManager;
+UIThemeManager *uiThemeManager;
 
 @interface FirstLoginViewController ()
 
@@ -18,6 +17,12 @@ RegisterDevice *registerDevice;
 
 @implementation FirstLoginViewController
 
+
+/**
+ * Method name: initWithNibName: bundle:
+ * Description: Returns a newly initialized view controller with the nib file in the specified bundle.
+ * Parameters: nibNameOrNil, nibBundleOrNil
+ */
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,6 +34,13 @@ RegisterDevice *registerDevice;
     return self;
 }
 
+
+/**
+ * Method name: viewDidLoad
+ * Description: Called after the controller’s view is loaded into memory.
+ * Parameters: -
+ */
+
 - (void)viewDidLoad
 {
     
@@ -38,9 +50,18 @@ RegisterDevice *registerDevice;
     quickpinArray = [[NSMutableArray alloc]init];
     
     // Hide registerActivity in view
-    registerActivity.hidden = YES;    
+    registerActivity.hidden = YES;
+    
+    configManager = [[ConfigManager alloc]init];
+    
 }
 
+
+/**
+ * Method name: shouldAutorotateToInterfaceOrientation:
+ * Description: Returns a Boolean value indicating whether the view controller supports the specified orientation.
+ * Parameters: toInterfaceOrientation
+ */
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
@@ -48,6 +69,12 @@ RegisterDevice *registerDevice;
     return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
 }
 
+
+/**
+ * Method name: didReceiveMemoryWarning
+ * Description: Sent to the view controller when the app receives a memory warning.
+ * Parameters: -
+ */
 
 - (void)didReceiveMemoryWarning
 {
@@ -72,31 +99,35 @@ RegisterDevice *registerDevice;
 
 - (IBAction)tapLoginButton
 {
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(loginFinished:)
-                                                 name:@"login"
-                                               object:nil ];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(loginDidFailWithError:)
-                                                 name:@"loginError"
-                                               object:nil ];
-    
-    // Hide keyboard
-    [usernameTextField resignFirstResponder];
-    [passwordTextField resignFirstResponder];
-    
-    // Add MBProgressHUD to view and show it once tap Log in button
-    HUD = [[MBProgressHUD alloc] initWithView:self.view];
-    HUD.delegate = self;
-    [self.view addSubview:HUD];
-    [HUD setLabelText:@"Loging in ..."];
-    [HUD show:YES];
-    
-    // Create model for calling Authenticate API
-    login = [[Login alloc]init];
-    login = [Login sharedInstance];
-    [login loginWithUsernameAndPassword:usernameTextField.text :passwordTextField.text];
+    if ([usernameTextField.text length] > 0 && [passwordTextField.text length] > 0) {
+        
+        // Hide keyboard
+        [usernameTextField resignFirstResponder];
+        [passwordTextField resignFirstResponder];
+        
+        // Add MBProgressHUD to view and show it once tap Log in button
+        HUD = [[MBProgressHUD alloc] initWithView:self.view];
+        HUD.delegate = self;
+        [self.view addSubview:HUD];
+        [HUD setLabelText:@"Loging in ..."];
+        [HUD show:YES];
+        
+        // Create model for calling Authenticate API
+        login = [[Login alloc]init];
+        login = [Login sharedInstance];
+        login.delegate = self;
+        [login loginWithUsernameAndPassword:usernameTextField.text :passwordTextField.text];
+        
+    }else if ([usernameTextField.text length] == 0 && [passwordTextField.text length] == 0){
+        
+        NSString *message = configManager.emptyUsernamePassword;
+        UIAlertView *loginAlertView = [[UIAlertView alloc]initWithTitle:configManager.authenticationFailed
+                                                                message:[NSString stringWithFormat:@"%@",message]
+                                                               delegate:self
+                                                      cancelButtonTitle:@"Done"
+                                                      otherButtonTitles:nil];
+        [loginAlertView show];
+    }
   
 }
 
@@ -107,42 +138,34 @@ RegisterDevice *registerDevice;
  */
 
 - (void)registerDeviceQuickpin {
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(registerDeviceFinished:)
-                                                 name:@"registerDevice"
-                                               object:nil ];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(registerDeviceDidFailWithError:)
-                                                 name:@"registerDeviceError"
-                                               object:nil ];
-    
+
     // Get device ID
     NSString *deviceID = [DeviceManager getDeviceID];
     
     // Create model for calling registerDeviceQuickPin API
     registerDevice = [[RegisterDevice alloc]init];
     [RegisterDevice sharedInstance];
-    [registerDevice registerUserDevice:quickpinString :deviceID :registerDevice.alreadyRegistered];
-    
+    registerDevice.delegate = self;
+    [registerDevice registerUserDevice:login.userID :deviceID :quickpinString :registerDevice.alreadyRegistered];
+
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark -
-#pragma mark === Handle Function ===
+#pragma mark === Login Delegate ===
 #pragma mark -
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Method name: loginFinished:
- * Description: This method will be called once calling Authenticate API finished
- * Parameters: notification
+ * Method name: loginFinished
+ * Description: Sent from Login when NetConnection has finished loading successfully.
+ * Parameters: -
  */
 
-- (void)loginFinished:(NSNotification *)notification {
+- (void)loginFinished{
     
     [HUD hide:YES];
     
@@ -150,12 +173,14 @@ RegisterDevice *registerDevice;
         
         // Show alert view login failed
         NSString *message = login.exceptionMessage;
-        UIAlertView *loginAlertView = [[UIAlertView alloc]initWithTitle:@"Authentication Failed"
-                                                                message:[NSString stringWithFormat:@"\n%@",message]
-                                                               delegate:self
-                                                      cancelButtonTitle:@"Done"
-                                                      otherButtonTitles:nil];
-        // Set tag of alert view = 1
+        
+        UIAlertView *loginAlertView = [[UIAlertView alloc]initWithTitle:configManager.authenticationFailed
+                                                                 message:[NSString stringWithFormat:@"\n%@",message]
+                                                                delegate:self
+                                                       cancelButtonTitle:@"Done"
+                                                       otherButtonTitles:nil];
+
+        //Set tag of alert view = 1
         loginAlertView.tag = 1;
         [loginAlertView show];
         
@@ -178,13 +203,42 @@ RegisterDevice *registerDevice;
     }
 }
 
+
 /**
- * Method name: registerDeviceFinished:
- * Description: This method will be called once calling RegisterDevceQuickPin API finished
+ * Method name: loginDidFailWithError:
+ * Description: Sent from Login when a NetConnection fails to load its request successfully.
  * Parameters: notification
  */
 
-- (void)registerDeviceFinished:(NSNotification *)notification{
+- (void)loginDidFailWithError {
+    
+    [HUD hide:YES];
+    NSString *messgage = login.errorMessage;
+    UIAlertView *loginErrorAlertView = [[UIAlertView alloc]initWithTitle:configManager.errorMessage
+                                                                 message:messgage
+                                                                delegate:self
+                                                       cancelButtonTitle:@"Done"
+                                                       otherButtonTitles:nil];
+    [loginErrorAlertView show];
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark -
+#pragma mark === RegisterDevice Delegate ===
+#pragma mark -
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Method name: registerDeviceFinished
+ * Description: Sent from RegisterDevice when NetConnection has finished loading successfully.
+ * Parameters: -
+ */
+
+- (void)registerDeviceFinished {
     
     if (registerDevice.registerSuccess) {
         
@@ -193,7 +247,7 @@ RegisterDevice *registerDevice;
     }else{
         
         NSString *messgage = registerDevice.exceptionMessage;
-        UIAlertView *loginAlertView = [[UIAlertView alloc]initWithTitle:@"Registering Failed"
+        UIAlertView *loginAlertView = [[UIAlertView alloc]initWithTitle:configManager.registerDeviceQuickPinFailed
                                                                 message:messgage
                                                                delegate:self
                                                       cancelButtonTitle:@"Done"
@@ -204,47 +258,22 @@ RegisterDevice *registerDevice;
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-#pragma mark -
-#pragma mark === Handle Error Function ===
-#pragma mark -
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Method name: loginDidFailWithError:
- * Description: <#description#>
- * Parameters: notification
+ * Method name: registerDeviceDidFailWithError
+ * Description: Sent from RegisterDevice when a NetConnection fails to load its request successfully.
+ * Parameters: -
  */
 
-- (void)loginDidFailWithError:(NSNotification *)notification {
-    
-    [HUD hide:YES];
-    NSString *messgage = login.errorMessage;
-    UIAlertView *loginErrorAlertView = [[UIAlertView alloc]initWithTitle:@"No Internet Connection"
-                                                            message:messgage
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Done"
-                                                  otherButtonTitles:nil];
-    [loginErrorAlertView show];
-}
-
-/**
- * Method name: loginDidFailWithError:
- * Description: <#description#>
- * Parameters: notification
- */
-
-- (void)registerDeviceDidFailWithError:(NSNotification *)notification {
+- (void)registerDeviceDidFailWithError{
     
     [HUD hide:YES];
     NSString *messgage = registerDevice.errorMessage;
-    UIAlertView *registerDeviceErrorAlertView = [[UIAlertView alloc]initWithTitle:@"No Internet Connection"
-                                                                 message:messgage
-                                                                delegate:self
-                                                       cancelButtonTitle:@"Done"
-                                                       otherButtonTitles:nil];
+    UIAlertView *registerDeviceErrorAlertView = [[UIAlertView alloc]initWithTitle:configManager.errorMessage
+                                                                          message:messgage
+                                                                         delegate:self
+                                                                cancelButtonTitle:@"Done"
+                                                                otherButtonTitles:nil];
     [registerDeviceErrorAlertView show];
 }
 
@@ -277,21 +306,26 @@ RegisterDevice *registerDevice;
         // Tap on "YES" button
         }else{
             
+            
+            // Use image instead of generate gradientView with code (waiting integrate design)//
+            
             // Create gradient view and add to view
             UIView *viewGradient = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 748)];
             CAGradientLayer *gradient = [CAGradientLayer layer];
             gradient.frame = viewGradient.bounds;
             gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor],
-                               (id)[[UIColor whiteColor] CGColor], nil];
+                               (id)[[UIColor whiteColor] CGColor], nil]; 
             [viewGradient.layer insertSublayer:gradient atIndex:0];
             viewGradient.alpha = 0.5;
             [self.view addSubview:viewGradient];
+            
+            ////////////////////////////////////////////////////////////////////////////////////
             
             // Set origin frame of registerQPinView and animated
             registerQPinView.frame = CGRectMake(330, 750, 360, 430);
             registerQPinView.layer.shadowOpacity = 0.75f;
             registerQPinView.layer.shadowRadius = 10.0f;
-            registerQPinView.layer.shadowColor = [UIColor blackColor].CGColor;
+            registerQPinView.layer.shadowColor = uiThemeManager.shadowColor.CGColor;
             [self.view addSubview:registerQPinView];
             registerQPinView.hidden = NO;
             [UIView animateWithDuration:0.3
@@ -303,7 +337,7 @@ RegisterDevice *registerDevice;
     }else if (alertView.tag == 3){
         
         round = 0;
-        qpinViewStatus.text = @"Please insert Quick-Pin";
+        qpinViewStatus.text = configManager.insertQuickPin;
         registerActivity.hidden = YES;
         passcodeLabel1.text = @"";
         passcodeLabel2.text = @"";
@@ -352,7 +386,7 @@ RegisterDevice *registerDevice;
 
 /**
  * Method name: tapPassCodeButton:
- * Description: <#description#>
+ * Description: For display quickPinView and store quickpin in array of string
  * Parameters: button
  */
 
@@ -402,11 +436,9 @@ RegisterDevice *registerDevice;
             passcodeLabel3.text = @".";
             passcodeLabel4.text = @".";
             
-            // Run clearTextField() 
             if (round == 0) {
                 [self performSelector:@selector(clearTextField) withObject:nil afterDelay:0.5];
-                
-            // Run checkQuickPin() 
+         
             }else{
                 [self performSelector:@selector(checkQuickPin) withObject:nil afterDelay:0.5];
             }
@@ -455,7 +487,7 @@ RegisterDevice *registerDevice;
     if ([[quickpinArray componentsJoinedByString:@""]isEqualToString:quickpinStringForCompare]) {
         
         quickpinString = [quickpinArray componentsJoinedByString:@""];
-        qpinViewStatus.text = @"Registering your device";
+        qpinViewStatus.text = configManager.registeringQuickPin;
         registerActivity.hidden = NO;
         [registerActivity startAnimating];
         
@@ -465,7 +497,7 @@ RegisterDevice *registerDevice;
     // Quickpin doesn't match    
     }else{
     
-        qpinViewStatus.text = @"Quick-Pin does not match";
+        qpinViewStatus.text = configManager.quickPinNotMatch;
         passcodeLabel1.text = @"";
         passcodeLabel2.text = @"";
         passcodeLabel3.text = @"";
@@ -473,6 +505,7 @@ RegisterDevice *registerDevice;
         [quickpinArray removeAllObjects];
     }
 }
+
 
 /**
  * Method name: cancelRegisterDeviceQuickPin

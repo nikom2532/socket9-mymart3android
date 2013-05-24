@@ -2,9 +2,7 @@
 //  ConfigManager.h
 //  MyMart
 //
-//  Created by Komsan Noipitak on 4/23/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
 
 #import <Foundation/Foundation.h>
 
@@ -18,7 +16,16 @@
     NSString *APIServerURL;
     NSString *registerDeviceQuickPinMessage;
     NSString *forceRegisterDeviceQuickPinMessage;
+    NSString *errorMessage;
+    NSString *authenticationFailed;
+    NSString *registerDeviceQuickPinFailed;
+    NSString *askToRegisterDeviceQuickPin;
+    NSString *quickPinNotMatch;
+    NSString *registeringQuickPin;
+    NSString *insertQuickPin;
+    NSString *emptyUsernamePassword;
     
+    NSString *parameterIsEmpty;
 }
 
 @property (nonatomic, retain) NSString *isLogAllowed;
@@ -29,5 +36,15 @@
 @property (nonatomic, retain) NSString *APIServerURL;
 @property (nonatomic, retain) NSString *registerDeviceQuickPinMessage;
 @property (nonatomic, retain) NSString *forceRegisterDeviceQuickPinMessage;
+@property (nonatomic, retain) NSString *errorMessage;
+@property (nonatomic, retain) NSString *authenticationFailed;
+@property (nonatomic, retain) NSString *registerDeviceQuickPinFailed;
+@property (nonatomic, retain) NSString *askToRegisterDeviceQuickPin;
+@property (nonatomic, retain) NSString *quickPinNotMatch;
+@property (nonatomic, retain) NSString *registeringQuickPin;
+@property (nonatomic, retain) NSString *insertQuickPin;
+@property (nonatomic, retain) NSString *emptyUsernamePassword;
+
+@property (nonatomic, retain) NSString *parameterIsEmpty;
 
 @end

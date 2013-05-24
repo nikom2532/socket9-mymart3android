@@ -2,9 +2,7 @@
 //  QuickPinLogin.m
 //  MyMart
 //
-//  Created by Komsan Noipitak on 4/24/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
 
 #import "QuickPinLogin.h"
 
@@ -13,12 +11,42 @@
 @synthesize exceptionMessage;
 @synthesize userID;
 @synthesize errorMessage;
+@synthesize delegate;
+
 
 static QuickPinLogin *sharedInstance = nil;
 
+
+// For UI
+- (id)init
+{
+    self = [super init];
+    
+    if (self) {
+        
+        authenticateDeviceQuickPinAPI = [[AuthenticateDeviceQuickPinAPI alloc]init];
+        [authenticateDeviceQuickPinAPI setAPICallBackDelegate:self];
+        
+    }
+    return self;
+}
+
+// For unit testing
+-(id)init:(id<InterfaceAuthenticateDeviceQuickPinAPI>)api
+{
+    self = [super init];
+    
+    if (self) {
+        
+        authenticateDeviceQuickPinAPI = api;
+        [authenticateDeviceQuickPinAPI setAPICallBackDelegate:self];
+    }
+    return self;
+}
+
 + (QuickPinLogin *)sharedInstance
 {
-    if (sharedInstance==nil) {
+    if (sharedInstance == nil) {
         
         sharedInstance =[[super allocWithZone:NULL]init];
         
@@ -26,10 +54,26 @@ static QuickPinLogin *sharedInstance = nil;
     return sharedInstance;
 }
 
+
+/**
+ * Method name: allocWithZone:
+ * Description: Returns a new instance of the receiving class.
+ * Parameters: zone
+ * Return: A new instance of the receiver.
+ */
+
 + (id)allocWithZone:(NSZone *)zone
 {
     return [self sharedInstance];
 }
+
+
+/**
+ * Method name: copyWithZone:
+ * Description: Returns the receiver.
+ * Parameters: zone
+ * Return: The receiver.
+ */
 
 - (id)copyWithZone:(NSZone *)zone
 {
@@ -52,49 +96,85 @@ static QuickPinLogin *sharedInstance = nil;
 
 - (void)loginByDeviceQuickPin:(NSString *)quickPin {
     
-    AuthenticateDeviceQuickPinAPI *authenticateDeviceQuickPin = [[AuthenticateDeviceQuickPinAPI alloc]init];
-    [authenticateDeviceQuickPin authenticateDeviceQuickPin:quickPin];
+    if ([quickPin length] == 0) {
+        
+        self.authenticated = false;
+        
+        ConfigManager *configManager = [[ConfigManager alloc]init];
+        self.errorMessage = configManager.parameterIsEmpty;
+        
+        return;
+    }
+    
+    @try {
+        
+        [authenticateDeviceQuickPinAPI authenticateDeviceQuickPin:quickPin];
+    }
+    @catch (NSException *exception) {
+        
+        LogManager *logManager = [[LogManager alloc]init];
+        [logManager writeToLogFile:exception];
+    }
+    
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark -
-#pragma mark === Handle Function ===
+#pragma mark === AuthenticateDeviceQuickPinAPI Delegate ===
 #pragma mark -
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * Method name: authenticateDeviceQuickPinFinished
- * Description: Sent when authenticateDeviceQuickPinAPI has finished calling successfully.
- * Parameters: -
+ * Description: Sent from AuthenticateDeviceQuickPinAPI when NetConnection has finished calling successfully.
+ * Parameters: dictionary
  */
 
-- (void)authenticateDeviceQuickPinFinished
-{
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"quickPinLogin"
-                                                       object:nil ];
+- (void)onAPIFinished:(NSDictionary *)dictionary{
+    
+    NSDictionary *resultDictionary = dictionary;
+    authenticated = [[[resultDictionary objectForKey:@"AuthenticateDeviceQuickPinJsonResult"]
+                      objectForKey:@"Authenticated"]boolValue];
+    
+    //// Check Authenticated result
+    
+    // Authenticated : False
+    if (!authenticated) {
+        
+        exceptionMessage = [[resultDictionary objectForKey:@"AuthenticateDeviceQuickPinJsonResult"]
+                            objectForKey:@"ExceptionMessage"];
+        self.exceptionMessage = exceptionMessage;
+        self.authenticated = authenticated;
+        
+        
+        // Authenticated : True
+    }else{
+        
+        userID = [[resultDictionary objectForKey:@"AuthenticateDeviceQuickPinJsonResult"]
+                  objectForKey:@"UserID"];
+        self.userID = userID;
+        self.authenticated = authenticated;
+        
+    }
+
+    [self.delegate quickPinLoginFinished];
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-#pragma mark -
-#pragma mark === Handle Error Function ===
-#pragma mark -
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * Method name: authenticateAPIFinished
- * Description: Sent when authenticateDeviceQuickPinAPI fails to load successfully.
- * Parameters: -
+ * Description: Sent from AuthenticateDeviceQuickPinAPI when NetConnection fails to load successfully.
+ * Parameters: error
  */
 
-- (void)authenticateDeviceQuickPinAPIDidFailWithError{
+- (void)onAPIDidFailWithError:(NSError *)error {
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"quickPinLoginError"
-                                                       object:nil];
+    self.errorMessage = [error localizedDescription];
+    [self.delegate quickPinLoginDidFailWithError];
+    
 }
 
 

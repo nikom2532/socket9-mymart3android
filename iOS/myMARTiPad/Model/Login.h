@@ -2,20 +2,29 @@
 //  Login.h
 //  MyMart
 //
-//  Created by Komsan Noipitak on 4/23/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
+
+@protocol LoginDelegate
+- (void) loginFinished;
+- (void) loginDidFailWithError;
+@end
 
 #import <Foundation/Foundation.h>
 #import "AuthenticateAPI.h"
+#import "ConfigManager.h"
+#import "LogManager.h"
 
-@interface Login : NSObject  {
+
+@interface Login : NSObject  <APICallBackDelegate> {
     
     BOOL authenticated;
     BOOL isDeviceAlreadyRegistered;
     NSString *exceptionMessage;
     NSString *userID;
     NSString *errorMessage;
+    
+    id <LoginDelegate> delegate;
+    id <InterfaceAuthenticateAPI> authenticateAPI;
     
 }
 
@@ -25,11 +34,12 @@
 @property (nonatomic, assign) BOOL isDeviceAlreadyRegistered;
 @property (nonatomic, retain) NSString *errorMessage;
 
-- (void)loginWithUsernameAndPassword:(NSString *)username :(NSString *)password;
-+ (Login *)sharedInstance ;
-- (void) authenticateAPIFinished;
-- (void)authenticateAPIDidFailWithError;
+@property (nonatomic, retain) id <LoginDelegate> delegate;
 
+
+- (void)loginWithUsernameAndPassword:(NSString *)username :(NSString *)password;
++ (Login *)sharedInstance;
+- (id)init:(id <InterfaceAuthenticateAPI>)api;
 
 @end
 

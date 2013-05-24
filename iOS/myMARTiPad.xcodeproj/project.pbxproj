@@ -13,6 +13,13 @@
 		320AB4C317326B7E001527CB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 320AB4BD17326B7E001527CB /* Default@2x.png */; };
 		320AB4C417326B7E001527CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 320AB4BE17326B7E001527CB /* main.m */; };
 		320AB4C517326B7E001527CB /* QPinBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 320AB4BF17326B7E001527CB /* QPinBG.png */; };
+		3223B5B4173B65B700C30F95 /* LogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3223B5B3173B65B700C30F95 /* LogManager.m */; };
+		3229515D1741DAC20076D6B4 /* NSString+HexToByteConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3229515C1741DAC20076D6B4 /* NSString+HexToByteConverter.m */; };
+		325D85811740F28F00910C51 /* StringToHexConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 325D85801740F28E00910C51 /* StringToHexConvertor.m */; };
+		32734849174DDEFD00EC2EDA /* APICallBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 32734848174DDEFD00EC2EDA /* APICallBack.m */; };
+		32B3727E174E009700B43AEB /* UIThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B3727D174E009700B43AEB /* UIThemeManager.m */; };
+		32B37286174F26F800B43AEB /* AuthenticateAPI_Nominal.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B37283174F26F800B43AEB /* AuthenticateAPI_Nominal.m */; };
+		32B37287174F26F800B43AEB /* myMARTiPadTestConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B37285174F26F800B43AEB /* myMARTiPadTestConfig.m */; };
 		32BAD308173388C3003E46C9 /* NetConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BAD307173388C3003E46C9 /* NetConnection.m */; };
 		32DA000E17325D9A00614E71 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32DA000D17325D9A00614E71 /* QuartzCore.framework */; };
 		32DA001017325DE600614E71 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32DA000F17325DE600614E71 /* MessageUI.framework */; };
@@ -48,7 +55,6 @@
 		32DA01171732691A00614E71 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00DE1732691A00614E71 /* Common.m */; };
 		32DA01181732691A00614E71 /* DeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00E01732691A00614E71 /* DeviceManager.m */; };
 		32DA01191732691A00614E71 /* NSData+Base64Converter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00E21732691A00614E71 /* NSData+Base64Converter.m */; };
-		32DA011A1732691A00614E71 /* NSString+HexToByteConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00E41732691A00614E71 /* NSString+HexToByteConverter.m */; };
 		32DA011B1732691A00614E71 /* RandomGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00E61732691A00614E71 /* RandomGenerator.m */; };
 		32DA011C1732691A00614E71 /* SignatureGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00E81732691A00614E71 /* SignatureGenerator.m */; };
 		32DA011D1732691A00614E71 /* ClassListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA00EB1732691A00614E71 /* ClassListViewController.m */; };
@@ -87,6 +93,20 @@
 		320AB4BD17326B7E001527CB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		320AB4BE17326B7E001527CB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		320AB4BF17326B7E001527CB /* QPinBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QPinBG.png; sourceTree = "<group>"; };
+		3223B5B2173B65B700C30F95 /* LogManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogManager.h; sourceTree = "<group>"; };
+		3223B5B3173B65B700C30F95 /* LogManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogManager.m; sourceTree = "<group>"; };
+		3229515B1741DAC20076D6B4 /* NSString+HexToByteConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HexToByteConverter.h"; sourceTree = "<group>"; };
+		3229515C1741DAC20076D6B4 /* NSString+HexToByteConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HexToByteConverter.m"; sourceTree = "<group>"; };
+		325D857F1740F28E00910C51 /* StringToHexConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringToHexConvertor.h; sourceTree = "<group>"; };
+		325D85801740F28E00910C51 /* StringToHexConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringToHexConvertor.m; sourceTree = "<group>"; };
+		32734847174DDEFD00EC2EDA /* APICallBack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APICallBack.h; sourceTree = "<group>"; };
+		32734848174DDEFD00EC2EDA /* APICallBack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APICallBack.m; sourceTree = "<group>"; };
+		32B3727C174E009700B43AEB /* UIThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIThemeManager.h; sourceTree = "<group>"; };
+		32B3727D174E009700B43AEB /* UIThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIThemeManager.m; sourceTree = "<group>"; };
+		32B37282174F26F800B43AEB /* AuthenticateAPI_Nominal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticateAPI_Nominal.h; sourceTree = "<group>"; };
+		32B37283174F26F800B43AEB /* AuthenticateAPI_Nominal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticateAPI_Nominal.m; sourceTree = "<group>"; };
+		32B37284174F26F800B43AEB /* myMARTiPadTestConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myMARTiPadTestConfig.h; sourceTree = "<group>"; };
+		32B37285174F26F800B43AEB /* myMARTiPadTestConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myMARTiPadTestConfig.m; sourceTree = "<group>"; };
 		32BAD306173388C3003E46C9 /* NetConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetConnection.h; sourceTree = "<group>"; };
 		32BAD307173388C3003E46C9 /* NetConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetConnection.m; sourceTree = "<group>"; };
 		32DA000D17325D9A00614E71 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -150,8 +170,6 @@
 		32DA00E01732691A00614E71 /* DeviceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceManager.m; sourceTree = "<group>"; };
 		32DA00E11732691A00614E71 /* NSData+Base64Converter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64Converter.h"; sourceTree = "<group>"; };
 		32DA00E21732691A00614E71 /* NSData+Base64Converter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64Converter.m"; sourceTree = "<group>"; };
-		32DA00E31732691A00614E71 /* NSString+HexToByteConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HexToByteConverter.h"; sourceTree = "<group>"; };
-		32DA00E41732691A00614E71 /* NSString+HexToByteConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HexToByteConverter.m"; sourceTree = "<group>"; };
 		32DA00E51732691A00614E71 /* RandomGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomGenerator.h; sourceTree = "<group>"; };
 		32DA00E61732691A00614E71 /* RandomGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomGenerator.m; sourceTree = "<group>"; };
 		32DA00E71732691A00614E71 /* SignatureGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureGenerator.h; sourceTree = "<group>"; };
@@ -248,6 +266,8 @@
 				32DA00AB1732691A00614E71 /* GetClassListAPI.m */,
 				32DA00AC1732691A00614E71 /* GetUnitListAPI.h */,
 				32DA00AD1732691A00614E71 /* GetUnitListAPI.m */,
+				32734847174DDEFD00EC2EDA /* APICallBack.h */,
+				32734848174DDEFD00EC2EDA /* APICallBack.m */,
 			);
 			path = WebAPIs;
 			sourceTree = "<group>";
@@ -287,8 +307,8 @@
 			children = (
 				32DA00C31732691A00614E71 /* ECSlidingViewController.h */,
 				32DA00C41732691A00614E71 /* ECSlidingViewController.m */,
-				32DA00C51732691A00614E71 /* EWHeaderHighlightLayer.h */,
-				32DA00C61732691A00614E71 /* EWHeaderHighlightLayer.m */,
+				32DA00D61732691A00614E71 /* UIImage+ImageWithUIView.h */,
+				32DA00D71732691A00614E71 /* UIImage+ImageWithUIView.m */,
 				32DA00C71732691A00614E71 /* EWMultiColumnTableView.h */,
 				32DA00C81732691A00614E71 /* EWMultiColumnTableView.m */,
 				32DA00C91732691A00614E71 /* EWMultiColumnTableViewBGScrollView.h */,
@@ -297,17 +317,17 @@
 				32DA00CC1732691A00614E71 /* EWMultiColumnTableViewCell.m */,
 				32DA00CD1732691A00614E71 /* EWMultiColumnTableViewContentBackgroundView.h */,
 				32DA00CE1732691A00614E71 /* EWMultiColumnTableViewContentBackgroundView.m */,
+				32DA00C51732691A00614E71 /* EWHeaderHighlightLayer.h */,
+				32DA00C61732691A00614E71 /* EWHeaderHighlightLayer.m */,
 				32DA00CF1732691A00614E71 /* EWMultiColumnTableViewDefaults.h */,
+				32DA00D81732691A00614E71 /* UIView+AddLine.h */,
+				32DA00D91732691A00614E71 /* UIView+AddLine.m */,
 				32DA00D01732691A00614E71 /* MBProgressHUD.h */,
 				32DA00D11732691A00614E71 /* MBProgressHUD.m */,
 				32DA00D21732691A00614E71 /* PullableView.h */,
 				32DA00D31732691A00614E71 /* PullableView.m */,
 				32DA00D41732691A00614E71 /* StyledPullableView.h */,
 				32DA00D51732691A00614E71 /* StyledPullableView.m */,
-				32DA00D61732691A00614E71 /* UIImage+ImageWithUIView.h */,
-				32DA00D71732691A00614E71 /* UIImage+ImageWithUIView.m */,
-				32DA00D81732691A00614E71 /* UIView+AddLine.h */,
-				32DA00D91732691A00614E71 /* UIView+AddLine.m */,
 			);
 			path = External;
 			sourceTree = "<group>";
@@ -315,6 +335,8 @@
 		32DA00DA1732691A00614E71 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				3223B5B2173B65B700C30F95 /* LogManager.h */,
+				3223B5B3173B65B700C30F95 /* LogManager.m */,
 				32DA00DB1732691A00614E71 /* CocoaSecurity.h */,
 				32DA00DC1732691A00614E71 /* CocoaSecurity.m */,
 				32DA00DD1732691A00614E71 /* Common.h */,
@@ -323,14 +345,16 @@
 				32DA00E01732691A00614E71 /* DeviceManager.m */,
 				32DA00E11732691A00614E71 /* NSData+Base64Converter.h */,
 				32DA00E21732691A00614E71 /* NSData+Base64Converter.m */,
-				32DA00E31732691A00614E71 /* NSString+HexToByteConverter.h */,
-				32DA00E41732691A00614E71 /* NSString+HexToByteConverter.m */,
+				3229515B1741DAC20076D6B4 /* NSString+HexToByteConverter.h */,
+				3229515C1741DAC20076D6B4 /* NSString+HexToByteConverter.m */,
 				32DA00E51732691A00614E71 /* RandomGenerator.h */,
 				32DA00E61732691A00614E71 /* RandomGenerator.m */,
 				32DA00E71732691A00614E71 /* SignatureGenerator.h */,
 				32DA00E81732691A00614E71 /* SignatureGenerator.m */,
 				32BAD306173388C3003E46C9 /* NetConnection.h */,
 				32BAD307173388C3003E46C9 /* NetConnection.m */,
+				325D857F1740F28E00910C51 /* StringToHexConvertor.h */,
+				325D85801740F28E00910C51 /* StringToHexConvertor.m */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -352,6 +376,8 @@
 				32DA00F71732691A00614E71 /* NSObject+DelayedBlock.m */,
 				32DA00F81732691A00614E71 /* ResultEntryViewController.h */,
 				32DA00F91732691A00614E71 /* ResultEntryViewController.m */,
+				32B3727C174E009700B43AEB /* UIThemeManager.h */,
+				32B3727D174E009700B43AEB /* UIThemeManager.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -427,6 +453,10 @@
 		32DAFF7F17325ABB00614E71 /* myMARTiPadTests */ = {
 			isa = PBXGroup;
 			children = (
+				32B37282174F26F800B43AEB /* AuthenticateAPI_Nominal.h */,
+				32B37283174F26F800B43AEB /* AuthenticateAPI_Nominal.m */,
+				32B37284174F26F800B43AEB /* myMARTiPadTestConfig.h */,
+				32B37285174F26F800B43AEB /* myMARTiPadTestConfig.m */,
 				32DAFF8517325ABB00614E71 /* myMARTiPadTests.h */,
 				32DAFF8617325ABB00614E71 /* myMARTiPadTests.m */,
 				32DAFF8017325ABB00614E71 /* Supporting Files */,
@@ -586,7 +616,6 @@
 				32DA01171732691A00614E71 /* Common.m in Sources */,
 				32DA01181732691A00614E71 /* DeviceManager.m in Sources */,
 				32DA01191732691A00614E71 /* NSData+Base64Converter.m in Sources */,
-				32DA011A1732691A00614E71 /* NSString+HexToByteConverter.m in Sources */,
 				32DA011B1732691A00614E71 /* RandomGenerator.m in Sources */,
 				32DA011C1732691A00614E71 /* SignatureGenerator.m in Sources */,
 				32DA011D1732691A00614E71 /* ClassListViewController.m in Sources */,
@@ -599,6 +628,11 @@
 				32DA0128173269D700614E71 /* ConfigManager.m in Sources */,
 				320AB4C417326B7E001527CB /* main.m in Sources */,
 				32BAD308173388C3003E46C9 /* NetConnection.m in Sources */,
+				3223B5B4173B65B700C30F95 /* LogManager.m in Sources */,
+				325D85811740F28F00910C51 /* StringToHexConvertor.m in Sources */,
+				3229515D1741DAC20076D6B4 /* NSString+HexToByteConverter.m in Sources */,
+				32734849174DDEFD00EC2EDA /* APICallBack.m in Sources */,
+				32B3727E174E009700B43AEB /* UIThemeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,6 +641,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				32DAFF8717325ABB00614E71 /* myMARTiPadTests.m in Sources */,
+				32B37286174F26F800B43AEB /* AuthenticateAPI_Nominal.m in Sources */,
+				32B37287174F26F800B43AEB /* myMARTiPadTestConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

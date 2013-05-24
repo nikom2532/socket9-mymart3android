@@ -5,11 +5,19 @@
  Copyright (c) 2012 Kelp http://kelp.phate.org/
  MIT License
  
- CocoaSecurity is core. It provides AES encrypt, AES decrypt, Hash(MD5, HmacMD5, SHA1~SHA512, HmacSHA1~HmacSHA512) messages.
 */
+
+
+//////////////////////////////////////// Objective /////////////////////////////////////////////////////
+/**
+ * CocoaSecurity is core. It provides AES encrypt, AES decrypt, Hash(MD5, HmacMD5, SHA1~SHA512, HmacSHA1~HmacSHA512) messages.
+ *
+ */
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #import <Foundation/Foundation.h>
 #import <Foundation/NSException.h>
+#import "LogManager.h"
 
 
 #pragma mark - CocoaSecurityResult

@@ -2,12 +2,21 @@
 //  myMARTiPadTests.h
 //  myMARTiPadTests
 //
-//  Created by Komsan Noipitak on 5/2/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "RandomGenerator.h"
+#import "StringToHexConvertor.h"
+#import "NSString+HexToByteConverter.h"
+#import "CocoaSecurity.h"
+#import "ConfigManager.h"
+#import "NSData+Base64Converter.h"
+#import "SignatureGenerator.h"
+#import "myMARTiPadTestConfig.h"
+
+#import "Login.h"
+#import "AuthenticateAPI_Nominal.h"
 
 @interface myMARTiPadTests : SenTestCase
-
+    
 @end

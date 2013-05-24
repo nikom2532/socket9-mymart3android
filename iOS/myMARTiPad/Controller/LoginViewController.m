@@ -2,21 +2,27 @@
 //  LoginViewController.m
 //  MyMart
 //
-//  Created by Komsan Noipitak on 4/6/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
 
 #import "LoginViewController.h"
 
 
 QuickPinLogin *quickPinLogin;
 Login *login;
+ConfigManager *configManager;
 
 @interface LoginViewController ()
 
 @end
 
 @implementation LoginViewController
+
+
+/**
+ * Method name: initWithNibName: bundle:
+ * Description: Returns a newly initialized view controller with the nib file in the specified bundle.
+ * Parameters: nibNameOrNil, nibBundleOrNil
+ */
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,10 +33,24 @@ Login *login;
     return self;
 }
 
+
+/**
+ * Method name: shouldAutorotateToInterfaceOrientation:
+ * Description: Returns a Boolean value indicating whether the view controller supports the specified orientation.
+ * Parameters: toInterfaceOrientation
+ */
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
 }
+
+
+/**
+ * Method name: viewDidLoad
+ * Description: Called after the controller’s view is loaded into memory.
+ * Parameters: -
+ */
 
 - (void)viewDidLoad
 {
@@ -42,6 +62,13 @@ Login *login;
     // Add UPLoginView to loginview
     [loginView addSubview:UPLoginView];
 }
+
+
+/**
+ * Method name: didReceiveMemoryWarning
+ * Description: Sent to the view controller when the app receives a memory warning.
+ * Parameters: -
+ */
 
 - (void)didReceiveMemoryWarning
 {
@@ -69,20 +96,24 @@ Login *login;
     [usernameTextField resignFirstResponder];
     [passwordTextField resignFirstResponder];
     
-    //// Create url to make the request Authenticate API
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(loginFinished:)
-                                                 name:@"login"
-                                               object:nil ];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(loginDidFailWithError:)
-                                                 name:@"loginError"
-                                               object:nil ];
-    //Create model for calling API
-    login = [[Login alloc]init];
-    [Login sharedInstance];
-    [login loginWithUsernameAndPassword:usernameTextField.text :passwordTextField.text];
+    if ([passwordTextField.text length] > 0 && [passwordTextField.text length] > 0) {
+       
+        //Create model for calling API
+        login = [[Login alloc]init];
+        [Login sharedInstance];
+        login.delegate = self;
+        [login loginWithUsernameAndPassword:usernameTextField.text :passwordTextField.text];
+        
+    }else if ([usernameTextField.text length] == 0 && [passwordTextField.text length] == 0){
+        
+        NSString *message = configManager.emptyUsernamePassword;
+        UIAlertView *loginAlertView = [[UIAlertView alloc]initWithTitle:configManager.authenticationFailed
+                                                                message:[NSString stringWithFormat:@"%@",message]
+                                                               delegate:self
+                                                      cancelButtonTitle:@"Done"
+                                                      otherButtonTitles:nil];
+        [loginAlertView show];
+    }
 }
 
 /**
@@ -94,18 +125,10 @@ Login *login;
 - (void)registerDeviceQuickpin:(NSString *)quickPin
 {
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(quickPinLoginFinished:)
-                                                 name:@"quickPinLogin"
-                                               object:nil ];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(quickPinLoginDidFailWithError:)
-                                                 name:@"quickPinLoginError"
-                                               object:nil ];
-    
     // Create model for calling API
     quickPinLogin = [[QuickPinLogin alloc]init];
     [QuickPinLogin sharedInstance];
+    quickPinLogin.delegate = self; 
     [quickPinLogin loginByDeviceQuickPin:quickPin];
     
 }
@@ -114,25 +137,24 @@ Login *login;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark -
-#pragma mark === Handler Function ===
+#pragma mark === Login Delegate ===
 #pragma mark -
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Method name: loginFinished:
- * Description: Sent from model when authenticateAPI has finished loading successfully.
- * Parameters: notification
+ * Method name: loginFinished
+ * Description: Sent from Login when NetConnection has finished loading successfully.
+ * Parameters: -
  */
 
-- (void)loginFinished:(NSNotification *)notification
-{
+- (void)loginFinished {
     if (!login.authenticated) {
-        // Show alert view and exception message
         
+        // Show alert view and exception message
         NSString *message = login.exceptionMessage;
         
-        UIAlertView *loginAlertView = [[UIAlertView alloc]initWithTitle:@"Authentication Failed"
+        UIAlertView *loginAlertView = [[UIAlertView alloc]initWithTitle:configManager.authenticationFailed
                                                                 message:message
                                                                delegate:self
                                                       cancelButtonTitle:@"Done"
@@ -145,21 +167,51 @@ Login *login;
     }
 }
 
+
 /**
- * Method name: quickPinLoginFinished:
- * Description: Sent from model when authenticateDeviceQuickPinAPI has finished loading successfully.
- * Parameters: notification
+ * Method name: loginDidFailWithError
+ * Description: Sent from Login when a NetConnection fails to load its request successfully.
+ * Parameters: -
  */
 
-- (void)quickPinLoginFinished:(NSNotification *)notification
-{
+- (void)loginDidFailWithError {
+    
+    
+    NSString *messgage = login.errorMessage;
+    
+    // Show alertView with error message
+    UIAlertView *loginErrorAlertView = [[UIAlertView alloc]initWithTitle:configManager.errorMessage
+                                                                 message:messgage
+                                                                delegate:self
+                                                       cancelButtonTitle:@"Done"
+                                                       otherButtonTitles:nil];
+    [loginErrorAlertView show];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark -
+#pragma mark === QuickPinLogin Delegate ===
+#pragma mark -
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Method name: quickPinLoginFinished
+ * Description: Sent from QuickPinLogin when NetConnection has finished loading successfully.
+ * Parameters: -
+ */
+
+- (void)quickPinLoginFinished {
+    
     // Authenticated = NO
     if (!quickPinLogin.authenticated) {
         
         NSString *message = quickPinLogin.exceptionMessage;
         
         // Show alertView with message
-        UIAlertView *loginAlertView = [[UIAlertView alloc]initWithTitle:@"Authentication Failed"
+        UIAlertView *loginAlertView = [[UIAlertView alloc]initWithTitle:configManager.authenticationFailed
                                                                 message:message
                                                                delegate:self
                                                       cancelButtonTitle:@"Done"
@@ -175,28 +227,18 @@ Login *login;
     
 }
 
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-#pragma mark -
-#pragma mark === Handle Error Function ===
-#pragma mark -
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 /**
- * Method name: loginDidFailWithError:
- * Description: Sent from model when authenticateAPI fails to load successfully.
- * Parameters: notification
+ * Method name: quickPinLoginDidFailWithError
+ * Description: Sent from model when QuickPinLogin fails to load successfully.
+ * Parameters: -
  */
 
-- (void)loginDidFailWithError:(NSNotification *)notification {
+- (void)quickPinLoginDidFailWithError{
     
-    NSString *messgage = login.errorMessage;
+    NSString *messgage = quickPinLogin.errorMessage;
     
     // Show alertView with error message
-    UIAlertView *loginErrorAlertView = [[UIAlertView alloc]initWithTitle:@"No Internet Connection"
+    UIAlertView *loginErrorAlertView = [[UIAlertView alloc]initWithTitle:configManager.errorMessage
                                                                  message:messgage
                                                                 delegate:self
                                                        cancelButtonTitle:@"Done"
@@ -204,29 +246,11 @@ Login *login;
     [loginErrorAlertView show];
 }
 
-/**
- * Method name: quickPinLoginDidFailWithError:
- * Description: Sent from model when authenticateDeviceQuickPinAPI fails to load successfully.
- * Parameters: notification
- */
-
-- (void)quickPinLoginDidFailWithError:(NSNotification *)notification {
-    
-    NSString *messgage = quickPinLogin.errorMessage;
-    UIAlertView *loginErrorAlertView = [[UIAlertView alloc]initWithTitle:@"No Internet Connection"
-                                                                          message:messgage
-                                                                         delegate:self
-                                                                cancelButtonTitle:@"Done"
-                                                                otherButtonTitles:nil];
-    [loginErrorAlertView show];
-}
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark -
-#pragma mark === Choose Log in method ===
+#pragma mark === Choose Login method ===
 #pragma mark -
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -237,7 +261,7 @@ Login *login;
  * Parameters: button
  */
 
-- (IBAction)chooseLogin:(UIButton*)button{
+- (IBAction)chooseLogin:(UIButton *)button{
     
     // Tap Login using Username & Password
     if (button.tag == 1) {
@@ -350,7 +374,7 @@ Login *login;
 
 /**
  * Method name: touchesBegan:withEvent:
- * Description: <#description#>
+ * Description: Handle with event when touching began 
  * Parameters: touches, event
  */
 

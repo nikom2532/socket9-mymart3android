@@ -2,9 +2,7 @@
 //  AppDelegate.m
 //  MyMart
 //
-//  Created by Komsan Noipitak on 3/15/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
 
 #import "AppDelegate.h"
 
@@ -14,6 +12,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -33,6 +33,23 @@
     return YES;
 }
 
+
+- (NSString *) stringToHex:(NSString *)str
+{
+    NSUInteger len = [str length];
+    unichar *chars = malloc(len * sizeof(unichar));
+    [str getCharacters:chars];
+    
+    NSMutableString *hexString = [[NSMutableString alloc] init];
+    
+    for(NSUInteger i = 0; i < len; i++ )
+    {
+        [hexString appendString:[NSString stringWithFormat:@"%x", chars[i]]];
+    }
+    free(chars);
+    
+    return hexString;
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

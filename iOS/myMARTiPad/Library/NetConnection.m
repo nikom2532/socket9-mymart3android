@@ -2,19 +2,24 @@
 //  NetConnection.m
 //  myMARTiPad
 //
-//  Created by Komsan Noipitak on 5/3/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
 
 #import "NetConnection.h"
 
 @implementation NetConnection
+@synthesize delegate;
 
-- (id)initWithRequest:(NSURLRequest *)request tag:(NSString *)newTag {
+
+/**
+ * Method name: start
+ * Description: Initialize a new object (the receiver) immediately after memory for it has been allocated.
+ * Parameters: request
+ */
+
+- (id)initWithRequest:(NSURLRequest *)request{
     
 	if (self = [super init]) {
-        
-        tag = newTag;
+
         urlConnection      = [[NSURLConnection alloc] initWithRequest:request delegate:self];
         responseData       = [NSMutableData data];
         
@@ -22,13 +27,16 @@
     return self;
 }
 
+
+/**
+ * Method name: start
+ * Description: Start loding a connection 
+ * Parameters: -
+ */
+
 - (void)start {
     
     [urlConnection start];
-}
-
-- (NSString *)tag {
-	return tag;
 }
 
 /**
@@ -37,12 +45,20 @@
  * Parameters: connection
  */
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     
-    [responseData appendData:data];
+    @try {
+        
+        [responseData appendData:data];
+    }
+    @catch (NSException *exception) {
+        
+        LogManager *logManager = [[LogManager alloc]init];
+        [logManager writeToLogFile:exception];
+    }
 
 }
+
 
 /**
  * Method name: connectionDidFinishLoading:
@@ -52,46 +68,24 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     
-    // Convert AuthenticateJsonResult to NSDictionary
-    NSError *error;
-    resultDictionary = [NSJSONSerialization JSONObjectWithData:responseData
-                                                       options:kNilOptions
-                                                         error:&error];
-    responseData = nil;
-    urlConnection = nil;
-    
-    if ([self.tag isEqualToString:@"authenticateAPI"]) {
+    @try {
         
-		AuthenticateAPI *authenticateAPI = [[AuthenticateAPI alloc]init];
-        authenticateAPI.resultDictionary = resultDictionary;
-        [authenticateAPI netConnectionFinished];
+        // Convert AuthenticateJsonResult to NSDictionary
+        NSError *error;
+        resultDictionary = [NSJSONSerialization JSONObjectWithData:responseData
+                                                           options:kNilOptions
+                                                             error:&error];
+        responseData = nil;
+        urlConnection = nil;
         
-	}else if ([self.tag isEqualToString:@"authenticateDeviceQuickPinAPI"]) {
-        
-        AuthenticateDeviceQuickPinAPI *authenticateDeviceQuickPinAPI = [[AuthenticateDeviceQuickPinAPI alloc]init];
-        authenticateDeviceQuickPinAPI.resultDictionary = resultDictionary;
-        [authenticateDeviceQuickPinAPI netConnectionFinished];
-        
-    }else if ([self.tag isEqualToString:@"registerDeviceQuickPinAPI"]) {
-        
-        RegisterDeviceQuickPinAPI *registerDeviceQuickPinAPI = [[RegisterDeviceQuickPinAPI alloc]init];
-        [registerDeviceQuickPinAPI netConnectionFinished];
-
-        
-    }else if ([self.tag isEqualToString:@"getClassListAPI"]) {
-        
-        GetClassListAPI *getClassListAPI = [[GetClassListAPI alloc]init];
-        getClassListAPI.resultDictionary = resultDictionary;
-        [getClassListAPI netConnectionFinished];
-        
-    }else if ([self.tag isEqualToString:@"getUnitListAPI"]) {
-        
-        GetUnitListAPI *getUnitListAPI = [[GetUnitListAPI alloc]init];
-        getUnitListAPI.resultDictionary = resultDictionary;
-        [getUnitListAPI netConnectionFinished];
-        
+        [self.delegate netConnectionFinished:resultDictionary];
     }
-    
+    @catch (NSException *exception) {
+        
+        LogManager *logManager = [[LogManager alloc]init];
+        [logManager writeToLogFile:exception];
+    }
+
 }
 
 /**
@@ -100,40 +94,19 @@
  * Parameters: connection, error
  */
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-        
-    if ([self.tag isEqualToString:@"authenticateAPI"]) {
-        
-		AuthenticateAPI *authenticateAPI = [[AuthenticateAPI alloc]init];
-        [authenticateAPI connectionDidFailWithError:error];
-        
-	}else if ([self.tag isEqualToString:@"authenticateDeviceQuickPinAPI"]) {
-        
-        AuthenticateDeviceQuickPinAPI *authenticateDeviceQuickPinAPI = [[AuthenticateDeviceQuickPinAPI alloc]init];
-        [authenticateDeviceQuickPinAPI connectionDidFailWithError:error];
-        
-    }else if ([self.tag isEqualToString:@"registerDeviceQuickPinAPI"]) {
-        
-        RegisterDeviceQuickPinAPI *registerDeviceQuickPinAPI = [[RegisterDeviceQuickPinAPI alloc]init];
-        [registerDeviceQuickPinAPI connectionDidFailWithError:error];
-        
-        
-    }else if ([self.tag isEqualToString:@"getClassListAPI"]) {
-        
-        GetClassListAPI *getClassListAPI = [[GetClassListAPI alloc]init];
-        [getClassListAPI connectionDidFailWithError:error];
-        
-        
-    }else if ([self.tag isEqualToString:@"getUnitListAPI"]) {
-        
-        GetUnitListAPI *getUntListAPI = [[GetUnitListAPI alloc]init];
-        [getUntListAPI connectionDidFailWithError:error];
-        
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+
+    @try {
+    
+        [self.delegate netConnectionDidFailWithError:error];
     }
-
+    @catch (NSException *exception) {
+        
+        LogManager *logManager = [[LogManager alloc]init];
+        [logManager writeToLogFile:exception];
+    }
+    
 }
-
 
 
 @end

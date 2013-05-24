@@ -2,9 +2,6 @@
 //  RandomGenerator.m
 //  MyMart
 //
-//  Created by Komsan Noipitak on 4/22/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
 
 #import "RandomGenerator.h"
 
@@ -13,24 +10,33 @@
 
 /**
  * Method name: getNewRandomKey
- * Description: <#description#>
+ * Description: Randomly generating string as a IV for encryption
  * Parameters: -
  * Return: randomString
  */
 
-+ (NSString *)getNewRandomKey {
++ (NSString *)getNewRandomKey{
     
-    NSString *letters = @"abcdefghijklmnopqrstuvwxyz0123456789";
-    int len = 32;
-    
-    NSMutableString *randomString = [NSMutableString stringWithCapacity:len];
-    
-    for (int i=0; i<len; i++) {
+    @try {
         
-        [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random() % [letters length]]];
+        NSString *letters = @"abcdefghijklmnopqrstuvwxyz0123456789";
+        int len = 16;
+        
+        NSMutableString *randomString = [NSMutableString stringWithCapacity:len];
+        
+        for (int i=0; i<len; i++) {
+            
+            [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random() % [letters length]]];
+        }
+       
+        return randomString;
     }
-    
-    return randomString;
+    @catch (NSException *exception) {
+        
+        LogManager *logManager = [[LogManager alloc]init];
+        [logManager writeToLogFile:exception];
+    }
+   
 }
 
 @end

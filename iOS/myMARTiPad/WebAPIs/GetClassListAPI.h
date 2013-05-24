@@ -1,9 +1,7 @@
+
 //
 //  GetClassListAPI.h
 //  MyMart
-//
-//  Created by Komsan Noipitak on 4/23/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,11 +11,15 @@
 #import "SignatureGenerator.h"
 #import "NSString+HexToByteConverter.h"
 #import "ConfigManager.h"
-#import "ClassList.h"
 #import "NetConnection.h"
+#import "APICallBack.h"
 
+@protocol InterfaceGetClassListAPI
+- (void) getClassList :(NSString *)userID;
+- (void)setAPICallBackDelegate:(id<APICallBackDelegate>)authenticateAPIDelegate;
+@end
 
-@interface GetClassListAPI : NSObject {
+@interface GetClassListAPI : APICallBack <InterfaceGetClassListAPI, NetConnectionDelegate>{
     
     BOOL classListSuccess;
     BOOL reportingPeriod;
@@ -27,14 +29,12 @@
     NSURLConnection *getClassUrlConnection;
     NSMutableData *getClassResponseData;
     NSDictionary *resultDictionary;
+
     
 }
 
 @property (retain, nonatomic) NSDictionary *resultDictionary;
 
 - (void) getClassList :(NSString *)userID;
-- (void)netConnectionFinished;
-- (void)connectionDidFailWithError:(NSError *)error;
-
 
 @end

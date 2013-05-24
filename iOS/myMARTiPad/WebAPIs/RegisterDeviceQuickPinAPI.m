@@ -2,28 +2,23 @@
 //  RegisterDeviceQuickPinAPI.m
 //  MyMart
 //
-//  Created by Komsan Noipitak on 4/23/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
 
 #import "RegisterDeviceQuickPinAPI.h"
 
 @implementation RegisterDeviceQuickPinAPI
 @synthesize resultDictionary;
 
-RegisterDevice *registerDevice;
-
 /**
  * Method name: registerDeviceQuickPin
- * Description: Create url for calling API
- * Parameters: quickPin, deviceID, isForceRegister
+ * Description: Create URL for calling RegisterDeviceQuickPinAPI
+ * Parameters: userID, quickPin, deviceID, isForceRegister
  */
 
-- (void)registerDeviceQuickPin:(NSString *)quickPin :(NSString *)deviceID :(BOOL)isForceRegister{
+- (void)registerDeviceQuickPin:(NSString *)userID :(NSString *)quickPin :(NSString *)deviceID :(BOOL)isForceRegister{
     
     //// Create url to make the request ReqisterDeviceQuickpin API
     ConfigManager *configManager = [[ConfigManager alloc]init];
-    Login *login = [[Login alloc]init];
     
     // Get private key for encryption and generate signature
     NSString *privateAES256Key = configManager.privateAES256Key;
@@ -36,7 +31,8 @@ RegisterDevice *registerDevice;
     NSData *AES256keyData   = [privateAES256Key dataUsingEncoding:NSUTF8StringEncoding];
     NSString *quickpin      = quickPin;
     NSString *quickpinIV    = [RandomGenerator getNewRandomKey];
-    NSData *quickpinIVData  = [quickpinIV convertHexToBytes];
+    NSString *quickpinIVHexString = [StringToHexConvertor convertStringToHex:quickpinIV];
+    NSData *quickpinIVData  = [quickpinIVHexString convertHexToBytes];
     CocoaSecurityResult *quickpinEncrypted = [CocoaSecurity aesEncrypt:quickpin
                                                                    key:AES256keyData
                                                                     iv:quickpinIVData];
@@ -52,14 +48,15 @@ RegisterDevice *registerDevice;
     
     // Get deviceID, Encryption(AES), and Encoding(Base64)
     NSString *deviceIDIV = [RandomGenerator getNewRandomKey];
-    NSData *deviceIDIVData = [deviceIDIV convertHexToBytes];
+    NSString *deviceIDHexString = [StringToHexConvertor convertStringToHex:deviceIDIV];
+    NSData *deviceIDIVData = [deviceIDHexString convertHexToBytes];
     CocoaSecurityResult *deviceIDEncrypted = [CocoaSecurity aesEncrypt:deviceID
                                                                    key:AES256keyData
                                                                     iv:deviceIDIVData];
     NSString *deviceIDEncryptedStr = [deviceIDEncrypted base64];
     
     // Generate signature (HMAC-SHA256)
-    NSString *plainText = [NSString stringWithFormat:@"userid=%@&quickpin=%@&deviceid=%@&quickpiniv=%@&deviceidiv=%@&forceoverride=%@&requestdatetime=%@",login.userID,quickpinEncryptedStr,deviceIDEncryptedStr,quickpinIVData.convertToBase64,deviceIDIVData.convertToBase64,forceoverride,dateString];
+    NSString *plainText = [NSString stringWithFormat:@"userid=%@&quickpin=%@&deviceid=%@&quickpiniv=%@&deviceidiv=%@&forceoverride=%@&requestdatetime=%@",userID,quickpinEncryptedStr,deviceIDEncryptedStr,quickpinIVData.convertToBase64,deviceIDIVData.convertToBase64,forceoverride,dateString];
     NSString *hashString = [SignatureGenerator getSignature:plainText :privateSignatureKey];
     
     // Set URL Format
@@ -68,61 +65,10 @@ RegisterDevice *registerDevice;
     
     // Request RegisterDeviceQuickpin API using NSURLConnection
     NSURLRequest *request       = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    NetConnection *netConnection = [[NetConnection alloc]initWithRequest:request tag:@"registerDeviceQuickPinAPI"];
+    NetConnection *netConnection = [[NetConnection alloc]initWithRequest:request];
+    netConnection.delegate = self;
     [netConnection start];
     
-}
-
-
-/**
- * Method name: netConnectionFinished
- * Description: NetConnection did finish
- * Parameters: -
- */
-
-- (void)netConnectionFinished {
-    
-    registerSuccess = [[[resultDictionary objectForKey:@"RegisterDeviceQuickPinJsonResult"]
-                        objectForKey:@"RegisterSuccess"]boolValue];
-    
-    //// Check Registered result
-    // RegisterSuccess : True
-    if (registerSuccess) {
-        
-        alreadyRegistered = [[[resultDictionary objectForKey:@"RegisterDeviceQuickPinJsonResult"]
-                              objectForKey:@"AlreadyRegistered"]boolValue];
-        registerDevice.alreadyRegistered = alreadyRegistered;
-        registerDevice.registerSuccess = registerSuccess;
-        
-    // RegisterSuccess : False    
-    }else{
-        
-        alreadyRegistered = [[[resultDictionary objectForKey:@"RegisterDeviceQuickPinJsonResult"]
-                              objectForKey:@"AlreadyRegistered"]boolValue];
-        registerDevice.alreadyRegistered = alreadyRegistered;
-        exceptionMessage = [[resultDictionary objectForKey:@"RegisterDeviceQuickPinJsonResult"]
-                            objectForKey:@"ExceptionMessage"];
-        registerDevice.exceptionMessage = exceptionMessage;
-        registerDevice.registerSuccess = registerSuccess;
-        
-    }
-    
-    [registerDevice registerDeviceQuickPinFinished];
-
-}
-
-
-/**
- * Method name: connectionDidFailWithError:
- * Description: NetConnection did fail
- * Parameters: error
- */
-
-- (void)connectionDidFailWithError:(NSError *)error
-{
-    
-    registerDevice.errorMessage = [error localizedDescription];
-    [registerDevice registerDeviceQuickPinAPIDidFailWithError];
 }
 
 

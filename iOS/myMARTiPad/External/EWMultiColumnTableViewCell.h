@@ -21,6 +21,17 @@
  */
 
 
+//////////////////////////////////////// OBJECTIVE ///////////////////////////////////////////////////////
+/**
+ * Base on the UITableView containing only one column, this project implements a multi-column table view for
+ * iOS. It has a horizontal scrollable table body, a fixed left and top table header. It also supports
+ * foldable sections, and draggable columns.
+ *
+ * Using in UnitResultEntryViewController for creating multicolumn tableview
+ */
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 #import <UIKit/UIKit.h>
 
 

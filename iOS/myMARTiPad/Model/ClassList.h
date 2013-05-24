@@ -2,14 +2,19 @@
 //  ClassList.h
 //  MyMart
 //
-//  Created by Komsan Noipitak on 4/24/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
+
+@protocol ClassListDelegate
+- (void) classListFinished;
+- (void) classListDidFailWithError;
+@end
 
 #import <Foundation/Foundation.h>
 #import "GetClassListAPI.h"
+#import "ConfigManager.h"
+#import "LogManager.h"
 
-@interface ClassList : NSObject {
+@interface ClassList : NSObject <APICallBackDelegate>{
     
     BOOL classListSuccess;
     BOOL reportingPeriod;
@@ -18,7 +23,9 @@
     NSString *exceptionMessage;
     NSString *errorMessage;
     
-  
+    id <ClassListDelegate> delegate;
+    id <InterfaceGetClassListAPI> getClassListAPI;
+
 }
 
 @property (nonatomic, assign) BOOL classListSuccess;
@@ -28,11 +35,11 @@
 @property (nonatomic, assign) BOOL isUserHasOnlyOneClass;
 @property (nonatomic, retain) NSString *errorMessage;
 
+@property (nonatomic, retain) id <ClassListDelegate> delegate;
 
 - (void) getClassList :(NSString *)userID;
 + (ClassList *)sharedInstance ;
-- (void)getClassListAPIFinished;
-- (void)getClassListAPIDidFailWithError;
+- (id)init:(id <InterfaceGetClassListAPI>)api;
 
 
 @end

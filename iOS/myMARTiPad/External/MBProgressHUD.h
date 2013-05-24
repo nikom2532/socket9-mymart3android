@@ -26,6 +26,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+
+
+//////////////////////////////////////// OBJECTIVE ///////////////////////////////////////////////////////
+/**
+ * MBProgressHUD is an iOS drop-in class that displays a translucent HUD with an indicator and/or labels 
+ * while work is being done in a background thread. The HUD is meant as a replacement for the undocumented, 
+ * private UIKit UIProgressHUD with some additional features.
+ *
+ * For displaying loading box while waiting to next action.
+ */
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CoreGraphics/CoreGraphics.h>

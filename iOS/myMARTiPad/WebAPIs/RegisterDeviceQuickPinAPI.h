@@ -2,9 +2,7 @@
 //  RegisterDeviceQuickPinAPI.h
 //  MyMart
 //
-//  Created by Komsan Noipitak on 4/23/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
 
 #import <Foundation/Foundation.h>
 #import "CocoaSecurity.h"
@@ -12,12 +10,17 @@
 #import "RandomGenerator.h"
 #import "SignatureGenerator.h"
 #import "NSString+HexToByteConverter.h"
-#import "Login.h"
 #import "ConfigManager.h"
-#import "RegisterDevice.h"
 #import "NetConnection.h"
+#import "StringToHexConvertor.h"
+#import "APICallBack.h"
 
-@interface RegisterDeviceQuickPinAPI : NSObject < NSURLConnectionDelegate > {
+@protocol InterfaceRegisterDeviceQuickPinAPI
+- (void)registerDeviceQuickPin:(NSString *)userID :(NSString *)quickPin :(NSString *)deviceID :(BOOL)isForceRegister;
+- (void)setAPICallBackDelegate:(id<APICallBackDelegate>)authenticateAPIDelegate;
+@end
+
+@interface RegisterDeviceQuickPinAPI : APICallBack <InterfaceRegisterDeviceQuickPinAPI, NetConnectionDelegate> {
     
     BOOL registerSuccess;
     BOOL alreadyRegistered;
@@ -31,9 +34,6 @@
 
 @property (retain, nonatomic) NSDictionary *resultDictionary;
 
-- (void)registerDeviceQuickPin:(NSString *)quickPin :(NSString *)deviceID :(BOOL)isForceRegister;
-- (void)netConnectionFinished;
-- (void)connectionDidFailWithError:(NSError *)error;
-
+- (void)registerDeviceQuickPin:(NSString *)userID :(NSString *)quickPin :(NSString *)deviceID :(BOOL)isForceRegister;
 
 @end

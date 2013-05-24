@@ -2,15 +2,14 @@
 //  ClassListViewController.m
 //  MyMart
 //
-//  Created by Komsan Noipitak on 3/26/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
 
 #import "ClassListViewController.h"
 
 Login *login;
 ClassList *classList;
 UnitList *unitList;
+UIThemeManager *uiThemeManager;
 
 @interface ClassListViewController ()
 
@@ -20,20 +19,18 @@ UnitList *unitList;
 @synthesize selectedUnit;
 
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+/**
+ * Method name: viewDidLoad
+ * Description: Called after the controller’s view is loaded into memory.
+ * Parameters: -
+ */
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
+    
     [super viewDidLoad];
 
     // Initial parameter
+    uiThemeManager = [[UIThemeManager alloc]init];
     classListArray = [[NSArray alloc]init];
     unitListArray  = [[NSArray alloc]init];
     login = [[Login alloc]init];
@@ -54,6 +51,13 @@ UnitList *unitList;
     
 }
 
+
+/**
+ * Method name: viewWillAppear
+ * Description: Notifies the view controller that its view is about to be added to a view hierarchy.
+ * Parameters: animated
+ */
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -63,6 +67,13 @@ UnitList *unitList;
         [self getClassList];
     }
 }
+
+
+/**
+ * Method name: didReceiveMemoryWarning
+ * Description: Sent to the view controller when the app receives a memory warning.
+ * Parameters: -
+ */
 
 - (void)didReceiveMemoryWarning
 {
@@ -86,19 +97,10 @@ UnitList *unitList;
 
 - (void)getClassList
 {
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(classListFinished:)
-                                                 name:@"classList"
-                                               object:nil ];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(classListDidFailWithError:)
-                                                 name:@"ClassListError"
-                                               object:nil ];
-    
     // Create model for call API
     classList = [[ClassList alloc]init];
     [ClassList sharedInstance];
+    classList.delegate = self;
     [classList getClassList:login.userID];
     
 }
@@ -111,19 +113,10 @@ UnitList *unitList;
 
 - (void)getUnitList:(NSString *)classIDSelected
 {
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(unitListFinished:)
-                                                 name:@"unitList"
-                                               object:nil ];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(unitListDidFailWithError:)
-                                                 name:@"unitListError"
-                                               object:nil ];
-    
     // Create model for calling API
     unitList = [[UnitList alloc]init];
     [UnitList sharedInstance];
+    unitList.delegate = self;
     [unitList getUnitList:login.userID :classIDSelected];
     
 }
@@ -131,22 +124,22 @@ UnitList *unitList;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark -
-#pragma mark === Handle Function ===
+#pragma mark === ClassList Delegate ===
 #pragma mark -
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Method name: classListFinished:
- * Description: Sent from model when GetClassListAPI has finished loading successfully.
- * Parameters: notification
+ * Method name: classListFinished
+ * Description: Sent from ClassList when NetConnection has finished loading successfully.
+ * Parameters: -
  */
 
-- (void)classListFinished:(NSNotification *)notification{
+- (void)classListFinished{
     
     classListArray = classList.userClassList;
     isAlreadyGetClassList = YES;
-    [self.tableView reloadData];
+    [classTableView reloadData];
    
     // Check class has one calss
     if (classList.isUserHasOnlyOneClass) {
@@ -159,13 +152,42 @@ UnitList *unitList;
     }
 }
 
+
 /**
- * Method name: unitListFinished:
- * Description: Sent from model when GetUnitListAPI has finished loading successfully.
- * Parameters: notification
+ * Method name: classListDidFailWithError:
+ * Description: Sent from ClassList when NetConnection fails to load successfully.
+ * Parameters: -
  */
 
-- (void)unitListFinished:(NSNotification *)notification{
+- (void)classListDidFailWithError{
+    
+    ConfigManager *configManager = [[ConfigManager alloc]init];
+    NSString *messgage = classList.errorMessage;
+    UIAlertView *classListErrorAlertView = [[UIAlertView alloc]initWithTitle:configManager.errorMessage
+                                                                     message:messgage
+                                                                    delegate:self
+                                                           cancelButtonTitle:@"Done"
+                                                           otherButtonTitles:nil];
+    [classListErrorAlertView show];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark -
+#pragma mark === UnitList Delegate ===
+#pragma mark -
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/**
+ * Method name: unitListFinished
+ * Description: Sent from UnitList when NetConnection has finished loading successfully.
+ * Parameters: -
+ */
+
+- (void)unitListFinished{
     
     unitListArray = unitList.userUnitList;
     
@@ -175,43 +197,19 @@ UnitList *unitList;
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-#pragma mark -
-#pragma mark === Handle Error Function ===
-#pragma mark -
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/**
- * Method name: classListDidFailWithError:
- * Description: Sent from model when GetClassListAPI fails to load successfully.
- * Parameters: notification
- */
-
-- (void)classListDidFailWithError:(NSNotification *)notification {
-    
-    NSString *messgage = classList.errorMessage;
-    UIAlertView *classListErrorAlertView = [[UIAlertView alloc]initWithTitle:@"No Internet Connection"
-                                                                 message:messgage
-                                                                delegate:self
-                                                       cancelButtonTitle:@"Done"
-                                                       otherButtonTitles:nil];
-    [classListErrorAlertView show];
-}
-
 /**
  * Method name: unitListDidFailWithError:
- * Description: Sent from model when GetUnitListAPI fails to load successfully.
- * Parameters: notification
+ * Description: Sent from UnitList when NetConnection fails to load successfully.
+ * Parameters: -
  */
 
-- (void)unitListDidFailWithError:(NSNotification *)notification {
+- (void)unitListDidFailWithError{
     
+    ConfigManager *configManager = [[ConfigManager alloc]init];
     NSString *messgage = unitList.errorMessage;
     
     // Show alertView with message
-    UIAlertView *unitListErrorAlertView = [[UIAlertView alloc]initWithTitle:@"No Internet Connection"
+    UIAlertView *unitListErrorAlertView = [[UIAlertView alloc]initWithTitle:configManager.errorMessage
                                                                  message:messgage
                                                                 delegate:self
                                                        cancelButtonTitle:@"Done"
@@ -252,13 +250,13 @@ UnitList *unitList;
     
     // Return the header of title in section
     
-    if (tableView == self.tableView){
+    if (tableView == classTableView){
         
-        return @"Class Selection";
+        return @"Class List";
         
     }else{
         
-        return classTitle;
+        return @"Unit List";
     }    
 }
 
@@ -271,13 +269,13 @@ UnitList *unitList;
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *tempView = [[UIView alloc]initWithFrame:CGRectMake(0,200,1024,55)];
-    tempView.backgroundColor = [UIColor colorWithRed:242.0/255.0 green:241.0/255.0 blue:241.0/255.0 alpha:1.0];
+    tempView.backgroundColor = uiThemeManager.headerSectionBGColor;
     
-    UILabel *tempLabel = [[UILabel alloc]initWithFrame:CGRectMake(15,0,300,44)];
-    tempLabel.backgroundColor = [UIColor clearColor];
+    UILabel *tempLabel = [[UILabel alloc]initWithFrame:CGRectMake(15,0,300,30)];
+    tempLabel.backgroundColor = uiThemeManager.labelBGColor;
     tempLabel.shadowOffset = CGSizeMake(0,2);
-    tempLabel.textColor = [UIColor colorWithRed:93.0/255.0 green:30.0/255.0 blue:39.0/255.0 alpha:1.0];
-    tempLabel.font = [UIFont boldSystemFontOfSize:20];
+    tempLabel.textColor = uiThemeManager.headerSectionTextColor;
+    tempLabel.font = uiThemeManager.cellTextFontSize;
     tempLabel.text = [self tableView:tableView titleForHeaderInSection:section];
     
     [tempView addSubview:tempLabel];
@@ -293,7 +291,7 @@ UnitList *unitList;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 44.0;
+    return 30.0;
 }
 
 /**
@@ -318,7 +316,7 @@ UnitList *unitList;
 
     // Return the number of rows in the section.
     
-    if (tableView == self.tableView) {
+    if (tableView == classTableView) {
         
         return [classListArray count];
         
@@ -344,7 +342,7 @@ UnitList *unitList;
     }
     
     // Configure the cell...
-    if (tableView == self.tableView) {
+    if (tableView == classTableView) {
         
         // Set text of label (ClassTitle)
         cell.textLabel.text = [[classListArray objectAtIndex:indexPath.row]
@@ -358,21 +356,15 @@ UnitList *unitList;
     }
     
     // Set font, background color of label
-    cell.textLabel.font = [UIFont systemFontOfSize:15.0];
-    cell.textLabel.textColor = [UIColor whiteColor];
-    cell.textLabel.backgroundColor   = [UIColor clearColor];
+    cell.textLabel.font = uiThemeManager.cellTextFontSize;
+    cell.textLabel.textColor = uiThemeManager.cellTextColor;
+    cell.textLabel.backgroundColor = uiThemeManager.labelBGColor;
     
     // Set content view background
-    cell.contentView.backgroundColor = [UIColor colorWithRed:48.0/255.0
-                                                       green:53.0/255.0
-                                                        blue:58.0/255.0
-                                                       alpha:1.0];
+    cell.contentView.backgroundColor = uiThemeManager.cellBGColor;
     
     UIView *bgColorView = [[UIView alloc] init];
-    [bgColorView setBackgroundColor:[UIColor colorWithRed:106.0/255.0
-                                                    green:35.0/255.0
-                                                     blue:45.0/255.0
-                                                    alpha:1.0]];
+    [bgColorView setBackgroundColor:uiThemeManager.cellSelectedBGColor];
     bgColorView.layer.cornerRadius = 5.0;
     [cell setSelectedBackgroundView:bgColorView];
     
@@ -388,7 +380,7 @@ UnitList *unitList;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Selected row in self.tableView 
-    if (tableView == self.tableView) {
+    if (tableView == classTableView) {
 
         selectedIndexPath = indexPath;
         
@@ -432,7 +424,7 @@ UnitList *unitList;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark -
-#pragma mark === Animated Unit TableView ===
+#pragma mark === Animated TableView ===
 #pragma mark -
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -446,16 +438,22 @@ UnitList *unitList;
 - (void) animationUnitTableView{
 
     // Set origin of unitTableView and add to view
-    unitTableView.frame = CGRectMake(1024, 0, unitTableView.bounds.size.width, unitTableView.bounds.size.height);
+    /*unitTableView.frame = CGRectMake(1024, 0, unitTableView.bounds.size.width, unitTableView.bounds.size.height);
     unitTableView.layer.shadowOpacity = 0.75f;
     unitTableView.layer.shadowRadius  = 10.0f;
     unitTableView.layer.shadowColor   = [UIColor blackColor].CGColor;
-    [self.view addSubview:unitTableView];
+    [self.view addSubview:unitTableView];*/
+    
+    unitTableViewBG.frame = CGRectMake(1024, 0, unitTableViewBG.bounds.size.width, unitTableViewBG.bounds.size.height);
+    unitTableViewBG.layer.shadowOpacity = 0.75f;
+    unitTableViewBG.layer.shadowRadius  = 10.0f;
+    unitTableViewBG.layer.shadowColor   = uiThemeManager.shadowColor.CGColor;
+    [self.view addSubview:unitTableViewBG];
     
     // Animated unitTableview
     [UIView animateWithDuration:0.5
                      animations:^{
-                         unitTableView.frame = CGRectMake(0, 0, unitTableView.bounds.size.width, unitTableView.bounds.size.height);}];
+                         unitTableViewBG.frame = CGRectMake(0, 0, unitTableViewBG.bounds.size.width, unitTableViewBG.bounds.size.height);}];
     
 }
 
@@ -464,7 +462,7 @@ UnitList *unitList;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark -
-#pragma mark === Swipe gesture handle ===
+#pragma mark === Swipe Gesture Handle ===
 #pragma mark -
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -475,18 +473,18 @@ UnitList *unitList;
  * Parameters: -
  */
 
-- (void)handleSwipe
+- (IBAction)handleSwipe
 {
     if (!isUserHasOnlyOneClass) {
         classTitle = @"";
         
         // Deselect row in classTableview
-        [self.tableView deselectRowAtIndexPath:selectedIndexPath animated:NO];
+        [classTableView deselectRowAtIndexPath:selectedIndexPath animated:NO];
         
         // Animated unitTableview
         [UIView animateWithDuration:0.5
                          animations:^{
-                             unitTableView.frame = CGRectMake(1024, 0,unitTableView.bounds.size.width, unitTableView.bounds.size.height);}];
+                             unitTableViewBG.frame = CGRectMake(1024, 0,unitTableViewBG.bounds.size.width, unitTableViewBG.bounds.size.height);}];
         unitListArray = [[NSArray alloc]init];
         [unitTableView reloadData];
 

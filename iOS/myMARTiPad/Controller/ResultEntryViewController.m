@@ -2,9 +2,7 @@
 //  ResultEntryViewController.m
 //  MyMart
 //
-//  Created by Komsan Noipitak on 3/22/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
 
 #import "ResultEntryViewController.h"
 #import "NSObject+DelayedBlock.h"
@@ -19,6 +17,12 @@
 @synthesize unitTitle;
 
 
+/**
+ * Method name: initWithNibName: bundle:
+ * Description: Returns a newly initialized view controller with the nib file in the specified bundle.
+ * Parameters: nibNameOrNil, nibBundleOrNil
+ */
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -28,6 +32,13 @@
     return self;
 }
 
+
+/**
+ * Method name: viewWillAppear
+ * Description: Notifies the view controller that its view is about to be added to a view hierarchy.
+ * Parameters: animated
+ */
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -36,6 +47,13 @@
     // You just need to set the opacity, radius, and color.
 
 }
+
+
+/**
+ * Method name: viewDidLoad
+ * Description: Called after the controller’s view is loaded into memory.
+ * Parameters: -
+ */
 
 - (void)viewDidLoad
 {
@@ -51,6 +69,15 @@
     [self setCommentView];
 
 }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark -
+#pragma mark === Set TableView ===
+#pragma mark -
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)setTableview{
     
@@ -119,6 +146,13 @@
     tblView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:tblView];
 }
+
+
+/**
+ * Method name: didReceiveMemoryWarning
+ * Description: Sent to the view controller when the app receives a memory warning.
+ * Parameters: -
+ */
 
 - (void)didReceiveMemoryWarning
 {

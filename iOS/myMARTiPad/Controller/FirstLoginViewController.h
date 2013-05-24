@@ -2,19 +2,17 @@
 //  FirstLoginViewController.h
 //  MyMart
 //
-//  Created by Komsan Noipitak on 3/26/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "MBProgressHUD.h"
 #import "DeviceManager.h"
-#import "Common.h"
 #import "Login.h"
 #import "RegisterDevice.h"
+#import "UIThemeManager.h"
 
-@interface FirstLoginViewController : UIViewController <UIAlertViewDelegate,UITextFieldDelegate,MBProgressHUDDelegate> {
+@interface FirstLoginViewController : UIViewController <UIAlertViewDelegate,UITextFieldDelegate,MBProgressHUDDelegate, LoginDelegate, RegisterDeviceDelegate> {
    
     NSString        *quickpinString;
     NSString        *quickpinStringForCompare;
@@ -51,7 +49,6 @@
     MBProgressHUD *HUD;
     
 }
-
 
 
 @end

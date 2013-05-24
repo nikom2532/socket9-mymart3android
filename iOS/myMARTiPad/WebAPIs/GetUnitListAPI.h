@@ -2,9 +2,7 @@
 //  GetUnitListAPI.h
 //  MyMart
 //
-//  Created by Komsan Noipitak on 4/23/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
 
 #import <Foundation/Foundation.h>
 #import "CocoaSecurity.h"
@@ -12,12 +10,16 @@
 #import "RandomGenerator.h"
 #import "SignatureGenerator.h"
 #import "NSString+HexToByteConverter.h"
-#import "Login.h"
 #import "ConfigManager.h"
-#import "UnitList.h"
 #import "NetConnection.h"
+#import "APICallBack.h"
 
-@interface GetUnitListAPI : NSObject {
+@protocol InterfaceGetUnitListAPI
+- (void) getUnitList :(NSString *)userID :(NSString *)classID;
+- (void)setAPICallBackDelegate:(id<APICallBackDelegate>)authenticateAPIDelegate;
+@end
+
+@interface GetUnitListAPI : APICallBack <InterfaceGetUnitListAPI, NetConnectionDelegate> {
     
     BOOL unitListSuccess;
     NSArray *userUnitList;
@@ -26,14 +28,13 @@
     NSURLConnection *getUnitUrlConnection;
     NSMutableData   *getUnitResponseData;
     NSDictionary *resultDictionary;
+    
 
 }
 
 @property (retain, nonatomic) NSDictionary *resultDictionary;
 
 - (void) getUnitList :(NSString *)userID :(NSString *)classID;
-- (void)netConnectionFinished;
-- (void)connectionDidFailWithError:(NSError *)error;
 
 
 @end

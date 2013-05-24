@@ -2,9 +2,12 @@
 //  NetConnection.h
 //  myMARTiPad
 //
-//  Created by Komsan Noipitak on 5/3/56 BE.
-//  Copyright (c) 2556 Komsan Noipitak. All rights reserved.
-//
+
+
+@protocol NetConnectionDelegate
+- (void) netConnectionFinished :(NSDictionary *)dictionary;
+- (void) netConnectionDidFailWithError :(NSError *)error;
+@end
 
 #import <Foundation/Foundation.h>
 #import "AuthenticateAPI.h"
@@ -12,17 +15,20 @@
 #import "RegisterDeviceQuickPinAPI.h"
 #import "GetClassListAPI.h"
 #import "GetUnitListAPI.h"
+#import "LogManager.h"
 
 @interface NetConnection : NSObject <NSURLConnectionDelegate> {
     
     NSURLConnection *urlConnection;
     NSMutableData *responseData;
     NSDictionary *resultDictionary;
-    NSString *tag;
+    
+    id <NetConnectionDelegate> delegate;
 }
 
+@property (nonatomic, retain) id <NetConnectionDelegate> delegate;
 
-- (id)initWithRequest:(NSURLRequest *)request tag:(NSString *)tag;
+- (id)initWithRequest:(NSURLRequest *)request;
 - (void)start;
 
 @end
