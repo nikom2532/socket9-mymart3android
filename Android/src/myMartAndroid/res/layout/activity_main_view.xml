@@ -1,0 +1,69 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SwipeAnimationControl" >
+
+    <Button
+        android:id="@+id/buttonMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onMenuClick"
+        android:text="Menu" />
+    
+	<Button
+        android:id="@+id/buttonNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onNoteClick"
+        android:layout_below="@+id/buttonMenu"
+        android:text="Note" />
+    
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonNote"
+        android:text="TextView" />
+    
+    <com.slidinglayer.SlidingLayer
+        xmlns:slidingLayer="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/slidingLayer1"
+        android:layout_width="@dimen/slidinglayer_layer_width"
+        android:layout_height="match_parent">
+    <!--slidingLayer:shadowDrawable="@drawable/sidebar_shadow"
+        slidingLayer:shadowWidth="@dimen/shadow_width"
+        slidingLayer:stickTo="auto|right|left|middle"
+        slidingLayer:closeOnTapEnabled="true">-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#14ad8f">
+                
+            <EditText 
+                android:id="@+id/swipeText"
+                android:layout_width="500dp"
+                android:layout_height="300dp"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:drawablePadding="15dip"
+                android:paddingBottom="80dp"
+                android:textSize="17sp"
+                android:textColor="#074035"/>
+
+            <Button
+		        android:id="@+id/buttonClose"
+		        android:onClick="onNoteCloseClick"
+                android:layout_marginBottom="60dp"
+                android:layout_alignParentBottom="true"
+		        android:layout_centerHorizontal="true"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"		        
+		        android:text="close" />
+
+        </RelativeLayout>
+
+    </com.slidinglayer.SlidingLayer>    
+
+</RelativeLayout>
